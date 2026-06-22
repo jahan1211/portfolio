@@ -956,6 +956,78 @@
     color: #fff;
   }
 
+  /* ── MOCKUPS GRID ── */
+  .mockups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .mockup-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s, box-shadow 0.4s;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+  }
+  .mockup-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 24px 48px rgba(16, 185, 129, 0.04);
+  }
+  .mockup-img-wrap {
+    height: 380px;
+    overflow: hidden;
+    position: relative;
+    cursor: zoom-in;
+  }
+  .mockup-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .mockup-card:hover .mockup-img-wrap img {
+    transform: scale(1.04);
+  }
+  .mockup-info {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .mockup-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    display: inline-block;
+    margin-bottom: 12px;
+    background: rgba(16, 185, 129, 0.06);
+    padding: 4px 12px;
+    border-radius: 6px;
+    width: fit-content;
+  }
+  .mockup-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .mockup-desc {
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+
   /* ── VIDEOS GRID ── */
   .videos-grid {
     display: grid;
@@ -1209,6 +1281,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#timeline">Timeline</a></li>
     <li><a href="#uiux">UI/UX Cases</a></li>
+    <li><a href="#mockups">Mockups</a></li>
     <li><a href="#posters">Posters</a></li>
     <li><a href="#videos">Videos</a></li>
     <li><a href="#contact" class="nav-cta">Connect</a></li>
@@ -1320,7 +1393,31 @@
       </div>
       
       <div class="exp-list">
-        <!-- Experience Item 1 -->
+        <!-- Experience Item 1: UI/UX Designing for Final Year Projects -->
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title-sub">
+              <div class="exp-icon-box">💻</div>
+              <div class="exp-role-co">
+                <h4>Freelance UI/UX Designer</h4>
+                <h5>Academic &amp; Final Year Projects</h5>
+              </div>
+            </div>
+            <div class="exp-time-loc">
+              <span class="exp-time-pill">09/2025 – Present</span>
+              <p class="exp-loc">Faisalabad, Pakistan (Remote)</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Designed user interfaces, wireframes, and interactive prototypes for multiple final-year academic and capstone software projects.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Collaborated with software engineering student teams to translate system requirements into high-fidelity design screens.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Built comprehensive design systems, style guides, and component libraries to facilitate developer handoff.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Conducted usability research and wireframing iterations to optimize user journeys and dashboard experiences.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Worked across diverse domains including healthcare management portals, creative e-commerce dashboards, and mobile utility designs.</li>
+          </ul>
+        </div>
+
+        <!-- Experience Item 2 -->
         <div class="exp-card">
           <div class="exp-header">
             <div class="exp-title-sub">
@@ -1482,6 +1579,42 @@
   </div>
 </section>
 
+<!-- Mockups & Branding -->
+<section id="mockups" style="background: var(--bg); padding: 120px 0;">
+  <div class="sec-header" style="max-width: 1200px; margin: 0 auto 64px;">
+    <div class="sec-label">Packaging &amp; Identity</div>
+    <h2 class="sec-title">Product &amp; Branding <span>Mockups</span></h2>
+  </div>
+  
+  <div class="mockups-grid">
+    <!-- Mockup Card 1: Aurelia Honey -->
+    <div class="mockup-card">
+      <div class="mockup-img-wrap" onclick="openLightbox('Mockups/AURELIA.jpeg', 'Aurelia Honey — Pure Organic Packaging Mockup')">
+        <img src="Mockups/AURELIA.jpeg" alt="Aurelia Honey Mockup" loading="lazy">
+      </div>
+      <div class="mockup-info">
+        <span class="mockup-tag">Product &amp; Packaging Design</span>
+        <h3 class="mockup-title">Aurelia Organic Honey</h3>
+        <p class="mockup-desc">Premium label and packaging design for Aurelia, a high-end brand specializing in raw organic honey. Developed a clean, warm design system highlighting purity and natural ingredients, paired with a sleek glass jar mockup.</p>
+        <button class="btn-outline" style="font-size: 12.5px; padding: 10px 20px; width: fit-content; cursor: pointer;" onclick="openLightbox('Mockups/AURELIA.jpeg', 'Aurelia Honey — Pure Organic Packaging Mockup')">Zoom Mockup</button>
+      </div>
+    </div>
+
+    <!-- Mockup Card 2: Veloura -->
+    <div class="mockup-card">
+      <div class="mockup-img-wrap" onclick="openLightbox('Mockups/Veloura.jpeg', 'Veloura — Luxury Cosmetics Branding Mockup')">
+        <img src="Mockups/Veloura.jpeg" alt="Veloura Mockup" loading="lazy">
+      </div>
+      <div class="mockup-info">
+        <span class="mockup-tag">Brand Identity &amp; Mockup</span>
+        <h3 class="mockup-title">Veloura Cosmetics</h3>
+        <p class="mockup-desc">Complete visual identity and product styling mockup for Veloura, a luxury eco-conscious skincare line. Built with minimalist serif typography, refined organic palettes, and premium packaging textures to invoke a modern aesthetic.</p>
+        <button class="btn-outline" style="font-size: 12.5px; padding: 10px 20px; width: fit-content; cursor: pointer;" onclick="openLightbox('Mockups/Veloura.jpeg', 'Veloura — Luxury Cosmetics Branding Mockup')">Zoom Mockup</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Poster Grid -->
 <section id="posters">
   <div class="sec-header" style="max-width: 1200px; margin: 0 auto 64px;">
@@ -1564,7 +1697,7 @@
 
   // Grow cursor on hover links (Event Delegation to support dynamic elements)
   document.addEventListener('mouseover', (e) => {
-    const target = e.target.closest('a, button, select, option, .uiux-screen-item, .poster-card, .video-card, .btn-social, .uiux-proj-right, .cs-gallery-item');
+    const target = e.target.closest('a, button, select, option, .uiux-screen-item, .poster-card, .video-card, .btn-social, .uiux-proj-right, .cs-gallery-item, .mockup-img-wrap');
     if (target) {
       cursor.style.width = '12px';
       cursor.style.height = '12px';
@@ -1575,7 +1708,7 @@
   });
 
   document.addEventListener('mouseout', (e) => {
-    const target = e.target.closest('a, button, select, option, .uiux-screen-item, .poster-card, .video-card, .btn-social, .uiux-proj-right, .cs-gallery-item');
+    const target = e.target.closest('a, button, select, option, .uiux-screen-item, .poster-card, .video-card, .btn-social, .uiux-proj-right, .cs-gallery-item, .mockup-img-wrap');
     if (target) {
       cursor.style.width = '8px';
       cursor.style.height = '8px';
