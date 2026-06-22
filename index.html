@@ -1162,6 +1162,54 @@
     font-weight: 500;
     text-align: center;
   }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    user-select: none;
+    z-index: 910;
+  }
+  .lightbox-prev {
+    left: 40px;
+  }
+  .lightbox-next {
+    right: 40px;
+  }
+  .lightbox-nav:hover {
+    background: var(--accent-gradient);
+    color: #000;
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  }
+  .lightbox-nav:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  @media (max-width: 768px) {
+    .lightbox-nav {
+      width: 48px;
+      height: 48px;
+      font-size: 18px;
+    }
+    .lightbox-prev {
+      left: 16px;
+    }
+    .lightbox-next {
+      right: 16px;
+    }
+  }
 
   /* ── CONTACT & FOOTER ── */
   .contact {
@@ -1321,7 +1369,7 @@
   <div class="about-grid">
     <div class="about-left">
       <div class="sec-label">Portfolio &amp; CV</div>
-      <h2 class="sec-title" style="margin-bottom: 24px;">Merging Storytelling with <span>Functionality</span></h2>
+      <h2 class="sec-title" style="margin-bottom: 24px;">Hello, I'm <span>Nusrat Jahan Ara</span></h2>
       <p>I build visual experiences as a <strong>Graphic Designer, UI/UX Designer, and Social Media Marketing Executive</strong>, combining creative storytelling with strategic and user-focused execution.</p>
       
       <div class="about-ctas">
@@ -1671,7 +1719,9 @@
 
 <!-- Lightbox Modal -->
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightbox-close-btn">&times;</button>
+  <button class="lightbox-close" id="lightbox-close-btn" title="Close Lightbox">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev-btn" title="Previous">&#10094;</button>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next-btn" title="Next">&#10095;</button>
   <div class="lightbox-content">
     <img src="" id="lightbox-img" alt="Enlarged view">
     <div class="lightbox-caption" id="lightbox-caption">Caption text</div>
@@ -2078,6 +2128,9 @@
     });
   }
 
+  // Global gallery states for lightbox slideshow navigation
+  let currentCaseStudyScreens = [];
+
   // ── CASE STUDY MODAL LOGIC ──
   function openCaseStudy(projId) {
     const project = globalManifest.uiux.find(p => p.id === projId);
@@ -2099,12 +2152,24 @@
 
     // Generate gallery items using the directory array (which contains all files from the folder)
     const screens = project.directory || project.modules;
-    const galleryHtml = screens.map(mod => {
+    
+    // Map screens to lightbox gallery format
+    currentCaseStudyScreens = screens.map(mod => {
+      const match = (project.modules || []).find(m => m.url === mod.url);
+      const desc = match ? match.desc : '';
+      return {
+        src: encodeURI(mod.url),
+        caption: mod.name + (desc ? ` — ${desc}` : ''),
+        type: 'image'
+      };
+    });
+
+    const galleryHtml = screens.map((mod, index) => {
       // Find a matching description from modules metadata if it exists
       const match = (project.modules || []).find(m => m.url === mod.url);
       const desc = match ? match.desc : '';
       return `
-        <div class="cs-gallery-item" onclick="openLightbox('${encodeURI(mod.url)}', '${mod.name}')">
+        <div class="cs-gallery-item" onclick="openLightbox('${encodeURI(mod.url)}', '${mod.name}', 'image', currentCaseStudyScreens, ${index})">
           <img src="${encodeURI(mod.url)}" alt="${mod.name}" loading="lazy">
           <div class="cs-gallery-item-info">
             <div class="cs-gallery-item-title">${mod.name}</div>
@@ -2161,8 +2226,14 @@
   function renderPosters(posters) {
     const container = document.getElementById('posters-container');
     container.innerHTML = '';
+
+    const posterItems = posters.map(p => ({
+      src: encodeURI(p.url),
+      caption: p.name,
+      type: 'image'
+    }));
     
-    posters.forEach(p => {
+    posters.forEach((p, index) => {
       const card = document.createElement('div');
       card.className = 'poster-card';
       card.innerHTML = `
@@ -2174,7 +2245,7 @@
           <div class="poster-title">${p.name}</div>
         </div>
       `;
-      card.addEventListener('click', () => openLightbox(encodeURI(p.url), p.name));
+      card.addEventListener('click', () => openLightbox(encodeURI(p.url), p.name, 'image', posterItems, index));
       container.appendChild(card);
     });
   }
@@ -2183,8 +2254,14 @@
   function renderVideos(videos) {
     const container = document.getElementById('videos-container');
     container.innerHTML = '';
+
+    const videoItems = videos.map(v => ({
+      src: encodeURI(v.url),
+      caption: v.name,
+      type: 'video'
+    }));
     
-    videos.forEach(v => {
+    videos.forEach((v, index) => {
       const card = document.createElement('div');
       card.className = 'video-card';
       card.innerHTML = `
@@ -2212,7 +2289,7 @@
         videoEl.currentTime = 0;
         videoEl.load(); // Forces the cover poster thumbnail to display again
       });
-      card.addEventListener('click', () => openLightbox(encodeURI(v.url), v.name, 'video'));
+      card.addEventListener('click', () => openLightbox(encodeURI(v.url), v.name, 'video', videoItems, index));
       
       container.appendChild(card);
     });
@@ -2223,17 +2300,35 @@
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCaption = document.getElementById('lightbox-caption');
   const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+  const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
+  const lightboxNextBtn = document.getElementById('lightbox-next-btn');
 
-  function openLightbox(src, caption, type = 'image') {
-    // Remove previous iframe or video if any
+  let lightboxItems = [];
+  let lightboxIndex = -1;
+
+  function openLightbox(src, caption, type = 'image', items = [], index = -1) {
+    lightboxItems = items.length ? items : [{ src, caption, type }];
+    lightboxIndex = index !== -1 ? index : 0;
+    
+    updateLightboxContent();
+    
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function updateLightboxContent() {
+    if (lightboxIndex < 0 || lightboxIndex >= lightboxItems.length) return;
+    const current = lightboxItems[lightboxIndex];
+    
+    // Remove previous video if any
     const prevVideo = document.getElementById('lightbox-video');
     if (prevVideo) prevVideo.remove();
 
-    if (type === 'video') {
+    if (current.type === 'video') {
       lightboxImg.style.display = 'none';
       const video = document.createElement('video');
       video.id = 'lightbox-video';
-      video.src = src;
+      video.src = current.src;
       video.controls = true;
       video.autoplay = true;
       video.style.maxWidth = '90vw';
@@ -2242,12 +2337,31 @@
       document.querySelector('.lightbox-content').insertBefore(video, lightboxImg);
     } else {
       lightboxImg.style.display = 'block';
-      lightboxImg.src = src;
+      lightboxImg.src = current.src;
     }
     
-    lightboxCaption.textContent = caption || '';
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    lightboxCaption.textContent = current.caption || '';
+    
+    // Show/hide navigation arrows based on items count
+    if (lightboxItems.length > 1) {
+      lightboxPrevBtn.style.display = 'flex';
+      lightboxNextBtn.style.display = 'flex';
+    } else {
+      lightboxPrevBtn.style.display = 'none';
+      lightboxNextBtn.style.display = 'none';
+    }
+  }
+
+  function nextLightboxItem() {
+    if (lightboxItems.length <= 1) return;
+    lightboxIndex = (lightboxIndex + 1) % lightboxItems.length;
+    updateLightboxContent();
+  }
+
+  function prevLightboxItem() {
+    if (lightboxItems.length <= 1) return;
+    lightboxIndex = (lightboxIndex - 1 + lightboxItems.length) % lightboxItems.length;
+    updateLightboxContent();
   }
 
   function closeLightbox() {
@@ -2261,8 +2375,31 @@
   }
 
   lightboxCloseBtn.addEventListener('click', closeLightbox);
+  
+  lightboxPrevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    prevLightboxItem();
+  });
+  
+  lightboxNextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nextLightboxItem();
+  });
+
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+      closeLightbox();
+    }
+  });
+
+  // Bind keyboard navigation keys
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'ArrowRight') {
+      nextLightboxItem();
+    } else if (e.key === 'ArrowLeft') {
+      prevLightboxItem();
+    } else if (e.key === 'Escape') {
       closeLightbox();
     }
   });
