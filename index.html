@@ -1712,17 +1712,189 @@
   });
 
   // ── DYNAMIC PROJECT SYSTEM & RENDERER ──
-  let globalManifest = {};
+  const globalManifest = {
+    "uiux": [
+      {
+        "id": "heraid",
+        "folderName": "heraid",
+        "title": "HerAid — Women's Safety & Health App",
+        "tag": "Healthcare & Safety UX Case Study",
+        "desc": "HerAid is a women's safety and menstruation-tracking platform designed to connect users with safety NGOs, track personal wellness metrics, and ensure privacy-first health management.",
+        "figmaUrl": "https://www.figma.com/file/heraid-ux-case-study",
+        "behanceUrl": "https://www.behance.net/gallery/heraid-safety-app",
+        "mockup": "uiux/heraid-mockup.png",
+        "techStack": ["Figma", "UI/UX Design", "Wireframing", "Prototyping", "User Research"],
+        "modules": [
+          { "name": "Splash Screen", "desc": "Branded landing page focusing on minimal layout and clean structure.", "type": "image", "url": "uiux/heraid/Splash Screen.png" },
+          { "name": "Get Started Onboarding", "desc": "Clean onboarding sequence illustrating primary functions.", "type": "image", "url": "uiux/heraid/Get Started.png" },
+          { "name": "NGO Directory & Contact", "desc": "A direct bridge to contact local safety organizations.", "type": "image", "url": "uiux/heraid/Contact NGO.png" },
+          { "name": "Cycle Settings", "desc": "Menstruation settings interface focusing on accessible layouts.", "type": "image", "url": "uiux/heraid/Cycle Settings.png" },
+          { "name": "NGO Dashboard", "desc": "A data-driven view for organization managers and support networks.", "type": "image", "url": "uiux/heraid/NGO Dashboard.png" },
+          { "name": "Profile Overview", "desc": "User profile dashboard indicating health alerts and personal safety logs.", "type": "image", "url": "uiux/heraid/Profile Home.png" }
+        ],
+        "directory": [
+          { "name": "Splash Screen", "type": "image", "url": "uiux/heraid/Splash Screen.png" },
+          { "name": "Get Started", "type": "image", "url": "uiux/heraid/Get Started.png" },
+          { "name": "Cycle Settings", "type": "image", "url": "uiux/heraid/Cycle Settings.png" },
+          { "name": "Learn Home", "type": "image", "url": "uiux/heraid/Learn Home.png" },
+          { "name": "My Progress", "type": "image", "url": "uiux/heraid/My Progress.png" },
+          { "name": "NGO Dashboard", "type": "image", "url": "uiux/heraid/NGO Dashboard.png" },
+          { "name": "Contact NGO", "type": "image", "url": "uiux/heraid/Contact NGO.png" },
+          { "name": "Notifications", "type": "image", "url": "uiux/heraid/Notifications.png" },
+          { "name": "Privacy Data", "type": "image", "url": "uiux/heraid/Privacy Data.png" },
+          { "name": "Profile Home", "type": "image", "url": "uiux/heraid/Profile Home.png" },
+          { "name": "Language Settings", "type": "image", "url": "uiux/heraid/Language Settings.png" },
+          { "name": "Edit Profile", "type": "image", "url": "uiux/heraid/Edit Profile.png" }
+        ]
+      },
+      {
+        "id": "lumin-mind",
+        "folderName": "lumin-mind",
+        "title": "Lumin Mind — Mental Health & Wellness App",
+        "tag": "Psychology & AI Chatbot UX Case Study",
+        "desc": "Lumin Mind uses mental health tracking, facial scans, emotional logs, and gamification to help users deal with stress. Developed with interactive dashboard interfaces and user journeys.",
+        "figmaUrl": "https://www.figma.com/file/lumin-mind-mental-health",
+        "behanceUrl": "https://www.behance.net/gallery/lumin-mind-ux",
+        "mockup": "uiux/lumin mind_mockup.png",
+        "techStack": ["Figma", "UI/UX Design", "AI Chatbot Design", "Gamification", "Prototyping"],
+        "modules": [
+          { "name": "Splash Screen", "desc": "Clean, calming splash screen structure.", "type": "image", "url": "uiux/lumin-mind/01_splash_screen.png" },
+          { "name": "User Onboarding", "desc": "Introduction to interactive mental health modules.", "type": "image", "url": "uiux/lumin-mind/03_onboarding_screen.png" },
+          { "name": "Wellness Home Dashboard", "desc": "Main panel summarizing user emotion tracking, affirmations, and recommendations.", "type": "image", "url": "uiux/lumin-mind/04_home_dashboard.png" },
+          { "name": "Stress Analytics", "desc": "Detailed analytics outlining heart rate, stress levels, and tracking records.", "type": "image", "url": "uiux/lumin-mind/06_stress_results.png" },
+          { "name": "AI Mental Health Chatbot", "desc": "Interactive conversation workspace with professional AI support systems.", "type": "image", "url": "uiux/lumin-mind/08_ai_chatbot.png" },
+          { "name": "Gamified Achievements", "desc": "Gamification features tracking milestones, badges, and positive mental habits.", "type": "image", "url": "uiux/lumin-mind/11_gamification.png" }
+        ],
+        "directory": [
+          { "name": "Splash Screen", "type": "image", "url": "uiux/lumin-mind/01_splash_screen.png" },
+          { "name": "Login Screen", "type": "image", "url": "uiux/lumin-mind/02_login_screen.png" },
+          { "name": "Onboarding Screen", "type": "image", "url": "uiux/lumin-mind/03_onboarding_screen.png" },
+          { "name": "Home Dashboard", "type": "image", "url": "uiux/lumin-mind/04_home_dashboard.png" },
+          { "name": "Survey Module", "type": "image", "url": "uiux/lumin-mind/05_survey_module.png" },
+          { "name": "Stress Results", "type": "image", "url": "uiux/lumin-mind/06_stress_results.png" },
+          { "name": "Emotion Locker", "type": "image", "url": "uiux/lumin-mind/07_emotion_locker.png" },
+          { "name": "AI Chatbot", "type": "image", "url": "uiux/lumin-mind/08_ai_chatbot.png" },
+          { "name": "Community Board", "type": "image", "url": "uiux/lumin-mind/09_community.png" },
+          { "name": "Affirmations", "type": "image", "url": "uiux/lumin-mind/10_affirmations.png" },
+          { "name": "Gamification", "type": "image", "url": "uiux/lumin-mind/11_gamification.png" },
+          { "name": "Profile Analytics", "type": "image", "url": "uiux/lumin-mind/12_profile_analytics.png" }
+        ]
+      },
+      {
+        "id": "vyana",
+        "folderName": "Vyana",
+        "title": "Vyana — Mood Tracker & Support App",
+        "tag": "Interactive Mood Tracker UX Case Study",
+        "desc": "An interactive mood tracking platform designed with detailed tracking screens, personalized statistics, and a mental safe-space onboarding experience.",
+        "figmaUrl": "https://www.figma.com/file/vyana-mood-tracker",
+        "behanceUrl": "https://www.behance.net/gallery/vyana-mood-ux",
+        "mockup": "uiux/Vyana/iPhone 14 & 15 Pro Max - 3.png",
+        "techStack": ["Figma", "UI/UX Design", "Mood Tracking", "Data Analytics", "Prototyping"],
+        "modules": [
+          { "name": "Welcome Screen", "desc": "Sleek dark theme welcome visual.", "type": "image", "url": "uiux/Vyana/01_welcome.png" },
+          { "name": "User Registration", "desc": "Simple forms ensuring seamless onboarding experience.", "type": "image", "url": "uiux/Vyana/02_register.png" },
+          { "name": "Home Mood Dashboard", "desc": "Clean and dynamic screen to record moods and browse progress lists.", "type": "image", "url": "uiux/Vyana/03_home.png" },
+          { "name": "Crisis Support Panel", "desc": "A comforting workspace providing user support options.", "type": "image", "url": "uiux/Vyana/04_dont_be_scared.png" },
+          { "name": "Progress Analytics", "desc": "Historical charts and analytics illustrating user mood patterns.", "type": "image", "url": "uiux/Vyana/06_progress_scrolled.png" }
+        ],
+        "directory": [
+          { "name": "Welcome Screen", "type": "image", "url": "uiux/Vyana/01_welcome.png" },
+          { "name": "Register Screen", "type": "image", "url": "uiux/Vyana/02_register.png" },
+          { "name": "Home Dashboard", "type": "image", "url": "uiux/Vyana/03_home.png" },
+          { "name": "Support Screen", "type": "image", "url": "uiux/Vyana/04_dont_be_scared.png" },
+          { "name": "Progress Graph", "type": "image", "url": "uiux/Vyana/06_progress_scrolled.png" },
+          { "name": "Alternative Dashboard Layout", "type": "image", "url": "uiux/Vyana/iPhone 14 & 15 Pro Max - 3.png" }
+        ]
+      },
+      {
+        "id": "jahan-s-hue",
+        "folderName": "Jahan's Hue",
+        "title": "Jahan's Hue — Creative E-Commerce App",
+        "tag": "E-Commerce & Branding UX Case Study",
+        "desc": "A tailored design system and shopping flow for art prints, custom creations, and design assets, optimizing categories and checkouts.",
+        "figmaUrl": "https://www.figma.com/file/jahans-hue-ecommerce",
+        "behanceUrl": "https://www.behance.net/gallery/jahans-hue-branding",
+        "mockup": "uiux/Jahan's Hue/11.png",
+        "techStack": ["Figma", "UI/UX Design", "E-Commerce", "Branding & Identity", "Prototyping"],
+        "modules": [
+          { "name": "User Registration", "desc": "Modern layout with secure email fields.", "type": "image", "url": "uiux/Jahan's Hue/signup.png" },
+          { "name": "Home Creative Feed", "desc": "A visually stimulating display showcasing custom art categories, posters, and featured creator prints.", "type": "image", "url": "uiux/Jahan's Hue/11.png" },
+          { "name": "Product Details Screen", "desc": "Interactive detail layout highlighting options, reviews, and dynamic checkout buttons.", "type": "image", "url": "uiux/Jahan's Hue/detail.png" },
+          { "name": "Multi-Step Checkout", "desc": "Streamlined checkout summary, shipping forms, and success status panels.", "type": "image", "url": "uiux/Jahan's Hue/checkout.png" }
+        ],
+        "directory": [
+          { "name": "Registration Screen", "type": "image", "url": "uiux/Jahan's Hue/signup.png" },
+          { "name": "Home Feed Screen", "type": "image", "url": "uiux/Jahan's Hue/11.png" },
+          { "name": "Product Details Screen", "type": "image", "url": "uiux/Jahan's Hue/detail.png" },
+          { "name": "Checkout Screen", "type": "image", "url": "uiux/Jahan's Hue/checkout.png" }
+        ]
+      },
+      {
+        "id": "travel-via",
+        "folderName": "travel Via",
+        "title": "Travel Platform — Booking UX",
+        "tag": "Booking Flow UX Case Study",
+        "desc": "An immersive travel platform developed through structured competitor analysis, optimizing search categories and tour bookings. Refined using Figma prototypes to ensure fluid interactive transitions and high user retention.",
+        "figmaUrl": "https://www.figma.com/file/travel-booking-ux",
+        "behanceUrl": "https://www.behance.net/gallery/travel-platform-ux",
+        "mockup": "uiux/travel Via/hero.png",
+        "techStack": ["Figma", "UI/UX Design", "Travel Booking", "Competitor Analysis", "Prototyping"],
+        "modules": [
+          { "name": "Splash Screen", "desc": "Branded loading screen welcoming travelers.", "type": "image", "url": "uiux/travel Via/1.png" },
+          { "name": "Walkthrough Onboarding", "desc": "Interactive walkthrough illustrating booking steps.", "type": "image", "url": "uiux/travel Via/2.png" },
+          { "name": "Login Screen", "desc": "Secure, minimalist login interface.", "type": "image", "url": "uiux/travel Via/3.png" },
+          { "name": "Registration Setup", "desc": "Simplified sign-up form prioritizing quick access.", "type": "image", "url": "uiux/travel Via/Sign up.png" },
+          { "name": "Explore Home Feed", "desc": "Clean cards showcasing tour categories, featured trips, and search options.", "type": "image", "url": "uiux/travel Via/hero.png" },
+          { "name": "Destination Details", "desc": "Rich detail screen with reviews, itineraries, and quick action booking buttons.", "type": "image", "url": "uiux/travel Via/4.png" },
+          { "name": "Booking Flow Screen", "type": "image", "url": "uiux/travel Via/screen.png" }
+        ],
+        "directory": [
+          { "name": "Splash Screen", "type": "image", "url": "uiux/travel Via/1.png" },
+          { "name": "Onboarding Screen", "type": "image", "url": "uiux/travel Via/2.png" },
+          { "name": "Login Screen", "type": "image", "url": "uiux/travel Via/3.png" },
+          { "name": "Sign Up Screen", "type": "image", "url": "uiux/travel Via/Sign up.png" },
+          { "name": "Explore Screen", "type": "image", "url": "uiux/travel Via/hero.png" },
+          { "name": "Destination Detail Screen", "type": "image", "url": "uiux/travel Via/4.png" },
+          { "name": "Checkout Screen", "type": "image", "url": "uiux/travel Via/screen.png" }
+        ]
+      }
+    ],
+    "mockups": [
+      { "name": "Aurelia Product Mockup", "url": "Mockups/AURELIA.jpeg" },
+      { "name": "Veloura Branding Mockup", "url": "Mockups/Veloura.jpeg" }
+    ],
+    "posters": [
+      { "name": "Poster Design 1", "url": "Posters & Creatives/1 (1).png" },
+      { "name": "Creative Poster 2", "url": "Posters & Creatives/1eb16165-6a87-49be-bb73-6ed5f9a91c4b.png" },
+      { "name": "Design Project 3", "url": "Posters & Creatives/ChatGPT Image Jun 13, 2026, 07_46_19 PM.png" },
+      { "name": "Design Project 4", "url": "Posters & Creatives/ChatGPT Image Jun 21, 2026, 12_10_48 PM.png" },
+      { "name": "Design Project 5", "url": "Posters & Creatives/ChatGPT Image Jun 21, 2026, 12_16_53 PM.png" },
+      { "name": "Design Project 6", "url": "Posters & Creatives/ChatGPT Image Jun 21, 2026, 12_47_29 PM.png" },
+      { "name": "Design Project 7", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 07_20_33 PM.png" },
+      { "name": "Design Project 8", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 07_46_40 PM.png" },
+      { "name": "Design Project 9", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 11_28_03 PM.png" },
+      { "name": "Design Project 10", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 11_33_27 PM.png" },
+      { "name": "Design Project 11", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 11_35_35 PM.png" },
+      { "name": "WhatsApp Creative 1", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.22.48 PM (1).jpeg" },
+      { "name": "WhatsApp Creative 2", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.22.48 PM.jpeg" },
+      { "name": "WhatsApp Creative 3", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.22.49 PM (1).jpeg" },
+      { "name": "WhatsApp Creative 4", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.22.49 PM.jpeg" },
+      { "name": "WhatsApp Creative 5", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.48 PM (1).jpeg" },
+      { "name": "WhatsApp Creative 6", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.48 PM.jpeg" },
+      { "name": "WhatsApp Creative 7", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.49 PM.jpeg" },
+      { "name": "WhatsApp Creative 8", "url": "Posters & Creatives/WhatsApp Image 2026-06-19 at 1.14.02 PM.jpeg" }
+    ],
+    "videos": [
+      { "name": "Video Animation 1", "url": "Vedio Animation/VN20260206_040716.mp4", "thumbnail": "Vedio Animation/Gemini_Generated_Image_azemzazemzazemza.png" },
+      { "name": "Video Animation 2", "url": "Vedio Animation/VN20260206_044119.mp4", "thumbnail": "Vedio Animation/Gemini_Generated_Image_jooh8ajooh8ajooh.png" },
+      { "name": "Video Animation 3", "url": "Vedio Animation/lv_0_20260620210221.mp4", "thumbnail": "Vedio Animation/Gemini_Generated_Image_sexhcesexhcesexh.png" }
+    ]
+  };
 
-  fetch('manifest.json')
-    .then(res => res.json())
-    .then(data => {
-      globalManifest = data;
-      renderUIUXCases(data.uiux);
-      renderPosters(data.posters);
-      renderVideos(data.videos);
-    })
-    .catch(err => console.error("Error loading manifest:", err));
+  // Directly render everything
+  renderUIUXCases(globalManifest.uiux);
+  renderPosters(globalManifest.posters);
+  renderVideos(globalManifest.videos);
 
   // Render UI/UX cases
   function renderUIUXCases(projects) {
