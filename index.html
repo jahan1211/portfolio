@@ -1562,23 +1562,27 @@
     }, { duration: 150, fill: 'forwards' });
   });
 
-  // Grow cursor on hover links
-  const interactables = 'a, button, select, option, .uiux-screen-item, .poster-card, .video-card, .btn-social';
-  document.querySelectorAll(interactables).forEach(el => {
-    el.addEventListener('mouseenter', () => {
+  // Grow cursor on hover links (Event Delegation to support dynamic elements)
+  document.addEventListener('mouseover', (e) => {
+    const target = e.target.closest('a, button, select, option, .uiux-screen-item, .poster-card, .video-card, .btn-social, .uiux-proj-right, .cs-gallery-item');
+    if (target) {
       cursor.style.width = '12px';
       cursor.style.height = '12px';
       cursorGlow.style.width = '60px';
       cursorGlow.style.height = '60px';
       cursorGlow.style.borderColor = 'rgba(16, 185, 129, 0.6)';
-    });
-    el.addEventListener('mouseleave', () => {
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    const target = e.target.closest('a, button, select, option, .uiux-screen-item, .poster-card, .video-card, .btn-social, .uiux-proj-right, .cs-gallery-item');
+    if (target) {
       cursor.style.width = '8px';
       cursor.style.height = '8px';
       cursorGlow.style.width = '40px';
       cursorGlow.style.height = '40px';
       cursorGlow.style.borderColor = 'var(--accent)';
-    });
+    }
   });
 
   // ── HERO CANVAS PARTICLES ──
