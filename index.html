@@ -1740,13 +1740,6 @@
       const stackHtml = (p.techStack || [])
         .map(tech => `<span class="uiux-proj-stack-badge">${tech}</span>`)
         .join('');
-
-      // Generate horizontal screens lists
-      const screensHtml = p.modules.map(mod => `
-        <div class="uiux-screen-item" onclick="openLightbox('${encodeURI(mod.url)}', '${mod.name}')" title="Zoom in ${mod.name}">
-          <img src="${encodeURI(mod.url)}" alt="${mod.name}" loading="lazy">
-        </div>
-      `).join('');
       
       card.innerHTML = `
         <div class="uiux-proj-left">
@@ -1759,23 +1752,90 @@
           </div>
 
           <div class="uiux-proj-ctas">
-            ${p.figmaUrl ? `<a href="${p.figmaUrl}" target="_blank" class="btn-primary" style="font-size:12.5px; padding: 10px 20px;">Figma Prototype</a>` : ''}
+            <button class="btn-primary" style="font-size:12.5px; padding: 10px 20px; border: none; cursor: pointer;" onclick="openCaseStudy('${p.id}')">View Case Study</button>
+            ${p.figmaUrl ? `<a href="${p.figmaUrl}" target="_blank" class="btn-outline" style="font-size:12.5px; padding: 10px 20px;">Figma Prototype</a>` : ''}
             ${p.behanceUrl ? `<a href="${p.behanceUrl}" target="_blank" class="btn-outline" style="font-size:12.5px; padding: 10px 20px;">Behance View</a>` : ''}
           </div>
-
-          <div class="uiux-screens-section">
-            <div class="uiux-screens-label">High-Fidelity Screens (${p.modules.length})</div>
-            <div class="uiux-screens-list">
-              ${screensHtml}
-            </div>
-          </div>
         </div>
-        <div class="uiux-proj-right">
+        <div class="uiux-proj-right" style="cursor: pointer;" onclick="openCaseStudy('${p.id}')">
           <img class="mockup" src="${encodeURI(mockupImg)}" alt="${p.title}" loading="lazy">
         </div>
       `;
       container.appendChild(card);
     });
+  }
+
+  // ── CASE STUDY MODAL LOGIC ──
+  function openCaseStudy(projId) {
+    const project = globalManifest.uiux.find(p => p.id === projId);
+    if (!project) return;
+
+    // Create modal element if it doesn't exist
+    let modal = document.getElementById('case-study-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'case-study-modal';
+      modal.className = 'cs-modal';
+      document.body.appendChild(modal);
+    }
+
+    // Generate tech stack pills
+    const stackHtml = (project.techStack || [])
+      .map(tech => `<span class="stack-badge" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2); color: var(--accent);">${tech}</span>`)
+      .join('');
+
+    // Generate gallery items
+    const galleryHtml = project.modules.map(mod => `
+      <div class="cs-gallery-item" onclick="openLightbox('${encodeURI(mod.url)}', '${mod.name}')">
+        <img src="${encodeURI(mod.url)}" alt="${mod.name}" loading="lazy">
+        <div class="cs-gallery-item-info">
+          <div class="cs-gallery-item-title">${mod.name}</div>
+          <div class="cs-gallery-item-desc">${mod.desc}</div>
+        </div>
+      </div>
+    `).join('');
+
+    // Populate modal contents
+    modal.innerHTML = `
+      <button class="cs-modal-close" onclick="closeCaseStudy()">&times;</button>
+      <div class="cs-modal-container">
+        <div class="cs-modal-sidebar">
+          <div>
+            <div class="cs-modal-tag">${project.tag}</div>
+            <h2 class="cs-modal-title">${project.title}</h2>
+            <p class="cs-modal-desc">${project.desc}</p>
+            
+            <div class="cs-modal-meta-label">Skills &amp; Tools</div>
+            <div class="feat-stack" style="margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 8px;">
+              ${stackHtml}
+            </div>
+          </div>
+          
+          <div class="cs-modal-links">
+            ${project.figmaUrl ? `<a href="${project.figmaUrl}" target="_blank" class="btn-primary" style="justify-content: center; font-size: 13px;">View Figma Prototype</a>` : ''}
+            ${project.behanceUrl ? `<a href="${project.behanceUrl}" target="_blank" class="btn-outline" style="justify-content: center; font-size: 13px;">View Behance Project</a>` : ''}
+          </div>
+        </div>
+        <div class="cs-modal-main">
+          <div class="cs-modal-meta-label" style="margin-bottom: 0;">Case Study Screens (${project.modules.length})</div>
+          <div class="cs-modal-gallery">
+            ${galleryHtml}
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Activate modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCaseStudy() {
+    const modal = document.getElementById('case-study-modal');
+    if (modal) {
+      modal.classList.remove('active');
+    }
+    document.body.style.overflow = '';
   }
 
   // Render Posters
@@ -1809,7 +1869,7 @@
       const card = document.createElement('div');
       card.className = 'video-card';
       card.innerHTML = `
-        <video src="${encodeURI(v.url)}" muted loop playsinline></video>
+        <video src="${encodeURI(v.url)}" poster="${v.thumbnail ? encodeURI(v.thumbnail) : ''}" muted loop playsinline></video>
         <div class="video-overlay">
           <div class="video-play-btn">▶</div>
           <div class="video-title">${v.name}</div>
