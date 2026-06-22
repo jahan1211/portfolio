@@ -9,7 +9,7 @@
 <!-- Premium Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <!-- GSAP Animation Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -18,18 +18,17 @@
 <style>
   /* ── DESIGN SYSTEM & TOKENS ── */
   :root {
-    --bg: #040404;
-    --bg-card: rgba(10, 10, 10, 0.7);
-    --bg-dark: #070707;
-    --accent: #d4af37; /* Premium Gold */
-    --accent-rgb: 212, 175, 55;
-    --accent-gradient: linear-gradient(135deg, #f2d06b 0%, #aa8422 100%);
-    --text: #f3f3f5;
-    --muted: #8e8e93;
-    --border: rgba(255, 255, 255, 0.04);
-    --border-glow: rgba(212, 175, 55, 0.15);
-    --font-heading: 'Syne', sans-serif;
-    --font-body: 'Outfit', sans-serif;
+    --bg: #121212;
+    --bg-card: rgba(255, 255, 255, 0.02);
+    --bg-dark: #0a0a0a;
+    --accent: #10b981; /* Emerald Green */
+    --accent-rgb: 16, 185, 129;
+    --accent-gradient: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    --text: #ededed;
+    --muted: #a3a3a3;
+    --border: rgba(255, 255, 255, 0.05);
+    --border-glow: rgba(16, 185, 129, 0.15);
+    --font: 'Inter', sans-serif;
   }
 
   *, *::before, *::after {
@@ -46,26 +45,32 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: var(--font-body);
+    font-family: var(--font);
     line-height: 1.6;
     overflow-x: hidden;
     cursor: none; /* Custom premium cursor */
+    -webkit-font-smoothing: antialiased;
   }
 
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   ::-webkit-scrollbar-track {
     background: var(--bg);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
+  }
+
+  /* Selection highlight */
+  ::selection {
+    background: rgba(16, 185, 129, 0.2);
+    color: #fff;
   }
 
   /* ── CURSOR GLOW ── */
@@ -83,8 +88,8 @@
   .custom-cursor-glow {
     width: 40px;
     height: 40px;
-    border: 1.5px solid var(--accent);
-    background: rgba(212, 175, 55, 0.02);
+    border: 1px solid var(--accent);
+    background: rgba(16, 185, 129, 0.02);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
@@ -93,7 +98,7 @@
     transition: transform 0.1s ease-out, width 0.3s, height 0.3s;
   }
 
-  /* ── NJA LOADER ── */
+  /* ── Loader ── */
   #loader {
     position: fixed;
     inset: 0;
@@ -107,9 +112,8 @@
     text-align: center;
   }
   .loader-logo {
-    font-family: var(--font-heading);
-    font-size: clamp(48px, 6vw, 90px);
-    font-weight: 800;
+    font-size: 48px;
+    font-weight: 900;
     letter-spacing: -2px;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
@@ -129,31 +133,29 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(4, 4, 4, 0.7);
+    background: rgba(18, 18, 18, 0.6);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
   .logo {
-    font-family: var(--font-heading);
     font-size: 24px;
-    font-weight: 800;
+    font-weight: 900;
     color: var(--text);
     text-decoration: none;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
   }
   .logo span {
     color: var(--accent);
   }
   .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 32px;
     list-style: none;
   }
   .nav-links a {
     color: var(--muted);
     text-decoration: none;
-    font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.5px;
     transition: color 0.3s;
@@ -180,8 +182,8 @@
     background: var(--accent-gradient) !important;
     color: #000 !important;
     padding: 10px 24px !important;
-    border-radius: 100px;
-    font-weight: 600 !important;
+    border-radius: 12px;
+    font-weight: 700 !important;
     font-size: 13px !important;
     transition: transform 0.3s, box-shadow 0.3s !important;
   }
@@ -193,16 +195,18 @@
     box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.2);
   }
 
-  /* ── HERO SECTION ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    align-items: center;
-    padding: 100px 60px 60px;
+  /* ── SCROLLYTELLING HERO SECTION ── */
+  .hero-container {
+    height: 400vh;
     position: relative;
+    background: var(--bg-dark);
+  }
+  .hero-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
     overflow: hidden;
-    background: var(--bg);
   }
   .hero-canvas {
     position: absolute;
@@ -210,190 +214,89 @@
     pointer-events: none;
     z-index: 1;
   }
-  .hero-glow-blob {
+  .hero-phase {
     position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .hero-left {
-    position: relative;
-    z-index: 2;
-    padding-right: 40px;
-    opacity: 0; /* Animated by GSAP */
-  }
-  .hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(38px, 4.5vw, 68px);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -2px;
-    margin-bottom: 24px;
-    color: var(--text);
-  }
-  .hero-title span {
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero-desc {
-    font-size: clamp(15px, 1.2vw, 17px);
-    color: var(--muted);
-    line-height: 1.8;
-    max-width: 520px;
-    margin-bottom: 40px;
-  }
-
-  /* Hero Stats */
-  .hero-stats {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 48px;
-  }
-  .stat-item {
+    inset: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    z-index: 2;
   }
-  .stat-num {
-    font-family: var(--font-heading);
-    font-size: clamp(28px, 3vw, 42px);
-    font-weight: 800;
+  .hero-title {
+    font-size: clamp(40px, 6vw, 84px);
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 1.05;
     color: var(--text);
+    margin-bottom: 16px;
+    transform: translateY(20px);
+  }
+  .hero-title span.name {
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .stat-label {
+  .hero-title span.role {
+    font-size: clamp(24px, 3.5vw, 48px);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+  .hero-title span.highlight {
+    color: var(--accent);
+  }
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  /* CTAs & Socials */
-  .hero-ctas {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .hero-socials {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-  .social-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 18px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text);
-  }
-  .social-btn:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.15);
-    color: var(--accent);
-  }
-
-  /* Hero Portrait Center Anim */
-  .hero-right {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .photo-frame-container {
-    position: relative;
-  }
-  .photo-frame {
-    width: 380px;
-    height: 480px;
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--border);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-    opacity: 0; /* Animated by GSAP */
-    transform: scale(0.9) rotate(-3deg);
-  }
-  .photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    filter: brightness(0.9);
-    transition: filter 0.5s, transform 0.5s;
-  }
-  .photo-frame:hover img {
-    filter: brightness(1);
-    transform: scale(1.02);
-  }
-  .photo-frame::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6) 100%);
-    pointer-events: none;
-  }
-  
-  /* Floating Decors */
-  .floating-element {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: 500;
-    backdrop-filter: blur(10px);
-    pointer-events: none;
     z-index: 3;
-    opacity: 0; /* GSAP */
+  }
+  .hero-scroll-hint svg {
+    animation: bounce 2s infinite;
   }
 
-  /* ── SECTION HEADER ── */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-6px); }
+    60% { transform: translateY(-3px); }
+  }
+
+  /* ── GENERAL SECTIONS ── */
   section {
-    padding: 100px 60px;
+    padding: 120px 60px;
     position: relative;
   }
   .sec-header {
     margin-bottom: 64px;
   }
   .sec-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-heading);
-    font-size: 11px;
-    letter-spacing: 3px;
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
     color: var(--accent);
-    margin-bottom: 16px;
-  }
-  .sec-label::before {
-    content: '';
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
+    margin-bottom: 18px;
   }
   .sec-title {
-    font-family: var(--font-heading);
-    font-size: clamp(32px, 3.5vw, 54px);
-    font-weight: 800;
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 900;
     letter-spacing: -1.5px;
     line-height: 1.1;
     color: var(--text);
@@ -407,353 +310,443 @@
   /* ── ABOUT SECTION ── */
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 80px;
-    align-items: center;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  .about-img-wrap {
-    position: relative;
-  }
-  .about-img {
-    width: 100%;
-    aspect-ratio: 4/5;
-    background: var(--bg-card);
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .about-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .about-badge {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    background: var(--accent-gradient);
-    color: #000;
-    padding: 20px 24px;
-    border-radius: 20px;
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 14px;
-    line-height: 1.3;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  }
-  .about-text p {
+  .about-left p {
     color: var(--muted);
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 32px;
   }
-  .about-text strong {
-    color: var(--text);
+  .about-left p strong {
+    color: #fff;
+    font-weight: 500;
+  }
+  .about-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .about-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .btn-social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 13px;
     font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #fff;
+  }
+  .btn-linkedin {
+    background: #0a66c2;
+  }
+  .btn-linkedin:hover {
+    background: #004182;
+    transform: translateY(-2px);
+  }
+  .btn-instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  }
+  .btn-instagram:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+  }
+  .btn-whatsapp {
+    background: #25d366;
+    color: #000;
+  }
+  .btn-whatsapp:hover {
+    background: #1ebe57;
+    transform: translateY(-2px);
   }
 
-  /* ── FEATURED PROJECTS (GRID) ── */
-  .featured-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 32px;
-    padding-bottom: 40px;
-  }
-  .feat-card {
-    width: 100%;
+  /* Stats Block */
+  .stats-card-wrap {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 24px;
-    overflow: hidden;
-    transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .feat-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(var(--accent-rgb), 0.05);
-  }
-  .feat-img {
-    width: 100%;
-    height: 260px;
-    overflow: hidden;
-    background: var(--bg-dark);
+    padding: 36px;
     position: relative;
-    border-bottom: 1px solid var(--border);
+    overflow: hidden;
   }
-  .feat-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.5s;
+  .stats-card-wrap::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
+    top: -50px;
+    right: -50px;
   }
-  .feat-card:hover .feat-img img {
-    transform: scale(1.03);
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
   }
-  .feat-info {
-    padding: 32px;
+  .stat-card-item {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    align-items: center;
+    text-align: center;
   }
-  .feat-tag {
-    font-family: var(--font-heading);
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  .stat-card-val {
+    font-size: 40px;
+    font-weight: 900;
     color: var(--accent);
-    margin-bottom: 12px;
+    line-height: 1.1;
   }
-  .feat-title {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-  .feat-desc {
+  .stat-card-lbl {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     color: var(--muted);
+    margin-top: 8px;
+  }
+  
+  .about-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+  }
+  .about-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--muted);
+    text-decoration: none;
     font-size: 14px;
-    line-height: 1.7;
+    transition: color 0.3s;
+  }
+  .about-contact-item:hover {
+    color: #fff;
+  }
+  .about-contact-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  /* ── DUAL TIMELINE & EXPERTISE ── */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .timeline-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .timeline-title-wrap svg {
+    color: var(--accent);
+  }
+  .timeline-title {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .exp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    transition: border-color 0.4s, background 0.4s;
+    position: relative;
+  }
+  .exp-card:hover {
+    border-color: rgba(var(--accent-rgb), 0.2);
+    background: rgba(255,255,255,0.03);
+  }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .exp-title-sub {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .exp-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+  .exp-role-co h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    transition: color 0.3s;
+  }
+  .exp-card:hover .exp-role-co h4 {
+    color: var(--accent);
+  }
+  .exp-role-co h5 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .exp-time-loc {
+    text-align: right;
+  }
+  .exp-time-pill {
+    display: inline-block;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .exp-loc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 60px;
+  }
+  .exp-bullet-item {
+    display: flex;
+    gap: 12px;
+    align-items: start;
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .exp-bullet-dot {
+    margin-top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+  .exp-card:hover .exp-bullet-dot {
+    background: var(--accent);
+  }
+
+  /* Right column boxes */
+  .timeline-right-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
     margin-bottom: 24px;
   }
-  .feat-stack {
+  .timeline-right-box.education-box {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  .timeline-right-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .expertise-group {
+    margin-bottom: 20px;
+  }
+  .expertise-group h5 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .expertise-pills {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 24px;
   }
-  .stack-badge {
-    background: rgba(255, 255, 255, 0.03);
+  .expertise-pill {
+    background: rgba(255,255,255,0.03);
     border: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 500;
     padding: 4px 10px;
-    border-radius: 100px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--muted);
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .expertise-pill:hover {
+    border-color: var(--accent);
+    color: #fff;
   }
 
-  /* ── CASE STUDY MODAL ── */
-  .cs-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(3, 3, 3, 0.95);
-    backdrop-filter: blur(25px);
-    z-index: 600;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-  }
-  .cs-modal.active {
-    opacity: 1;
-    pointer-events: all;
-  }
-  .cs-modal-container {
-    width: 100%;
-    max-width: 1200px;
-    height: 90vh;
-    background: #090909;
-    border: 1px solid var(--border);
-    border-radius: 32px;
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    overflow: hidden;
-    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
-    transform: scale(0.95) translateY(20px);
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  .cs-modal.active .cs-modal-container {
-    transform: scale(1) translateY(0);
-  }
-  .cs-modal-sidebar {
-    background: #0c0c0c;
-    border-right: 1px solid var(--border);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow-y: auto;
-  }
-  .cs-modal-main {
-    padding: 40px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-  .cs-modal-close {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    z-index: 610;
-  }
-  .cs-modal-close:hover {
-    background: var(--accent-gradient);
-    color: #000;
-    transform: rotate(90deg);
-    border-color: var(--accent);
-  }
-  .cs-modal-title {
-    font-family: var(--font-heading);
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--text);
-    line-height: 1.2;
+  /* Education */
+  .edu-time {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
     margin-bottom: 12px;
   }
-  .cs-modal-tag {
-    font-family: var(--font-heading);
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  .edu-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .edu-inst {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .edu-achievement {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 18px;
+  }
+  .edu-ach-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .edu-ach-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── VALUE STACK ── */
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .value-card {
+    background: rgba(255,255,255,0.01);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    transition: transform 0.3s, background 0.3s, border-color 0.3s;
+  }
+  .value-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.02);
+    border-color: var(--accent);
+  }
+  .val-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--accent);
     margin-bottom: 24px;
   }
-  .cs-modal-desc {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 32px;
-  }
-  .cs-modal-meta-label {
-    font-family: var(--font-heading);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text);
+  .value-card h4 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
     margin-bottom: 12px;
   }
-  .cs-modal-links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: auto;
-  }
-  .cs-modal-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  .cs-gallery-item {
-    background: #111;
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    overflow: hidden;
-    cursor: zoom-in;
-    transition: transform 0.3s, border-color 0.3s;
-    aspect-ratio: 9/19;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-  .cs-gallery-item:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-  }
-  .cs-gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
-  .cs-gallery-item-info {
-    position: absolute;
-    bottom: 0;
-    inset-x: 0;
-    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.85) 40%);
-    padding: 20px 16px 12px;
-    color: #fff;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .cs-gallery-item:hover .cs-gallery-item-info {
-    opacity: 1;
-  }
-  .cs-gallery-item-title {
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 2px;
-  }
-  .cs-gallery-item-desc {
-    font-size: 10px;
-    color: #bbb;
-    line-height: 1.3;
-  }
-  @media(max-width: 960px) {
-    .cs-modal-container {
-      grid-template-columns: 1fr;
-      height: 95vh;
-    }
-    .cs-modal-sidebar {
-      padding: 30px;
-      border-right: none;
-      border-bottom: 1px solid var(--border);
-      height: auto;
-    }
-    .cs-modal-main {
-      padding: 30px;
-    }
+  .value-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
   }
 
-  /* Buttons */
+  /* ── BUTTONS ── */
   .btn-primary {
     background: var(--accent-gradient);
     color: #000;
     border: none;
-    border-radius: 100px;
-    padding: 14px 36px;
-    font-size: 14px;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-size: 13.5px;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--font-body);
+    font-family: var(--font);
     transition: transform 0.3s, box-shadow 0.3s;
   }
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.25);
+    box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.3);
   }
   .btn-outline {
     background: transparent;
     color: var(--text);
     border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 14px 36px;
-    font-size: 14px;
-    font-weight: 500;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-size: 13.5px;
+    font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--font-body);
-    transition: border-color 0.3s, transform 0.3s;
+    font-family: var(--font);
+    transition: border-color 0.3s, transform 0.3s, color 0.3s;
   }
   .btn-outline:hover {
     border-color: var(--accent);
@@ -761,229 +754,217 @@
     color: var(--accent);
   }
 
-  /* ── UI/UX DESIGN SECTION (SIMULATOR) ── */
-  .case-study-split {
-    display: grid;
-    grid-template-columns: 1fr 280px;
+  /* ── UI/UX SHOWCASE GRID ── */
+  .uiux-grid {
+    display: flex;
+    flex-direction: column;
     gap: 48px;
-    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .uiux-project-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 32px;
-    padding: 40px;
-  }
-  .cs-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-height: 520px;
-    overflow-y: auto;
-    padding-right: 12px;
-  }
-  .cs-sidebar::-webkit-scrollbar {
-    width: 4px;
-  }
-  .cs-sidebar::-webkit-scrollbar-thumb {
-    background: var(--border);
-  }
-  .cs-module-card {
-    background: rgba(255,255,255,0.01);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 18px;
-    cursor: pointer;
-    transition: border-color 0.3s, background 0.3s;
-    display: flex;
-    gap: 16px;
-    align-items: start;
-  }
-  .cs-module-card:hover {
-    border-color: rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.02);
-  }
-  .cs-module-card.active {
-    border-color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.03);
-  }
-  .cs-module-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.03);
-    border-radius: 12px;
-    color: var(--muted);
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .cs-module-card.active .cs-module-icon {
-    background: var(--accent-gradient);
-    color: #000;
-  }
-  .cs-module-title {
-    font-family: var(--font-heading);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .cs-module-desc {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 4px;
-    line-height: 1.4;
-  }
-  .cs-phone-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .cs-phone-frame {
-    width: 280px;
-    height: 570px;
-    background: #000;
-    border: 10px solid #161616;
-    border-radius: 48px;
     overflow: hidden;
-    position: relative;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.8), 0 0 30px rgba(var(--accent-rgb), 0.05);
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    padding: 40px;
+    align-items: center;
   }
-  .cs-phone-screen {
+  .uiux-proj-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .uiux-proj-right {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    aspect-ratio: 16/10;
+  }
+  .uiux-proj-right img.mockup {
     width: 100%;
     height: 100%;
-    position: relative;
-    background: #000;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s;
   }
-  .cs-phone-screen img {
+  .uiux-project-card:hover .uiux-proj-right img.mockup {
+    transform: scale(1.02);
+  }
+  .uiux-proj-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .uiux-proj-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .uiux-proj-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  
+  .uiux-proj-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .uiux-proj-stack-badge {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .uiux-proj-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  /* Screens Drawer Grid */
+  .uiux-screens-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 24px;
+  }
+  .uiux-screens-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .uiux-screens-list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+  }
+  .uiux-screens-list::-webkit-scrollbar {
+    height: 4px;
+  }
+  .uiux-screens-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  .uiux-screen-item {
+    min-width: 90px;
+    width: 90px;
+    aspect-ratio: 9/19;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: zoom-in;
+    transition: transform 0.2s, border-color 0.2s;
+    background: var(--bg-dark);
+    flex-shrink: 0;
+  }
+  .uiux-screen-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .uiux-screen-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
-    cursor: zoom-in;
-  }
-
-  /* UX Case Study Dropdown Selector */
-  .ux-project-selector {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 14px 28px;
-    border-radius: 14px;
-    font-family: var(--font-heading);
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 32px;
-    outline: none;
-    cursor: pointer;
-  }
-  .ux-project-selector option {
-    background: var(--bg-dark);
   }
 
   /* ── POSTERS & CREATIVES ── */
-  .pinterest-section {
-    background: var(--bg-dark);
-  }
-  .pinterest-container {
+  .posters-container {
     columns: 4 280px;
     column-gap: 24px;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  .pin-card {
+  .poster-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+    cursor: zoom-in;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
     break-inside: avoid;
     margin-bottom: 24px;
+    position: relative;
+    display: block;
   }
-  .pin-card:hover {
-    transform: translateY(-6px);
+  .poster-card:hover {
+    transform: translateY(-4px);
     border-color: var(--accent);
     box-shadow: 0 16px 36px rgba(0,0,0,0.5);
   }
-  .pin-img-wrap {
+  .poster-img-wrap {
     width: 100%;
     overflow: hidden;
   }
-  .pin-img-wrap img {
+  .poster-img-wrap img {
     width: 100%;
     display: block;
     object-fit: cover;
-    transition: transform 0.6s;
-  }
-  .pin-card:hover .pin-img-wrap img {
-    transform: scale(1.03);
-  }
-  .pin-info {
-    padding: 20px;
-  }
-  .pin-cat {
-    font-family: var(--font-heading);
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 6px;
-  }
-  .pin-title {
-    font-family: var(--font-heading);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  /* ── BRAND MOCKUPS ── */
-  .mockups-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 32px;
-  }
-  .mockup-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    overflow: hidden;
-    transition: border-color 0.4s, transform 0.4s;
-  }
-  .mockup-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-6px);
-  }
-  .mockup-img-wrap {
-    width: 100%;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    cursor: zoom-in;
-  }
-  .mockup-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     transition: transform 0.5s;
   }
-  .mockup-card:hover .mockup-img-wrap img {
-    transform: scale(1.04);
+  .poster-card:hover .poster-img-wrap img {
+    transform: scale(1.02);
   }
-  .mockup-info {
-    padding: 28px;
+  .poster-info {
+    padding: 18px 20px;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.8) 50%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
   }
-  .mockup-title {
-    font-family: var(--font-heading);
-    font-size: 20px;
+  .poster-card:hover .poster-info {
+    opacity: 1;
+  }
+  .poster-cat {
+    font-size: 9px;
     font-weight: 700;
-    color: var(--text);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .poster-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
   }
 
-  /* ── MOTION GRAPHICS & VIDEO ── */
-  .video-grid {
+  /* ── VIDEOS GRID ── */
+  .videos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  .video-preview-card {
+  .video-card {
     position: relative;
     border-radius: 24px;
     overflow: hidden;
@@ -993,16 +974,16 @@
     transition: transform 0.4s, border-color 0.4s;
     aspect-ratio: 16/9;
   }
-  .video-preview-card:hover {
+  .video-card:hover {
     transform: translateY(-6px);
     border-color: var(--accent);
   }
-  .video-preview-card video {
+  .video-card video {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  .video-card-overlay {
+  .video-overlay {
     position: absolute;
     inset: 0;
     display: flex;
@@ -1013,12 +994,12 @@
     z-index: 3;
     transition: opacity 0.3s;
   }
-  .video-preview-card:hover .video-card-overlay {
+  .video-card:hover .video-overlay {
     opacity: 0;
   }
-  .video-card-play-btn {
-    width: 56px;
-    height: 56px;
+  .video-play-btn {
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
@@ -1027,177 +1008,22 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 18px;
+    font-size: 16px;
     transition: all 0.3s;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-  .video-preview-card:hover .video-card-play-btn {
+  .video-card:hover .video-play-btn {
     background: var(--accent-gradient);
     color: #000;
     border-color: var(--accent);
     transform: scale(1.1);
   }
-  .video-card-title {
-    font-family: var(--font-heading);
-    font-size: 13px;
-    font-weight: 600;
+  .video-title {
+    font-size: 11px;
+    font-weight: 700;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 1px;
-  }
-
-  /* ── SKILLS SECTION ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
-  }
-  .sk-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .sk-card:hover {
-    border-color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.02);
-  }
-  .sk-icon {
-    font-size: 28px;
-    margin-bottom: 16px;
-  }
-  .sk-title {
-    font-family: var(--font-heading);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .sk-type {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  /* ── EXPERIENCE SECTION ── */
-  .experience {
-    background: var(--bg-dark);
-  }
-  .exp-list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .exp-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 40px;
-    transition: border-color 0.4s, background 0.4s;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  .exp-card:hover {
-    border-color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.01);
-  }
-  .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  .exp-role-co {
-    display: flex;
-    flex-direction: column;
-  }
-  .exp-role {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--text);
-  }
-  .exp-company {
-    font-size: 14px;
-    color: var(--accent);
-    font-weight: 600;
-    margin-top: 4px;
-  }
-  .exp-date-pill {
-    background: rgba(var(--accent-rgb), 0.05);
-    border: 1px solid rgba(var(--accent-rgb), 0.2);
-    color: var(--accent);
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .exp-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .exp-bullet-item {
-    display: flex;
-    align-items: start;
-    gap: 14px;
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-  .exp-bullet-dot {
-    margin-top: 8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--muted);
-    flex-shrink: 0;
-  }
-  .exp-card:hover .exp-bullet-dot {
-    background: var(--accent);
-  }
-
-  /* ── PROCESS SECTION ── */
-  .proc-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-  .proc-step {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 40px 28px;
-    transition: border-color 0.4s, background 0.4s;
-  }
-  .proc-step:hover {
-    border-color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.01);
-  }
-  .proc-num {
-    font-family: var(--font-heading);
-    font-size: 48px;
-    font-weight: 800;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    opacity: 0.8;
-    margin-bottom: 20px;
-  }
-  .proc-title {
-    font-family: var(--font-heading);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-  .proc-desc {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.7;
   }
 
   /* ── LIGHTBOX (PREMIUM VIEWER) ── */
@@ -1206,7 +1032,7 @@
     inset: 0;
     background: rgba(3,3,3,0.98);
     backdrop-filter: blur(20px);
-    z-index: 500;
+    z-index: 900;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1259,7 +1085,6 @@
     box-shadow: 0 40px 100px rgba(0,0,0,0.8);
   }
   .lightbox-caption {
-    font-family: var(--font-heading);
     color: var(--text);
     font-size: 16px;
     font-weight: 500;
@@ -1271,11 +1096,11 @@
     background: var(--bg-dark);
     text-align: center;
     padding: 120px 60px;
+    border-top: 1px solid var(--border);
   }
   .contact-title {
-    font-family: var(--font-heading);
     font-size: clamp(38px, 6vw, 78px);
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: -2px;
     line-height: 1.05;
     margin-bottom: 24px;
@@ -1304,6 +1129,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: var(--bg-dark);
   }
   .footer-copy {
     color: var(--muted);
@@ -1336,51 +1162,29 @@
     section {
       padding: 80px 24px;
     }
-    .hero {
-      grid-template-columns: 1fr;
-      padding: 120px 24px 60px;
-      gap: 56px;
-      text-align: center;
-    }
-    .hero-desc {
-      margin: 0 auto 32px;
-    }
-    .hero-stats {
-      justify-content: center;
-      gap: 32px;
-    }
-    .hero-ctas {
-      flex-direction: column;
-      gap: 16px;
-    }
-    .photo-frame {
-      width: 320px;
-      height: 400px;
-    }
     .about-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .timeline-grid {
       grid-template-columns: 1fr;
       gap: 48px;
     }
-    .case-study-split {
+    .value-grid {
+      grid-template-columns: 1fr;
+    }
+    .uiux-project-card {
       grid-template-columns: 1fr;
       padding: 24px;
+      gap: 24px;
     }
-    .cs-phone-container {
+    .uiux-proj-right {
       order: -1;
-    }
-    .proc-grid {
-      grid-template-columns: 1fr 1fr;
     }
     footer {
       flex-direction: column;
       gap: 24px;
       text-align: center;
-    }
-  }
-
-  @media(max-width: 600px) {
-    .proc-grid {
-      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -1403,325 +1207,309 @@
   <a href="#" class="logo">NJA<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#work">Featured Projects</a></li>
-    <li><a href="#uiux">UI/UX Simulator</a></li>
-    <li><a href="#posters">Posters &amp; Creatives</a></li>
-    <li><a href="#videos">Motion &amp; Video</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#uiux">UI/UX Cases</a></li>
+    <li><a href="#posters">Posters</a></li>
+    <li><a href="#videos">Videos</a></li>
     <li><a href="#contact" class="nav-cta">Connect</a></li>
   </ul>
 </nav>
 
-<!-- Hero Section -->
-<section class="hero" id="home">
-  <canvas class="hero-canvas" id="hero-canvas"></canvas>
-  <div class="hero-glow-blob"></div>
-  
-  <div class="hero-left" id="hero-content">
-    <h1 class="hero-title">Crafting Premium<br><span>Digital Experiences</span></h1>
-    <p class="hero-desc">Creative and detail-oriented designer with 1.5+ years of experience in graphic design, UI/UX design, social media marketing, and digital content creation. Passionate about creating visually engaging experiences that combine aesthetics with functionality.</p>
+<!-- Hero Section (Scrollytelling) -->
+<div class="hero-container" id="hero-container">
+  <div class="hero-sticky">
+    <canvas class="hero-canvas" id="hero-canvas"></canvas>
     
-    <!-- Professional Stats (Immediately Communicated) -->
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-num" data-val="1.5">0</span>
-        <span class="stat-label">Years Experience</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num" data-val="6">0</span>
-        <span class="stat-label">Happy Clients</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num" data-val="200">0</span>
-        <span class="stat-label">Designs Created</span>
-      </div>
+    <!-- Phase 1 -->
+    <div class="hero-phase" id="phase-1">
+      <h1 class="hero-title"><span class="name">Nusrat Jahan Ara.</span><br/><span class="role">Graphic &amp; UI/UX Designer</span></h1>
     </div>
     
-    <div class="hero-ctas">
-      <a href="#work" class="btn-primary">View Works</a>
-      <div class="hero-socials">
-        <a href="https://wa.me/923107666263" target="_blank" class="social-btn" title="WhatsApp">📱</a>
-        <a href="https://www.linkedin.com/in/nusrat-jahan-ara-a3b013326/" target="_blank" class="social-btn" title="LinkedIn">💼</a>
-        <a href="https://www.instagram.com/jahan_creatix/" target="_blank" class="social-btn" title="Instagram">📸</a>
-      </div>
+    <!-- Phase 2 -->
+    <div class="hero-phase" id="phase-2" style="opacity: 0;">
+      <h1 class="hero-title"><span class="role">UI/UX Designer,</span><br/><span class="role">Graphic Designer, and</span><br/><span class="highlight">Marketing Executive.</span></h1>
     </div>
-  </div>
+    
+    <!-- Phase 3 -->
+    <div class="hero-phase" id="phase-3" style="opacity: 0;">
+      <h1 class="hero-title">Turning ideas into<br/><span class="name">clear &amp; attractive designs.</span></h1>
+    </div>
 
-  <div class="hero-right">
-    <div class="photo-frame-container">
-      <div class="photo-frame" id="hero-frame">
-        <img src="nusrat 5.png" alt="Nusrat Jahan Ara portrait">
-      </div>
-      <!-- Floating motion decors -->
-      <div class="floating-element" style="top: -20px; left: -40px;" id="float-1">✦ MOTION</div>
-      <div class="floating-element" style="bottom: 40px; right: -50px;" id="float-2">❖ UI/UX</div>
-      <div class="floating-element" style="top: 50%; right: -70px;" id="float-3">✏︎ BRANDING</div>
+    <!-- Scroll Hint -->
+    <div class="hero-scroll-hint">
+      <span>Scroll to explore</span>
+      <svg class="w-5 h-5" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
     </div>
   </div>
-</section>
+</div>
 
 <!-- About Section -->
 <section id="about">
   <div class="about-grid">
-    <div class="about-img-wrap">
-      <div class="about-img">
-        <img src="nusrat3.png" alt="Nusrat Jahan Ara working">
+    <div class="about-left">
+      <div class="sec-label">Portfolio &amp; CV</div>
+      <h2 class="sec-title" style="margin-bottom: 24px;">Merging Storytelling with <span>Functionality</span></h2>
+      <p>I build visual experiences as a <strong>Graphic Designer, UI/UX Designer, and Social Media Marketing Executive</strong>, combining creative storytelling with strategic and user-focused execution.</p>
+      
+      <div class="about-ctas">
+        <a href="mailto:se.nusrat.jahan.ara@gmail.com" class="btn-primary">Get In Touch</a>
+        <a href="#uiux" class="btn-outline">View UI/UX Projects</a>
       </div>
-      <div class="about-badge">
-        1.5+ Years<br>Real Client Work
+      
+      <div class="about-socials">
+        <a href="https://www.linkedin.com/in/nusrat-jahan-ara-a3b013326/" target="_blank" rel="noopener noreferrer" class="btn-social btn-linkedin">
+          LinkedIn
+        </a>
+        <a href="https://www.instagram.com/jahan_creatix/" target="_blank" rel="noopener noreferrer" class="btn-social btn-instagram">
+          Instagram
+        </a>
+        <a href="https://wa.me/923107666263" target="_blank" rel="noopener noreferrer" class="btn-social btn-whatsapp">
+          WhatsApp
+        </a>
       </div>
     </div>
-    <div class="about-text">
-      <div class="sec-label">My Philosophy</div>
-      <h2 class="sec-title" style="margin-bottom: 28px;">Merging Design With <span>Storytelling</span></h2>
-      <p>I am Nusrat Jahan Ara, a creative and detail-oriented designer specializing in <strong>Graphic Design, UI/UX systems, and Social Media Marketing</strong>. I believe great design is not only about aesthetics—it is about solving problems, creating meaningful experiences, and delivering value. My goal is to build designs that connect brands with people through creativity, strategy, and innovation.</p>
-      <p>Over the years, I have designed 200+ posters, worked with 6+ happy clients, contributed to marketing campaigns, and delivered creative solutions across multiple industries. My expertise includes branding, social media design, UI/UX design, motion graphics, content creation, and digital marketing.</p>
-      <div style="margin-top: 40px; display: flex; gap: 16px;">
-        <a href="#contact" class="btn-primary">Start a Project</a>
-        <a href="mailto:se.nusrat.jahan.ara@gmail.com" class="btn-outline">Email Me</a>
+    
+    <div class="about-right">
+      <div class="stats-card-wrap">
+        <div class="stats-grid">
+          <div class="stat-card-item">
+            <span class="stat-card-val" id="stat-val-clients">0</span>
+            <span class="stat-card-lbl">HAPPY CLIENTS</span>
+          </div>
+          <div class="stat-card-item">
+            <span class="stat-card-val" id="stat-val-designs">0</span>
+            <span class="stat-card-lbl">DESIGNS MADE</span>
+          </div>
+          <div class="stat-card-item">
+            <span class="stat-card-val" id="stat-val-experience">0.0</span>
+            <span class="stat-card-lbl">YEARS EXP</span>
+          </div>
+          <div class="stat-card-item">
+            <span class="stat-card-val" id="stat-val-campaigns">0</span>
+            <span class="stat-card-lbl">CAMPAIGNS RUN</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="about-contact-list">
+        <a href="mailto:se.nusrat.jahan.ara@gmail.com" class="about-contact-item">
+          <div class="about-contact-icon">✉</div>
+          <span>se.nusrat.jahan.ara@gmail.com</span>
+        </a>
+        <a href="tel:+923107666263" class="about-contact-item">
+          <div class="about-contact-icon">📞</div>
+          <span>+92 310 7666263</span>
+        </a>
+        <div class="about-contact-item">
+          <div class="about-contact-icon">📍</div>
+          <span>Available for Global Remote Work</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Featured Projects -->
-<section id="work" style="background: var(--bg-dark);">
-  <div class="sec-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px;">
-    <div>
-      <div class="sec-label">Curated Case Studies</div>
-      <h2 class="sec-title">Featured <span>Projects</span></h2>
+<!-- Timeline (Experience & Education) -->
+<section id="timeline" style="background: var(--bg-dark);">
+  <div class="timeline-grid">
+    <!-- Left Column: Experience -->
+    <div class="timeline-left">
+      <div class="timeline-title-wrap">
+        <svg class="h-8 w-8 text-neutral-400" width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="6" rx="2"></rect><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        <h3 class="timeline-title">Experience</h3>
+      </div>
+      
+      <div class="exp-list">
+        <!-- Experience Item 1 -->
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title-sub">
+              <div class="exp-icon-box">📢</div>
+              <div class="exp-role-co">
+                <h4>Social Media Marketing Executive</h4>
+                <h5>Snapify Zoomix</h5>
+              </div>
+            </div>
+            <div class="exp-time-loc">
+              <span class="exp-time-pill">01/2026 – 03/2026</span>
+              <p class="exp-loc">Faisalabad, Pakistan</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Managed social media accounts and content scheduling.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Created engaging poster designs and marketing creatives.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Conducted market research and competitor analysis.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Handled client communication and project coordination.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Planned and executed social media campaigns.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Created product promotional videos and advertising creatives.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Assisted in running and optimizing paid advertising campaigns.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Developed visual content to improve brand engagement and reach.</li>
+          </ul>
+        </div>
+
+        <!-- Experience Item 2 -->
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title-sub">
+              <div class="exp-icon-box">📊</div>
+              <div class="exp-role-co">
+                <h4>Data Entry Specialist</h4>
+                <h5>Care Byte Solutions</h5>
+              </div>
+            </div>
+            <div class="exp-time-loc">
+              <span class="exp-time-pill">03/2026 – 05/2026</span>
+              <p class="exp-loc">Faisalabad, Pakistan</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Extracted and managed data from UK and US-based healthcare and government portals.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Worked with platforms such as Anthem and UHC systems.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Processed, organized, and updated records accurately.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Maintained large datasets and ensured data quality.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Prepared structured information and descriptions for internal systems.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Updated and managed information through Google-based workflows and databases.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Ensured accuracy, consistency, and compliance with project requirements.</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div style="font-size: 14px; color: var(--muted); max-width: 320px;">
-      Interactive mobile prototypes designed in Figma and fully documented.
+
+    <!-- Right Column: Skills & Education -->
+    <div class="timeline-right">
+      <div class="timeline-right-box">
+        <h4 class="timeline-right-lbl">Expertise</h4>
+        
+        <div class="expertise-group">
+          <h5>UI/UX &amp; Design</h5>
+          <div class="expertise-pills">
+            <span class="expertise-pill">Graphic Design</span>
+            <span class="expertise-pill">UI/UX Design</span>
+            <span class="expertise-pill">Wireframing</span>
+            <span class="expertise-pill">Prototyping</span>
+            <span class="expertise-pill">Branding</span>
+            <span class="expertise-pill">Poster Design</span>
+            <span class="expertise-pill">Social Media Design</span>
+          </div>
+        </div>
+
+        <div class="expertise-group">
+          <h5>Motion &amp; Video</h5>
+          <div class="expertise-pills">
+            <span class="expertise-pill">Motion Graphics</span>
+            <span class="expertise-pill">Video Editing</span>
+            <span class="expertise-pill">Product Advertisement</span>
+            <span class="expertise-pill">Content Creation</span>
+          </div>
+        </div>
+
+        <div class="expertise-group">
+          <h5>Marketing &amp; Strategy</h5>
+          <div class="expertise-pills">
+            <span class="expertise-pill">Social Media Marketing</span>
+            <span class="expertise-pill">Campaign Management</span>
+            <span class="expertise-pill">Client Handling</span>
+            <span class="expertise-pill">Market Research</span>
+          </div>
+        </div>
+
+        <div class="expertise-group">
+          <h5>Design Tools</h5>
+          <div class="expertise-pills">
+            <span class="expertise-pill">Figma</span>
+            <span class="expertise-pill">Adobe Photoshop</span>
+            <span class="expertise-pill">Adobe Illustrator</span>
+            <span class="expertise-pill">Canva</span>
+            <span class="expertise-pill">CapCut</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education Box -->
+      <div class="timeline-right-box education-box">
+        <h4 class="timeline-right-lbl" style="color: var(--accent);">Education</h4>
+        <div class="edu-time">2023 – 2027</div>
+        <h4 class="edu-title">Bachelor of Science in Software Engineering</h4>
+        <p class="edu-inst">Currently Pursuing Degree</p>
+        
+        <div class="edu-achievement">
+          <div class="edu-ach-title">🏆 Core Focus</div>
+          <p class="edu-ach-desc">Developing strong foundations in software development, user experience design, problem-solving, and digital product creation.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- Value Stack -->
+<section id="values">
+  <div class="sec-header text-center" style="max-width: 600px; margin: 0 auto 64px; text-align: center;">
+    <div class="sec-label">Aesthetic Stack</div>
+    <h2 class="sec-title">Core Design <span>Values</span></h2>
   </div>
   
-  <div class="featured-container" id="featured-projects-container">
-    <!-- Rendered dynamically -->
-  </div>
-</section>
-
-<!-- UI/UX Simulator -->
-<section id="uiux">
-  <div class="sec-header">
-    <div class="sec-label">Interactive Experience</div>
-    <h2 class="sec-title">UI/UX <span>Design Simulator</span></h2>
-  </div>
-
-  <select class="ux-project-selector" id="ux-selector" onchange="changeSelectorProject(this.value)">
-    <!-- Rendered dynamically -->
-  </select>
-
-  <div class="case-study-split">
-    <div class="cs-sidebar" id="sim-menu">
-      <!-- Rendered dynamically -->
+  <div class="value-grid">
+    <!-- Value 1 -->
+    <div class="value-card">
+      <div class="val-icon-box">📐</div>
+      <h4>UI/UX Systems</h4>
+      <p>Building cohesive layout systems, wireframes, and prototypes in Figma with a focus on accessible typography and visual scale.</p>
     </div>
-    <div class="cs-phone-container">
-      <div class="cs-phone-frame">
-        <div class="cs-phone-screen" id="sim-phone-screen">
-          <!-- Loaded dynamically -->
-        </div>
-      </div>
+    <!-- Value 2 -->
+    <div class="value-card">
+      <div class="val-icon-box">🎨</div>
+      <h4>Creative Production</h4>
+      <p>Designing engaging poster designs, visual assets, and marketing creatives for digital campaigns and social channels.</p>
+    </div>
+    <!-- Value 3 -->
+    <div class="value-card">
+      <div class="val-icon-box">⚡</div>
+      <h4>Motion &amp; Video</h4>
+      <p>Creating promotional videos, transition motions, and social reels to capture visitor attention within the first second.</p>
     </div>
   </div>
 </section>
 
-<!-- Posters & Creatives -->
-<section id="posters" class="pinterest-section">
-  <div class="sec-header">
-    <div class="sec-label">Creative Works</div>
+<!-- UI/UX Case Studies -->
+<section id="uiux" style="background: var(--bg-dark);">
+  <div class="sec-header" style="max-width: 1200px; margin: 0 auto 64px;">
+    <div class="sec-label">Interactive Showcase</div>
+    <h2 class="sec-title">UI/UX <span>Design Cases</span></h2>
+  </div>
+  
+  <div class="uiux-grid" id="uiux-showcase-container">
+    <!-- Rendered dynamically -->
+  </div>
+</section>
+
+<!-- Poster Grid -->
+<section id="posters">
+  <div class="sec-header" style="max-width: 1200px; margin: 0 auto 64px;">
+    <div class="sec-label">Creative Poster Design</div>
     <h2 class="sec-title">Posters &amp; <span>Creatives</span></h2>
   </div>
-  <div class="pinterest-container" id="posters-container">
+  
+  <div class="posters-container" id="posters-container">
     <!-- Rendered dynamically -->
   </div>
 </section>
 
-<!-- Branding -->
-<section id="branding">
-  <div class="sec-header">
-    <div class="sec-label">Identity Design</div>
-    <h2 class="sec-title">Branding <span>Works</span></h2>
+<!-- Video Grid -->
+<section id="videos" style="background: var(--bg-dark);">
+  <div class="sec-header" style="max-width: 1200px; margin: 0 auto 64px;">
+    <div class="sec-label">Motion Graphics</div>
+    <h2 class="sec-title">Video <span>Showcase</span></h2>
   </div>
-  <div class="mockups-grid" id="branding-container">
+  
+  <div class="videos-grid" id="videos-container">
     <!-- Rendered dynamically -->
   </div>
 </section>
 
-<!-- Mockups -->
-<section id="mockups" style="background: var(--bg-dark);">
-  <div class="sec-header">
-    <div class="sec-label">Product Showcases</div>
-    <h2 class="sec-title">Premium <span>Mockups</span></h2>
-  </div>
-  <div class="mockups-grid" id="mockups-container">
-    <!-- Rendered dynamically -->
-  </div>
-</section>
-
-<!-- Motion Graphics & Video -->
-<section id="videos">
-  <div class="sec-header">
-    <div class="sec-label">Reels &amp; Shorts</div>
-    <h2 class="sec-title">Motion Graphics &amp; <span>Videos</span></h2>
-  </div>
-  <div class="video-grid" id="videos-container">
-    <!-- Rendered dynamically -->
-  </div>
-</section>
-
-<!-- Skills -->
-<section id="skills" style="background: var(--bg-dark);">
-  <div class="sec-header">
-    <div class="sec-label">Capabilities</div>
-    <h2 class="sec-title">Creative <span>Toolbox</span></h2>
-  </div>
-  <div class="skills-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
-    <!-- Design Group -->
-    <div class="sk-card" style="height: 100%;">
-      <div class="sk-icon">🎨</div>
-      <div class="sk-title" style="font-size: 18px; margin-bottom: 12px; color: var(--accent);">Design</div>
-      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--muted); padding: 0;">
-        <li>✦ Graphic Design</li>
-        <li>✦ UI/UX Design</li>
-        <li>✦ Wireframing &amp; Prototyping</li>
-        <li>✦ Branding &amp; Identity</li>
-        <li>✦ Poster &amp; Social Media Design</li>
-      </ul>
-    </div>
-    <!-- Motion & Content Group -->
-    <div class="sk-card" style="height: 100%;">
-      <div class="sk-icon">🎬</div>
-      <div class="sk-title" style="font-size: 18px; margin-bottom: 12px; color: var(--accent);">Motion &amp; Content</div>
-      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--muted); padding: 0;">
-        <li>✦ Motion Graphics</li>
-        <li>✦ Video Editing</li>
-        <li>✦ Product Advertisement Videos</li>
-        <li>✦ Content Creation</li>
-      </ul>
-    </div>
-    <!-- Marketing Group -->
-    <div class="sk-card" style="height: 100%;">
-      <div class="sk-icon">📈</div>
-      <div class="sk-title" style="font-size: 18px; margin-bottom: 12px; color: var(--accent);">Marketing</div>
-      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--muted); padding: 0;">
-        <li>✦ Social Media Marketing</li>
-        <li>✦ Campaign Management</li>
-        <li>✦ Client Handling</li>
-        <li>✦ Market Research</li>
-      </ul>
-    </div>
-    <!-- Tools Group -->
-    <div class="sk-card" style="height: 100%;">
-      <div class="sk-icon">🛠️</div>
-      <div class="sk-title" style="font-size: 18px; margin-bottom: 12px; color: var(--accent);">Tools</div>
-      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--muted); padding: 0;">
-        <li>✦ Figma</li>
-        <li>✦ Adobe Photoshop</li>
-        <li>✦ Adobe Illustrator</li>
-        <li>✦ Canva &amp; CapCut</li>
-        <li>✦ Microsoft Office &amp; Google Workspace</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- Experience -->
-<section id="experience" class="experience">
-  <div class="sec-header">
-    <div class="sec-label">Professional Timeline</div>
-    <h2 class="sec-title">Work <span>Experience</span></h2>
-  </div>
-  <div class="exp-list">
-    <!-- Experience 1 -->
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role-co">
-          <h3 class="exp-role">Social Media Marketing Executive</h3>
-          <span class="exp-company">Snapify Zoomix</span>
-        </div>
-        <span class="exp-date-pill">January 2026 – March 2026</span>
-      </div>
-      <ul class="exp-bullets">
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Managed social media accounts and content scheduling.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Created engaging poster designs and marketing creatives.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Conducted market research and competitor analysis.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Handled client communication and project coordination.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Planned and executed social media campaigns.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Created product promotional videos and advertising creatives.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Assisted in running and optimizing paid advertising campaigns.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Developed visual content to improve brand engagement and reach.</li>
-      </ul>
-    </div>
-    <!-- Experience 2 -->
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role-co">
-          <h3 class="exp-role">Data Entry Specialist</h3>
-          <span class="exp-company">Care Byte Solutions</span>
-        </div>
-        <span class="exp-date-pill">March 2026 – May 2026</span>
-      </div>
-      <ul class="exp-bullets">
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Extracted and managed data from UK and US-based healthcare and government-related portals.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Worked with platforms such as Anthem and UHC systems.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Process, organized, and updated records accurately.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Maintained large datasets and ensured data quality.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Prepared structured information and descriptions for internal systems.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Updated and managed information through Google-based workflows and databases.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Ensured accuracy, consistency, and compliance with project requirements.</li>
-      </ul>
-    </div>
-    <!-- Education -->
-    <div class="exp-card" style="border-color: rgba(var(--accent-rgb), 0.3);">
-      <div class="exp-header">
-        <div class="exp-role-co">
-          <h3 class="exp-role">Bachelor of Science in Software Engineering</h3>
-          <span class="exp-company">Currently Pursuing Degree</span>
-        </div>
-        <span class="exp-date-pill">2023 – 2027</span>
-      </div>
-      <ul class="exp-bullets">
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Currently pursuing a Bachelor's degree in Software Engineering.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Developing strong foundations in software development, user experience design, problem-solving, and digital product creation.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- Process Section -->
-<section id="process">
-  <div class="sec-header">
-    <div class="sec-label">Workflow</div>
-    <h2 class="sec-title">Design <span>Process</span></h2>
-  </div>
-  <div class="proc-grid">
-    <div class="proc-step">
-      <div class="proc-num">01</div>
-      <h3 class="proc-title">Discovery</h3>
-      <p class="proc-desc">Researching domain specifications, competitor structures, and user pain points to shape the product logic.</p>
-    </div>
-    <div class="proc-step">
-      <div class="proc-num">02</div>
-      <h3 class="proc-title">UX Wireframing</h3>
-      <p class="proc-desc">Structuring simple layouts and user navigation flows to finalize details before aesthetic design.</p>
-    </div>
-    <div class="proc-step">
-      <div class="proc-num">03</div>
-      <h3 class="proc-title">UI &amp; Brand</h3>
-      <p class="proc-desc">Developing gorgeous visual themes, color systems, and modern glassmorphic layouts.</p>
-    </div>
-    <div class="proc-step">
-      <div class="proc-num">04</div>
-      <h3 class="proc-title">Motion &amp; Hand-off</h3>
-      <p class="proc-desc">Integrating fluid interactive transitions, micro-animations, and organizing files for developers.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Contact -->
+<!-- Contact Section -->
 <section id="contact" class="contact">
   <h2 class="contact-title">Let's Create <span>Something Memorable</span></h2>
-  <p class="contact-desc">Active and ready for new design systems, motion graphics productions, and digital campaigns.</p>
+  <p class="contact-desc">Ready to develop high-end design systems, social campaigns, and promotional animation assets.</p>
   
   <div class="contact-btns">
     <a href="mailto:se.nusrat.jahan.ara@gmail.com" class="btn-primary">Email Me</a>
@@ -1742,7 +1530,8 @@
   </div>
   <div class="footer-links">
     <a href="#about">About</a>
-    <a href="#work">Work</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#uiux">UI/UX</a>
     <a href="#contact">Contact</a>
   </div>
 </footer>
@@ -1756,7 +1545,7 @@
   </div>
 </div>
 
-<!-- Scripts for Animations & Dynamic Manifest -->
+<!-- Scripts for Animations & Dynamic Content -->
 <script>
   // ── CUSTOM CURSOR LOGIC ──
   const cursor = document.getElementById('cursor');
@@ -1774,14 +1563,14 @@
   });
 
   // Grow cursor on hover links
-  const interactables = 'a, button, select, option, .cs-module-card, .pin-card, .video-preview-card, .mockup-card';
+  const interactables = 'a, button, select, option, .uiux-screen-item, .poster-card, .video-card, .btn-social';
   document.querySelectorAll(interactables).forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.width = '12px';
       cursor.style.height = '12px';
       cursorGlow.style.width = '60px';
       cursorGlow.style.height = '60px';
-      cursorGlow.style.borderColor = 'rgba(212, 175, 55, 0.6)';
+      cursorGlow.style.borderColor = 'rgba(16, 185, 129, 0.6)';
     });
     el.addEventListener('mouseleave', () => {
       cursor.style.width = '8px';
@@ -1797,12 +1586,10 @@
   const ctx = canvas.getContext('2d');
   
   let particles = [];
-  
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-  
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
@@ -1813,28 +1600,27 @@
     reset() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 2.5 + 0.5;
-      this.speedX = Math.random() * 0.4 - 0.2;
-      this.speedY = Math.random() * 0.4 - 0.2;
-      this.alpha = Math.random() * 0.5 + 0.1;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = Math.random() * 0.2 - 0.1;
+      this.speedY = Math.random() * 0.2 - 0.1;
+      this.alpha = Math.random() * 0.4 + 0.1;
     }
     update() {
       this.x += this.speedX;
       this.y += this.speedY;
-      
       if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
         this.reset();
       }
     }
     draw() {
-      ctx.fillStyle = `rgba(212, 175, 55, ${this.alpha})`;
+      ctx.fillStyle = `rgba(16, 185, 129, ${this.alpha})`;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
     }
   }
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 60; i++) {
     particles.push(new Particle());
   }
 
@@ -1848,62 +1634,78 @@
   }
   animateParticles();
 
-  // ── INITIAL INTRO & HERO SEQUENCING (GSAP) ──
+  // ── INITIAL INTRO & HERO SCROLLYTELLING (GSAP) ──
   window.addEventListener('DOMContentLoaded', () => {
-    // Phase 1: Logo loader sequence
-    const tl = gsap.timeline();
-    tl.to('#loader-logo', { opacity: 1, scale: 1.1, duration: 1, ease: 'power3.out' });
-    tl.to('#loader-logo', { opacity: 0, scale: 0.95, duration: 0.8, delay: 0.5, ease: 'power3.in' });
-    tl.to('#loader', { yPercent: -100, duration: 1, ease: 'power4.inOut' });
+    // Loader out
+    const tlIntro = gsap.timeline();
+    tlIntro.to('#loader-logo', { opacity: 1, scale: 1.1, duration: 0.8, ease: 'power3.out' });
+    tlIntro.to('#loader-logo', { opacity: 0, scale: 0.95, duration: 0.6, delay: 0.4, ease: 'power3.in' });
+    tlIntro.to('#loader', { yPercent: -100, duration: 0.8, ease: 'power4.inOut' });
     
-    // Phase 2-4: Portrait appears and slides into layout
-    tl.fromTo('#hero-frame', 
-      { opacity: 0, x: -100, y: 50, scale: 0.8, rotate: 10 },
-      { opacity: 1, x: 0, y: 0, scale: 1, rotate: -3, duration: 1.4, ease: 'power4.out' },
-      '-=0.2'
-    );
+    // Register scrolltrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Scrollytelling transitions for Hero Section
+    const scrollTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#hero-container",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      }
+    });
+
+    // Phase 1 crossfade to Phase 2
+    scrollTimeline.to("#phase-1", { opacity: 0, y: -50, duration: 1 });
+    scrollTimeline.fromTo("#phase-2", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 }, "-=0.3");
     
-    // Phase 5-8: Content elements cascade reveal
-    tl.fromTo('#hero-content', 
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
-      '-=0.8'
-    );
-    tl.fromTo('.floating-element', 
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.8, stagger: 0.2, ease: 'back.out(1.7)' },
-      '-=0.6'
-    );
-    
-    // Count-up stats animation
-    tl.call(() => {
-      const stats = document.querySelectorAll('.stat-num');
-      stats.forEach(stat => {
-        const val = parseFloat(stat.getAttribute('data-val'));
+    // Phase 2 crossfade to Phase 3
+    scrollTimeline.to("#phase-2", { opacity: 0, y: -50, duration: 1, delay: 0.5 });
+    scrollTimeline.fromTo("#phase-3", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 }, "-=0.3");
+
+    // Stats count-up animation when visible
+    ScrollTrigger.create({
+      trigger: "#about",
+      start: "top 80%",
+      onEnter: () => {
+        animateStats();
+      }
+    });
+
+    function animateStats() {
+      const stats = [
+        { id: 'stat-val-clients', val: 6 },
+        { id: 'stat-val-designs', val: 200 },
+        { id: 'stat-val-experience', val: 1.5, decimals: 1 },
+        { id: 'stat-val-campaigns', val: 5 }
+      ];
+      
+      stats.forEach(s => {
+        const el = document.getElementById(s.id);
+        if (!el) return;
         let obj = { value: 0 };
         gsap.to(obj, {
-          value: val,
-          duration: 2,
+          value: s.val,
+          duration: 1.5,
           ease: 'power2.out',
           onUpdate: () => {
-            stat.textContent = obj.value.toFixed(val % 1 === 0 ? 0 : 1) + '+';
+            el.textContent = obj.value.toFixed(s.decimals || 0) + '+';
           }
         });
       });
-    }, null, '-=1.2');
+    }
 
-    // Smooth Scroll Reveal sections
-    gsap.registerPlugin(ScrollTrigger);
+    // Scroll reveal sections
     document.querySelectorAll('section').forEach(sec => {
       gsap.from(sec, {
         scrollTrigger: {
           trigger: sec,
-          start: 'top 80%',
+          start: 'top 85%',
           toggleActions: 'play none none none'
         },
         opacity: 0,
         y: 40,
-        duration: 1.2,
+        duration: 1,
         ease: 'power3.out'
       });
     });
@@ -1916,198 +1718,81 @@
     .then(res => res.json())
     .then(data => {
       globalManifest = data;
-      renderFeaturedProjects(data.uiux);
-      renderSelectorDropdown(data.uiux);
-      renderUIUXSimulator(data.uiux[0]);
+      renderUIUXCases(data.uiux);
       renderPosters(data.posters);
-      renderMockups(data.mockups);
-      renderBranding(data.mockups); // Branding is mapped to mockups for dynamic display
       renderVideos(data.videos);
     })
     .catch(err => console.error("Error loading manifest:", err));
 
-  // Render 1: Featured Projects
-  function renderFeaturedProjects(projects) {
-    const container = document.getElementById('featured-projects-container');
+  // Render UI/UX cases
+  function renderUIUXCases(projects) {
+    const container = document.getElementById('uiux-showcase-container');
     container.innerHTML = '';
     
     projects.forEach(p => {
       const card = document.createElement('div');
-      card.className = 'feat-card';
+      card.className = 'uiux-project-card';
       
       // Get mockup image path
       const mockupImg = p.mockup || p.directory[0].url;
       
       // Generate tech stack badges
       const stackHtml = (p.techStack || [])
-        .map(tech => `<span class="stack-badge">${tech}</span>`)
+        .map(tech => `<span class="uiux-proj-stack-badge">${tech}</span>`)
         .join('');
+
+      // Generate horizontal screens lists
+      const screensHtml = p.modules.map(mod => `
+        <div class="uiux-screen-item" onclick="openLightbox('${mod.url}', '${mod.name}')" title="Zoom in ${mod.name}">
+          <img src="${mod.url}" alt="${mod.name}" loading="lazy">
+        </div>
+      `).join('');
       
       card.innerHTML = `
-        <div class="feat-img" style="cursor: pointer;" onclick="openCaseStudy('${p.id}')">
-          <img src="${mockupImg}" alt="${p.title}" loading="lazy">
-        </div>
-        <div class="feat-info">
-          <div class="feat-tag">${p.tag}</div>
-          <h3 class="feat-title" style="cursor: pointer; font-size: 20px; font-weight: 800; line-height: 1.3; margin-bottom: 12px;" onclick="openCaseStudy('${p.id}')">${p.title}</h3>
-          <p class="feat-desc" style="font-size: 13.5px; line-height: 1.6; margin-bottom: 20px;">${p.desc}</p>
-          <div class="feat-stack">
+        <div class="uiux-proj-left">
+          <div class="uiux-proj-tag">${p.tag}</div>
+          <h3 class="uiux-proj-title">${p.title}</h3>
+          <p class="uiux-proj-desc">${p.desc}</p>
+          
+          <div class="uiux-proj-stack">
             ${stackHtml}
           </div>
-          <div style="display: flex; gap: 12px; margin-top: auto;">
-            <button class="btn-primary" style="padding: 10px 24px; font-size: 13px; border: none;" onclick="openCaseStudy('${p.id}')">View Case Study</button>
-            <a href="#uiux" class="btn-outline" style="padding: 10px 24px; font-size: 13px;" onclick="selectSelectorProject('${p.id}')">Simulator</a>
+
+          <div class="uiux-proj-ctas">
+            ${p.figmaUrl ? `<a href="${p.figmaUrl}" target="_blank" class="btn-primary" style="font-size:12.5px; padding: 10px 20px;">Figma Prototype</a>` : ''}
+            ${p.behanceUrl ? `<a href="${p.behanceUrl}" target="_blank" class="btn-outline" style="font-size:12.5px; padding: 10px 20px;">Behance View</a>` : ''}
           </div>
+
+          <div class="uiux-screens-section">
+            <div class="uiux-screens-label">High-Fidelity Screens (${p.modules.length})</div>
+            <div class="uiux-screens-list">
+              ${screensHtml}
+            </div>
+          </div>
+        </div>
+        <div class="uiux-proj-right">
+          <img class="mockup" src="${mockupImg}" alt="${p.title}" loading="lazy">
         </div>
       `;
       container.appendChild(card);
     });
   }
 
-  // ── CASE STUDY MODAL LOGIC ──
-  function openCaseStudy(projId) {
-    const project = globalManifest.uiux.find(p => p.id === projId);
-    if (!project) return;
-
-    // Create modal element if it doesn't exist
-    let modal = document.getElementById('case-study-modal');
-    if (!modal) {
-      modal = document.createElement('div');
-      modal.id = 'case-study-modal';
-      modal.className = 'cs-modal';
-      document.body.appendChild(modal);
-    }
-
-    // Generate tech stack pills
-    const stackHtml = (project.techStack || [])
-      .map(tech => `<span class="stack-badge" style="background: rgba(212, 175, 55, 0.05); border-color: rgba(212, 175, 55, 0.2); color: var(--accent);">${tech}</span>`)
-      .join('');
-
-    // Generate gallery items
-    const galleryHtml = project.modules.map(mod => `
-      <div class="cs-gallery-item" onclick="openLightbox('${mod.url}', '${mod.name}')">
-        <img src="${mod.url}" alt="${mod.name}" loading="lazy">
-        <div class="cs-gallery-item-info">
-          <div class="cs-gallery-item-title">${mod.name}</div>
-          <div class="cs-gallery-item-desc">${mod.desc}</div>
-        </div>
-      </div>
-    `).join('');
-
-    // Populate modal contents
-    modal.innerHTML = `
-      <button class="cs-modal-close" onclick="closeCaseStudy()">&times;</button>
-      <div class="cs-modal-container">
-        <div class="cs-modal-sidebar">
-          <div>
-            <div class="cs-modal-tag">${project.tag}</div>
-            <h2 class="cs-modal-title">${project.title}</h2>
-            <p class="cs-modal-desc">${project.desc}</p>
-            
-            <div class="cs-modal-meta-label">Skills &amp; Tools</div>
-            <div class="feat-stack" style="margin-bottom: 30px;">
-              ${stackHtml}
-            </div>
-          </div>
-          
-          <div class="cs-modal-links">
-            ${project.figmaUrl ? `<a href="${project.figmaUrl}" target="_blank" class="btn-primary" style="justify-content: center; font-size: 13px;">View Figma Prototype</a>` : ''}
-            ${project.behanceUrl ? `<a href="${project.behanceUrl}" target="_blank" class="btn-outline" style="justify-content: center; font-size: 13px;">View Behance Project</a>` : ''}
-          </div>
-        </div>
-        <div class="cs-modal-main">
-          <div class="cs-modal-meta-label" style="margin-bottom: 0;">Case Study Screens (${project.modules.length})</div>
-          <div class="cs-modal-gallery">
-            ${galleryHtml}
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Activate modal
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeCaseStudy() {
-    const modal = document.getElementById('case-study-modal');
-    if (modal) {
-      modal.classList.remove('active');
-    }
-    document.body.style.overflow = '';
-  }
-
-  // Render 2: Dropdown selector in Simulator
-  function renderSelectorDropdown(projects) {
-    const selector = document.getElementById('ux-selector');
-    selector.innerHTML = '';
-    
-    projects.forEach(p => {
-      const opt = document.createElement('option');
-      opt.value = p.id;
-      opt.textContent = p.title;
-      selector.appendChild(opt);
-    });
-  }
-
-  function selectSelectorProject(projId) {
-    document.getElementById('ux-selector').value = projId;
-    changeSelectorProject(projId);
-  }
-
-  function changeSelectorProject(projId) {
-    const project = globalManifest.uiux.find(p => p.id === projId);
-    if (project) {
-      renderUIUXSimulator(project);
-    }
-  }
-
-  // Render 3: UI/UX Case Study Simulator details
-  function renderUIUXSimulator(project) {
-    const simMenu = document.getElementById('sim-menu');
-    const phoneScreen = document.getElementById('sim-phone-screen');
-    
-    simMenu.innerHTML = '';
-    
-    project.modules.forEach((mod, idx) => {
-      const card = document.createElement('div');
-      card.className = `cs-module-card ${idx === 0 ? 'active' : ''}`;
-      card.innerHTML = `
-        <div class="cs-module-icon">📱</div>
-        <div style="flex: 1;">
-          <div class="cs-module-title">${mod.name}</div>
-          <div class="cs-module-desc">${mod.desc}</div>
-        </div>
-      `;
-      card.addEventListener('click', () => {
-        document.querySelectorAll('.cs-module-card').forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-        phoneScreen.innerHTML = `<img src="${mod.url}" alt="${mod.name}" onclick="openLightbox('${mod.url}', '${mod.name}')" loading="lazy">`;
-      });
-      simMenu.appendChild(card);
-    });
-
-    // Default load first module
-    if(project.modules.length > 0) {
-      phoneScreen.innerHTML = `<img src="${project.modules[0].url}" alt="${project.modules[0].name}" onclick="openLightbox('${project.modules[0].url}', '${project.modules[0].name}')" loading="lazy">`;
-    }
-  }
-
-  // Render 4: Posters
+  // Render Posters
   function renderPosters(posters) {
     const container = document.getElementById('posters-container');
     container.innerHTML = '';
     
     posters.forEach(p => {
       const card = document.createElement('div');
-      card.className = 'pin-card';
+      card.className = 'poster-card';
       card.innerHTML = `
-        <div class="pin-img-wrap">
+        <div class="poster-img-wrap">
           <img src="${p.url}" alt="${p.name}" loading="lazy">
         </div>
-        <div class="pin-info">
-          <div class="pin-cat">Graphic Design</div>
-          <div class="pin-title">${p.name}</div>
+        <div class="poster-info">
+          <div class="poster-cat">Graphic Design</div>
+          <div class="poster-title">${p.name}</div>
         </div>
       `;
       card.addEventListener('click', () => openLightbox(p.url, p.name));
@@ -2115,59 +1800,19 @@
     });
   }
 
-  // Render 5: Mockups
-  function renderMockups(mockups) {
-    const container = document.getElementById('mockups-container');
-    container.innerHTML = '';
-    
-    mockups.forEach(m => {
-      const card = document.createElement('div');
-      card.className = 'mockup-card';
-      card.innerHTML = `
-        <div class="mockup-img-wrap" onclick="openLightbox('${m.url}', '${m.name}')">
-          <img src="${m.url}" alt="${m.name}" loading="lazy">
-        </div>
-        <div class="mockup-info">
-          <div class="mockup-title">${m.name}</div>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // Render 6: Branding
-  function renderBranding(mockups) {
-    const container = document.getElementById('branding-container');
-    container.innerHTML = '';
-    
-    mockups.forEach(m => {
-      const card = document.createElement('div');
-      card.className = 'mockup-card';
-      card.innerHTML = `
-        <div class="mockup-img-wrap" onclick="openLightbox('${m.url}', '${m.name}')">
-          <img src="${m.url}" alt="${m.name}" loading="lazy">
-        </div>
-        <div class="mockup-info">
-          <div class="mockup-title">${m.name}</div>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // Render 7: Videos
+  // Render Videos
   function renderVideos(videos) {
     const container = document.getElementById('videos-container');
     container.innerHTML = '';
     
     videos.forEach(v => {
       const card = document.createElement('div');
-      card.className = 'video-preview-card';
+      card.className = 'video-card';
       card.innerHTML = `
         <video src="${v.url}" muted loop playsinline></video>
-        <div class="video-card-overlay">
-          <div class="video-card-play-btn">▶</div>
-          <div class="video-card-title">${v.name}</div>
+        <div class="video-overlay">
+          <div class="video-play-btn">▶</div>
+          <div class="video-title">${v.name}</div>
         </div>
       `;
       
