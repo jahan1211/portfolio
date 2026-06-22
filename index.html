@@ -1743,8 +1743,8 @@
 
       // Generate horizontal screens lists
       const screensHtml = p.modules.map(mod => `
-        <div class="uiux-screen-item" onclick="openLightbox('${mod.url}', '${mod.name}')" title="Zoom in ${mod.name}">
-          <img src="${mod.url}" alt="${mod.name}" loading="lazy">
+        <div class="uiux-screen-item" onclick="openLightbox('${encodeURI(mod.url)}', '${mod.name}')" title="Zoom in ${mod.name}">
+          <img src="${encodeURI(mod.url)}" alt="${mod.name}" loading="lazy">
         </div>
       `).join('');
       
@@ -1771,7 +1771,7 @@
           </div>
         </div>
         <div class="uiux-proj-right">
-          <img class="mockup" src="${mockupImg}" alt="${p.title}" loading="lazy">
+          <img class="mockup" src="${encodeURI(mockupImg)}" alt="${p.title}" loading="lazy">
         </div>
       `;
       container.appendChild(card);
@@ -1788,14 +1788,14 @@
       card.className = 'poster-card';
       card.innerHTML = `
         <div class="poster-img-wrap">
-          <img src="${p.url}" alt="${p.name}" loading="lazy">
+          <img src="${encodeURI(p.url)}" alt="${p.name}" loading="lazy">
         </div>
         <div class="poster-info">
           <div class="poster-cat">Graphic Design</div>
           <div class="poster-title">${p.name}</div>
         </div>
       `;
-      card.addEventListener('click', () => openLightbox(p.url, p.name));
+      card.addEventListener('click', () => openLightbox(encodeURI(p.url), p.name));
       container.appendChild(card);
     });
   }
@@ -1809,7 +1809,7 @@
       const card = document.createElement('div');
       card.className = 'video-card';
       card.innerHTML = `
-        <video src="${v.url}" muted loop playsinline></video>
+        <video src="${encodeURI(v.url)}" muted loop playsinline></video>
         <div class="video-overlay">
           <div class="video-play-btn">▶</div>
           <div class="video-title">${v.name}</div>
@@ -1822,7 +1822,7 @@
         videoEl.pause();
         videoEl.currentTime = 0;
       });
-      card.addEventListener('click', () => openLightbox(v.url, v.name, 'video'));
+      card.addEventListener('click', () => openLightbox(encodeURI(v.url), v.name, 'video'));
       
       container.appendChild(card);
     });
