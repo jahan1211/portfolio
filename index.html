@@ -1886,7 +1886,11 @@
       { "name": "WhatsApp Creative 5", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.48 PM (1).jpeg" },
       { "name": "WhatsApp Creative 6", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.48 PM.jpeg" },
       { "name": "WhatsApp Creative 7", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.49 PM.jpeg" },
-      { "name": "WhatsApp Creative 8", "url": "Posters & Creatives/WhatsApp Image 2026-06-19 at 1.14.02 PM.jpeg" }
+      { "name": "WhatsApp Creative 8", "url": "Posters & Creatives/WhatsApp Image 2026-06-19 at 1.14.02 PM.jpeg" },
+      { "name": "Creative Poster 12", "url": "Posters & Creatives/nusrat 2.png" },
+      { "name": "Creative Poster 13", "url": "Posters & Creatives/nusrat3.png" },
+      { "name": "Creative Poster 14", "url": "Posters & Creatives/nusrat4.png" },
+      { "name": "Creative Poster 15", "url": "Posters & Creatives/nusrat 5.png" }
     ],
     "videos": [
       { "name": "Video Animation 1", "url": "Vedio Animation/VN20260206_040716.mp4", "thumbnail": "Vedio Animation/Gemini_Generated_Image_azemzazemzazemza.png" },
@@ -1960,16 +1964,22 @@
       .map(tech => `<span class="stack-badge" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2); color: var(--accent);">${tech}</span>`)
       .join('');
 
-    // Generate gallery items
-    const galleryHtml = project.modules.map(mod => `
-      <div class="cs-gallery-item" onclick="openLightbox('${encodeURI(mod.url)}', '${mod.name}')">
-        <img src="${encodeURI(mod.url)}" alt="${mod.name}" loading="lazy">
-        <div class="cs-gallery-item-info">
-          <div class="cs-gallery-item-title">${mod.name}</div>
-          <div class="cs-gallery-item-desc">${mod.desc}</div>
+    // Generate gallery items using the directory array (which contains all files from the folder)
+    const screens = project.directory || project.modules;
+    const galleryHtml = screens.map(mod => {
+      // Find a matching description from modules metadata if it exists
+      const match = (project.modules || []).find(m => m.url === mod.url);
+      const desc = match ? match.desc : '';
+      return `
+        <div class="cs-gallery-item" onclick="openLightbox('${encodeURI(mod.url)}', '${mod.name}')">
+          <img src="${encodeURI(mod.url)}" alt="${mod.name}" loading="lazy">
+          <div class="cs-gallery-item-info">
+            <div class="cs-gallery-item-title">${mod.name}</div>
+            ${desc ? `<div class="cs-gallery-item-desc">${desc}</div>` : ''}
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     // Populate modal contents
     modal.innerHTML = `
@@ -1993,7 +2003,7 @@
           </div>
         </div>
         <div class="cs-modal-main">
-          <div class="cs-modal-meta-label" style="margin-bottom: 0;">Case Study Screens (${project.modules.length})</div>
+          <div class="cs-modal-meta-label" style="margin-bottom: 0;">Case Study Screens (${screens.length})</div>
           <div class="cs-modal-gallery">
             ${galleryHtml}
           </div>
@@ -2053,10 +2063,21 @@
       `;
       
       const videoEl = card.querySelector('video');
-      card.addEventListener('mouseenter', () => videoEl.play().catch(() => {}));
+      
+      // Glimpse preview behavior (restarts video after 3 seconds to act as a transition loop like YouTube)
+      videoEl.addEventListener('timeupdate', () => {
+        if (videoEl.currentTime >= 3) {
+          videoEl.currentTime = 0;
+        }
+      });
+      
+      card.addEventListener('mouseenter', () => {
+        videoEl.play().catch(() => {});
+      });
       card.addEventListener('mouseleave', () => {
         videoEl.pause();
         videoEl.currentTime = 0;
+        videoEl.load(); // Forces the cover poster thumbnail to display again
       });
       card.addEventListener('click', () => openLightbox(encodeURI(v.url), v.name, 'video'));
       
