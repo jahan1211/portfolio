@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nusrat Jahan Ara — Cinematic Design Portfolio</title>
-<meta name="description" content="Immersive portfolio of Nusrat Jahan Ara, a Graphic, UI/UX, and Motion Graphics Designer. Blending storytelling, active client experience, and luxurious aesthetics.">
+<title>Nusrat Jahan Ara — Graphic Designer | UI/UX Designer | Social Media Marketing Executive</title>
+<meta name="description" content="Creative and detail-oriented designer with 1.5+ years of experience in graphic design, UI/UX design, social media marketing, and digital content creation.">
 
 <!-- Premium Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -454,50 +454,52 @@
     font-weight: 600;
   }
 
-  /* ── FEATURED PROJECTS (CAROUSEL) ── */
+  /* ── FEATURED PROJECTS (GRID) ── */
   .featured-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 32px;
-    overflow-x: auto;
     padding-bottom: 40px;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-  .featured-container::-webkit-scrollbar {
-    display: none;
   }
   .feat-card {
-    min-width: 440px;
-    width: 440px;
+    width: 100%;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 24px;
     overflow: hidden;
-    scroll-snap-align: start;
-    transition: border-color 0.4s, transform 0.4s;
+    transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   .feat-card:hover {
     border-color: var(--accent);
     transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(var(--accent-rgb), 0.05);
   }
   .feat-img {
     width: 100%;
-    height: 280px;
+    height: 260px;
     overflow: hidden;
     background: var(--bg-dark);
     position: relative;
+    border-bottom: 1px solid var(--border);
   }
   .feat-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
     transition: transform 0.5s;
   }
   .feat-card:hover .feat-img img {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
   .feat-info {
     padding: 32px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
   .feat-tag {
     font-family: var(--font-heading);
@@ -519,6 +521,201 @@
     font-size: 14px;
     line-height: 1.7;
     margin-bottom: 24px;
+  }
+  .feat-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .stack-badge {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── CASE STUDY MODAL ── */
+  .cs-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 3, 3, 0.95);
+    backdrop-filter: blur(25px);
+    z-index: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
+  .cs-modal.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .cs-modal-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 90vh;
+    background: #090909;
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    overflow: hidden;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+    transform: scale(0.95) translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .cs-modal.active .cs-modal-container {
+    transform: scale(1) translateY(0);
+  }
+  .cs-modal-sidebar {
+    background: #0c0c0c;
+    border-right: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+  .cs-modal-main {
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .cs-modal-close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 610;
+  }
+  .cs-modal-close:hover {
+    background: var(--accent-gradient);
+    color: #000;
+    transform: rotate(90deg);
+    border-color: var(--accent);
+  }
+  .cs-modal-title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .cs-modal-tag {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .cs-modal-desc {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+  .cs-modal-meta-label {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .cs-modal-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+  }
+  .cs-modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .cs-gallery-item {
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: zoom-in;
+    transition: transform 0.3s, border-color 0.3s;
+    aspect-ratio: 9/19;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .cs-gallery-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+  .cs-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .cs-gallery-item-info {
+    position: absolute;
+    bottom: 0;
+    inset-x: 0;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.85) 40%);
+    padding: 20px 16px 12px;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cs-gallery-item:hover .cs-gallery-item-info {
+    opacity: 1;
+  }
+  .cs-gallery-item-title {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .cs-gallery-item-desc {
+    font-size: 10px;
+    color: #bbb;
+    line-height: 1.3;
+  }
+  @media(max-width: 960px) {
+    .cs-modal-container {
+      grid-template-columns: 1fr;
+      height: 95vh;
+    }
+    .cs-modal-sidebar {
+      padding: 30px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      height: auto;
+    }
+    .cs-modal-main {
+      padding: 30px;
+    }
   }
 
   /* Buttons */
@@ -1221,7 +1418,7 @@
   
   <div class="hero-left" id="hero-content">
     <h1 class="hero-title">Crafting Premium<br><span>Digital Experiences</span></h1>
-    <p class="hero-desc">An active professional Graphic, UI/UX, and Motion Graphics Designer delivering high-fidelity design systems, real client projects, and creative storytelling.</p>
+    <p class="hero-desc">Creative and detail-oriented designer with 1.5+ years of experience in graphic design, UI/UX design, social media marketing, and digital content creation. Passionate about creating visually engaging experiences that combine aesthetics with functionality.</p>
     
     <!-- Professional Stats (Immediately Communicated) -->
     <div class="hero-stats">
@@ -1276,8 +1473,8 @@
     <div class="about-text">
       <div class="sec-label">My Philosophy</div>
       <h2 class="sec-title" style="margin-bottom: 28px;">Merging Design With <span>Storytelling</span></h2>
-      <p>I am Nusrat Jahan Ara, an active professional designer specializing in <strong>Graphic Design, UI/UX Systems, and Motion Graphics</strong>. Unlike standard gallery portfolios, my work is built upon real project experience, data-minded layouts, and creative digital journeys.</p>
-      <p>I focus on translating complex requirements into simple, modern, and high-impact layouts. By blending static interfaces with cinematic motion, I build digital assets that immediately hook visitors, enhance brand credibility, and convert.</p>
+      <p>I am Nusrat Jahan Ara, a creative and detail-oriented designer specializing in <strong>Graphic Design, UI/UX systems, and Social Media Marketing</strong>. I believe great design is not only about aesthetics—it is about solving problems, creating meaningful experiences, and delivering value. My goal is to build designs that connect brands with people through creativity, strategy, and innovation.</p>
+      <p>Over the years, I have designed 200+ posters, worked with 6+ happy clients, contributed to marketing campaigns, and delivered creative solutions across multiple industries. My expertise includes branding, social media design, UI/UX design, motion graphics, content creation, and digital marketing.</p>
       <div style="margin-top: 40px; display: flex; gap: 16px;">
         <a href="#contact" class="btn-primary">Start a Project</a>
         <a href="mailto:se.nusrat.jahan.ara@gmail.com" class="btn-outline">Email Me</a>
@@ -1378,15 +1575,53 @@
     <div class="sec-label">Capabilities</div>
     <h2 class="sec-title">Creative <span>Toolbox</span></h2>
   </div>
-  <div class="skills-grid">
-    <div class="sk-card"><div class="sk-icon">🎨</div><div class="sk-title">Figma</div><div class="sk-type">UI/UX &amp; Prototyping</div></div>
-    <div class="sk-card"><div class="sk-icon">📸</div><div class="sk-title">Adobe Photoshop</div><div class="sk-type">Creative Manipulation</div></div>
-    <div class="sk-card"><div class="sk-icon">🖋️</div><div class="sk-title">Adobe Illustrator</div><div class="sk-type">Branding &amp; Vector Art</div></div>
-    <div class="sk-card"><div class="sk-icon">🎥</div><div class="sk-title">After Effects</div><div class="sk-type">Motion Design &amp; VFX</div></div>
-    <div class="sk-card"><div class="sk-icon">🎬</div><div class="sk-title">Premiere Pro</div><div class="sk-type">Video Editing</div></div>
-    <div class="sk-card"><div class="sk-icon">📱</div><div class="sk-title">CapCut</div><div class="sk-type">Social Reels Production</div></div>
-    <div class="sk-card"><div class="sk-icon">⚙️</div><div class="sk-title">Midjourney / Firefly</div><div class="sk-type">AI Asset Generation</div></div>
-    <div class="sk-card"><div class="sk-icon">💻</div><div class="sk-title">HTML &amp; CSS</div><div class="sk-type">Interactive Front-End</div></div>
+  <div class="skills-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+    <!-- Design Group -->
+    <div class="sk-card" style="height: 100%;">
+      <div class="sk-icon">🎨</div>
+      <div class="sk-title" style="font-size: 18px; margin-bottom: 12px; color: var(--accent);">Design</div>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--muted); padding: 0;">
+        <li>✦ Graphic Design</li>
+        <li>✦ UI/UX Design</li>
+        <li>✦ Wireframing &amp; Prototyping</li>
+        <li>✦ Branding &amp; Identity</li>
+        <li>✦ Poster &amp; Social Media Design</li>
+      </ul>
+    </div>
+    <!-- Motion & Content Group -->
+    <div class="sk-card" style="height: 100%;">
+      <div class="sk-icon">🎬</div>
+      <div class="sk-title" style="font-size: 18px; margin-bottom: 12px; color: var(--accent);">Motion &amp; Content</div>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--muted); padding: 0;">
+        <li>✦ Motion Graphics</li>
+        <li>✦ Video Editing</li>
+        <li>✦ Product Advertisement Videos</li>
+        <li>✦ Content Creation</li>
+      </ul>
+    </div>
+    <!-- Marketing Group -->
+    <div class="sk-card" style="height: 100%;">
+      <div class="sk-icon">📈</div>
+      <div class="sk-title" style="font-size: 18px; margin-bottom: 12px; color: var(--accent);">Marketing</div>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--muted); padding: 0;">
+        <li>✦ Social Media Marketing</li>
+        <li>✦ Campaign Management</li>
+        <li>✦ Client Handling</li>
+        <li>✦ Market Research</li>
+      </ul>
+    </div>
+    <!-- Tools Group -->
+    <div class="sk-card" style="height: 100%;">
+      <div class="sk-icon">🛠️</div>
+      <div class="sk-title" style="font-size: 18px; margin-bottom: 12px; color: var(--accent);">Tools</div>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--muted); padding: 0;">
+        <li>✦ Figma</li>
+        <li>✦ Adobe Photoshop</li>
+        <li>✦ Adobe Illustrator</li>
+        <li>✦ Canva &amp; CapCut</li>
+        <li>✦ Microsoft Office &amp; Google Workspace</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -1397,31 +1632,57 @@
     <h2 class="sec-title">Work <span>Experience</span></h2>
   </div>
   <div class="exp-list">
+    <!-- Experience 1 -->
     <div class="exp-card">
       <div class="exp-header">
         <div class="exp-role-co">
-          <h3 class="exp-role">UI/UX &amp; Graphic Designer</h3>
-          <span class="exp-company">Freelance Client Work</span>
+          <h3 class="exp-role">Social Media Marketing Executive</h3>
+          <span class="exp-company">Snapify Zoomix</span>
         </div>
-        <span class="exp-date-pill">2025 - Present</span>
+        <span class="exp-date-pill">January 2026 – March 2026</span>
       </div>
       <ul class="exp-bullets">
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Delivered end-to-end design configurations for mobile layouts, optimizing search flows and dashboard metrics.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Designed visual assets, branding materials, and marketing campaigns for international clients.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Formulated cohesive design systems in Figma to ensure consistent layout scales and typographic hierarchies.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Managed social media accounts and content scheduling.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Created engaging poster designs and marketing creatives.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Conducted market research and competitor analysis.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Handled client communication and project coordination.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Planned and executed social media campaigns.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Created product promotional videos and advertising creatives.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Assisted in running and optimizing paid advertising campaigns.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Developed visual content to improve brand engagement and reach.</li>
       </ul>
     </div>
+    <!-- Experience 2 -->
     <div class="exp-card">
       <div class="exp-header">
         <div class="exp-role-co">
-          <h3 class="exp-role">Motion Graphics Specialist</h3>
-          <span class="exp-company">Independent Production</span>
+          <h3 class="exp-role">Data Entry Specialist</h3>
+          <span class="exp-company">Care Byte Solutions</span>
         </div>
-        <span class="exp-date-pill">2024 - Present</span>
+        <span class="exp-date-pill">March 2026 – May 2026</span>
       </div>
       <ul class="exp-bullets">
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Created promo reels, intro transitions, and vector animation scripts for social media feeds and platforms.</li>
-        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Produced short form video creatives focusing on high-engagement hooks and sound layout design.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Extracted and managed data from UK and US-based healthcare and government-related portals.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Worked with platforms such as Anthem and UHC systems.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Process, organized, and updated records accurately.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Maintained large datasets and ensured data quality.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Prepared structured information and descriptions for internal systems.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Updated and managed information through Google-based workflows and databases.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Ensured accuracy, consistency, and compliance with project requirements.</li>
+      </ul>
+    </div>
+    <!-- Education -->
+    <div class="exp-card" style="border-color: rgba(var(--accent-rgb), 0.3);">
+      <div class="exp-header">
+        <div class="exp-role-co">
+          <h3 class="exp-role">Bachelor of Science in Software Engineering</h3>
+          <span class="exp-company">Currently Pursuing Degree</span>
+        </div>
+        <span class="exp-date-pill">2023 – 2027</span>
+      </div>
+      <ul class="exp-bullets">
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Currently pursuing a Bachelor's degree in Software Engineering.</li>
+        <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Developing strong foundations in software development, user experience design, problem-solving, and digital product creation.</li>
       </ul>
     </div>
   </div>
@@ -1673,22 +1934,107 @@
     projects.forEach(p => {
       const card = document.createElement('div');
       card.className = 'feat-card';
-      // Use the home dashboard image as cover
-      const coverImg = p.directory.find(img => img.url.toLowerCase().includes('dashboard') || img.url.toLowerCase().includes('hero') || img.url.toLowerCase().includes('splash')) || p.directory[0];
+      
+      // Get mockup image path
+      const mockupImg = p.mockup || p.directory[0].url;
+      
+      // Generate tech stack badges
+      const stackHtml = (p.techStack || [])
+        .map(tech => `<span class="stack-badge">${tech}</span>`)
+        .join('');
       
       card.innerHTML = `
-        <div class="feat-img">
-          <img src="${coverImg.url}" alt="${p.title}" loading="lazy">
+        <div class="feat-img" style="cursor: pointer;" onclick="openCaseStudy('${p.id}')">
+          <img src="${mockupImg}" alt="${p.title}" loading="lazy">
         </div>
         <div class="feat-info">
           <div class="feat-tag">${p.tag}</div>
-          <h3 class="feat-title">${p.title}</h3>
-          <p class="feat-desc">${p.desc}</p>
-          <a href="#uiux" class="btn-outline" style="padding: 10px 24px; font-size: 13px;" onclick="selectSelectorProject('${p.id}')">Explore Simulator</a>
+          <h3 class="feat-title" style="cursor: pointer; font-size: 20px; font-weight: 800; line-height: 1.3; margin-bottom: 12px;" onclick="openCaseStudy('${p.id}')">${p.title}</h3>
+          <p class="feat-desc" style="font-size: 13.5px; line-height: 1.6; margin-bottom: 20px;">${p.desc}</p>
+          <div class="feat-stack">
+            ${stackHtml}
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: auto;">
+            <button class="btn-primary" style="padding: 10px 24px; font-size: 13px; border: none;" onclick="openCaseStudy('${p.id}')">View Case Study</button>
+            <a href="#uiux" class="btn-outline" style="padding: 10px 24px; font-size: 13px;" onclick="selectSelectorProject('${p.id}')">Simulator</a>
+          </div>
         </div>
       `;
       container.appendChild(card);
     });
+  }
+
+  // ── CASE STUDY MODAL LOGIC ──
+  function openCaseStudy(projId) {
+    const project = globalManifest.uiux.find(p => p.id === projId);
+    if (!project) return;
+
+    // Create modal element if it doesn't exist
+    let modal = document.getElementById('case-study-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'case-study-modal';
+      modal.className = 'cs-modal';
+      document.body.appendChild(modal);
+    }
+
+    // Generate tech stack pills
+    const stackHtml = (project.techStack || [])
+      .map(tech => `<span class="stack-badge" style="background: rgba(212, 175, 55, 0.05); border-color: rgba(212, 175, 55, 0.2); color: var(--accent);">${tech}</span>`)
+      .join('');
+
+    // Generate gallery items
+    const galleryHtml = project.modules.map(mod => `
+      <div class="cs-gallery-item" onclick="openLightbox('${mod.url}', '${mod.name}')">
+        <img src="${mod.url}" alt="${mod.name}" loading="lazy">
+        <div class="cs-gallery-item-info">
+          <div class="cs-gallery-item-title">${mod.name}</div>
+          <div class="cs-gallery-item-desc">${mod.desc}</div>
+        </div>
+      </div>
+    `).join('');
+
+    // Populate modal contents
+    modal.innerHTML = `
+      <button class="cs-modal-close" onclick="closeCaseStudy()">&times;</button>
+      <div class="cs-modal-container">
+        <div class="cs-modal-sidebar">
+          <div>
+            <div class="cs-modal-tag">${project.tag}</div>
+            <h2 class="cs-modal-title">${project.title}</h2>
+            <p class="cs-modal-desc">${project.desc}</p>
+            
+            <div class="cs-modal-meta-label">Skills &amp; Tools</div>
+            <div class="feat-stack" style="margin-bottom: 30px;">
+              ${stackHtml}
+            </div>
+          </div>
+          
+          <div class="cs-modal-links">
+            ${project.figmaUrl ? `<a href="${project.figmaUrl}" target="_blank" class="btn-primary" style="justify-content: center; font-size: 13px;">View Figma Prototype</a>` : ''}
+            ${project.behanceUrl ? `<a href="${project.behanceUrl}" target="_blank" class="btn-outline" style="justify-content: center; font-size: 13px;">View Behance Project</a>` : ''}
+          </div>
+        </div>
+        <div class="cs-modal-main">
+          <div class="cs-modal-meta-label" style="margin-bottom: 0;">Case Study Screens (${project.modules.length})</div>
+          <div class="cs-modal-gallery">
+            ${galleryHtml}
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Activate modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCaseStudy() {
+    const modal = document.getElementById('case-study-modal');
+    if (modal) {
+      modal.classList.remove('active');
+    }
+    document.body.style.overflow = '';
   }
 
   // Render 2: Dropdown selector in Simulator

@@ -8,6 +8,8 @@
       "desc": "HerAid is a women's safety and menstruation-tracking platform designed to connect users with safety NGOs, track personal wellness metrics, and ensure privacy-first health management.",
       "figmaUrl": "https://www.figma.com/file/heraid-ux-case-study",
       "behanceUrl": "https://www.behance.net/gallery/heraid-safety-app",
+      "mockup": "uiux/heraid-mockup.png",
+      "techStack": ["Figma", "UI/UX Design", "Wireframing", "Prototyping", "User Research"],
       "modules": [
         { "name": "Splash Screen", "desc": "Branded landing page focusing on minimal layout and clean structure.", "type": "image", "url": "uiux/heraid/Splash Screen.png" },
         { "name": "Get Started Onboarding", "desc": "Clean onboarding sequence illustrating primary functions.", "type": "image", "url": "uiux/heraid/Get Started.png" },
@@ -39,6 +41,8 @@
       "desc": "Lumin Mind uses mental health tracking, facial scans, emotional logs, and gamification to help users deal with stress. Developed with interactive dashboard interfaces and user journeys.",
       "figmaUrl": "https://www.figma.com/file/lumin-mind-mental-health",
       "behanceUrl": "https://www.behance.net/gallery/lumin-mind-ux",
+      "mockup": "uiux/lumin mind_mockup.png",
+      "techStack": ["Figma", "UI/UX Design", "AI Chatbot Design", "Gamification", "Prototyping"],
       "modules": [
         { "name": "Splash Screen", "desc": "Clean, calming splash screen structure.", "type": "image", "url": "uiux/lumin-mind/01_splash_screen.png" },
         { "name": "User Onboarding", "desc": "Introduction to interactive mental health modules.", "type": "image", "url": "uiux/lumin-mind/03_onboarding_screen.png" },
@@ -70,6 +74,8 @@
       "desc": "An interactive mood tracking platform designed with detailed tracking screens, personalized statistics, and a mental safe-space onboarding experience.",
       "figmaUrl": "https://www.figma.com/file/vyana-mood-tracker",
       "behanceUrl": "https://www.behance.net/gallery/vyana-mood-ux",
+      "mockup": "uiux/Vyana/iPhone 14 & 15 Pro Max - 3.png",
+      "techStack": ["Figma", "UI/UX Design", "Mood Tracking", "Data Analytics", "Prototyping"],
       "modules": [
         { "name": "Welcome Screen", "desc": "Sleek dark theme welcome visual.", "type": "image", "url": "uiux/Vyana/01_welcome.png" },
         { "name": "User Registration", "desc": "Simple forms ensuring seamless onboarding experience.", "type": "image", "url": "uiux/Vyana/02_register.png" },
@@ -94,6 +100,8 @@
       "desc": "A tailored design system and shopping flow for art prints, custom creations, and design assets, optimizing categories and checkouts.",
       "figmaUrl": "https://www.figma.com/file/jahans-hue-ecommerce",
       "behanceUrl": "https://www.behance.net/gallery/jahans-hue-branding",
+      "mockup": "uiux/Jahan's Hue/11.png",
+      "techStack": ["Figma", "UI/UX Design", "E-Commerce", "Branding & Identity", "Prototyping"],
       "modules": [
         { "name": "User Registration", "desc": "Modern layout with secure email fields.", "type": "image", "url": "uiux/Jahan's Hue/signup.png" },
         { "name": "Home Creative Feed", "desc": "A visually stimulating display showcasing custom art categories, posters, and featured creator prints.", "type": "image", "url": "uiux/Jahan's Hue/11.png" },
@@ -115,6 +123,8 @@
       "desc": "An immersive travel platform developed through structured competitor analysis, optimizing search categories and tour bookings. Refined using Figma prototypes to ensure fluid interactive transitions and high user retention.",
       "figmaUrl": "https://www.figma.com/file/travel-booking-ux",
       "behanceUrl": "https://www.behance.net/gallery/travel-platform-ux",
+      "mockup": "uiux/travel Via/hero.png",
+      "techStack": ["Figma", "UI/UX Design", "Travel Booking", "Competitor Analysis", "Prototyping"],
       "modules": [
         { "name": "Splash Screen", "desc": "Branded loading screen welcoming travelers.", "type": "image", "url": "uiux/travel Via/1.png" },
         { "name": "Walkthrough Onboarding", "desc": "Interactive walkthrough illustrating booking steps.", "type": "image", "url": "uiux/travel Via/2.png" },
