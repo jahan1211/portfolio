@@ -186,6 +186,9 @@
     font-weight: 700 !important;
     font-size: 13px !important;
     transition: transform 0.3s, box-shadow 0.3s !important;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
   }
   .nav-cta::after {
     display: none !important;
@@ -193,6 +196,27 @@
   .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.2);
+  }
+  .nav-cv-btn {
+    border: 1px solid var(--accent);
+    color: var(--accent) !important;
+    padding: 9px 20px !important;
+    border-radius: 12px;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  }
+  .nav-cv-btn:hover {
+    background: var(--accent-gradient) !important;
+    color: #000 !important;
+    box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.2) !important;
+    transform: translateY(-2px);
   }
 
   /* ── SCROLLYTELLING HERO SECTION ── */
@@ -212,7 +236,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
   }
   .hero-phase {
     position: absolute;
@@ -223,8 +247,67 @@
     justify-content: center;
     text-align: center;
     padding: 24px;
-    z-index: 2;
+    z-index: 3;
+    padding-top: 18vh; /* Pushes text down below her face/eyes */
   }
+  @media (min-width: 769px) {
+    #phase-1, #phase-2 {
+      align-items: flex-start;
+      text-align: left;
+      padding-left: 10%;
+      padding-top: 0; /* Vertically center left-aligned text */
+    }
+    #phase-3 {
+      padding-top: 22vh; /* Push centered tagline down for dramatic effect */
+    }
+  }
+  /* ── HERO PORTRAIT COVER WITH MOTION GRAPHICS ── */
+  .hero-portrait-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--bg-dark);
+  }
+  .hero-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    opacity: 0.35; /* Initial background opacity (both desktop & mobile) */
+  }
+  .hero-portrait-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, rgba(220, 80, 30, 0.25) 0%, transparent 70%);
+    filter: blur(50px);
+    z-index: -1;
+    pointer-events: none;
+    animation: glowPulse 4s ease-in-out infinite alternate;
+  }
+  @keyframes glowPulse {
+    0% {
+      opacity: 0.6;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1.0;
+      transform: scale(1.05);
+    }
+  }
+  .hero-portrait-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, transparent 30%, rgba(18, 18, 18, 0.8) 100%);
+  }
+  
+
   .hero-title {
     font-size: clamp(40px, 6vw, 84px);
     font-weight: 900;
@@ -789,7 +872,7 @@
   .uiux-proj-right img.mockup {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     transition: transform 0.5s;
   }
@@ -837,10 +920,19 @@
 
   .uiux-proj-ctas {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 28px;
+    gap: 24px;
   }
+  .cs-view-btn {
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  }
+  .cs-view-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 0 30px var(--btn-theme-color) !important;
+    filter: brightness(1.15);
+  }
+
 
   /* Screens Drawer Grid */
   .uiux-screens-section {
@@ -905,16 +997,16 @@
     border-radius: 16px;
     overflow: hidden;
     cursor: zoom-in;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s, box-shadow 0.4s;
     break-inside: avoid;
     margin-bottom: 24px;
     position: relative;
     display: block;
   }
   .poster-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
     border-color: var(--accent);
-    box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   }
   .poster-img-wrap {
     width: 100%;
@@ -924,36 +1016,10 @@
     width: 100%;
     display: block;
     object-fit: cover;
-    transition: transform 0.5s;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
   .poster-card:hover .poster-img-wrap img {
-    transform: scale(1.02);
-  }
-  .poster-info {
-    padding: 18px 20px;
-    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.8) 50%);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .poster-card:hover .poster-info {
-    opacity: 1;
-  }
-  .poster-cat {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 2px;
-  }
-  .poster-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
+    transform: scale(1.05);
   }
 
   /* ── MOCKUPS GRID ── */
@@ -981,17 +1047,19 @@
   }
   .mockup-img-wrap {
     width: 100%;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
     position: relative;
   }
   .mockup-img-wrap img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   }
   .mockup-card:hover .mockup-img-wrap img {
-    transform: scale(1.03);
+    transform: scale(1.04);
   }
   .mockup-info {
     padding: 32px;
@@ -1023,36 +1091,93 @@
     color: var(--muted);
     font-size: 14.5px;
     line-height: 1.6;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     flex-grow: 1;
+  }
+  .mockup-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   /* ── VIDEOS GRID ── */
   .videos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
     max-width: 1200px;
     margin: 0 auto;
   }
+  @media (max-width: 992px) {
+    .videos-grid {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+  }
   .video-card {
-    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 24px;
     overflow: hidden;
-    background: #000;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: transform 0.4s, border-color 0.4s;
-    aspect-ratio: 16/9;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s, box-shadow 0.4s;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
   }
   .video-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--accent);
+    transform: translateY(-8px);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 24px 48px rgba(16, 185, 129, 0.04);
   }
-  .video-card video {
+  .video-preview-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .video-preview-wrap video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .video-info-wrap {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .video-card-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .video-card-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex-grow: 1;
+  }
+  .video-card-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .video-card-tool-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
   }
   .video-overlay {
     position: absolute;
@@ -1065,7 +1190,7 @@
     z-index: 3;
     transition: opacity 0.3s;
   }
-  .video-card:hover .video-overlay {
+  .video-preview-wrap:hover .video-overlay {
     opacity: 0;
   }
   .video-play-btn {
@@ -1095,6 +1220,277 @@
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 1px;
+  }
+
+  /* ── BEHANCE-STYLE CASE STUDY MODAL ── */
+  .cs-modal {
+    position: fixed;
+    inset: 0;
+    background: #080808;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  .cs-modal.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  .cs-modal-close {
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1010;
+    backdrop-filter: blur(10px);
+  }
+  .cs-modal-close:hover {
+    background: var(--accent-gradient);
+    color: #000;
+    border-color: var(--accent);
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  }
+
+  .cs-presentation {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 120px;
+  }
+
+  .cs-hero-cover {
+    width: 100%;
+    height: 75vh;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-hero-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8,8,8,0.2) 0%, rgba(8,8,8,0.95) 100%);
+    z-index: 1;
+  }
+  .cs-hero-info {
+    position: relative;
+    z-index: 2;
+    padding: 60px 40px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .cs-hero-tag {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+  .cs-hero-title {
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -2px;
+  }
+
+  .cs-brief-sec {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 80px;
+    padding: 80px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-brief-left h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .cs-brief-left p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #b3b3b3;
+  }
+  .cs-brief-right-box {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+  }
+  .cs-brief-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+  .cs-brief-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+  .cs-brief-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cs-chapter {
+    padding: 100px 40px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-chapter-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .cs-chapter-title {
+    font-size: clamp(26px, 3.5vw, 42px);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .cs-chapter-desc {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 650px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+  }
+
+  .cs-screens-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    align-items: center;
+  }
+  .cs-screens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .cs-device-card {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 40px;
+    padding: 16px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s;
+    cursor: zoom-in;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+  }
+  .cs-device-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  .cs-device-screen {
+    border-radius: 28px;
+    overflow: hidden;
+    background: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+  }
+  .cs-device-screen img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .cs-device-info {
+    text-align: center;
+    margin-top: 14px;
+    padding: 0 8px;
+  }
+  .cs-device-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .cs-device-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .cs-wide-device {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 14px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s;
+    cursor: zoom-in;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+  }
+  .cs-wide-device:hover {
+    transform: translateY(-6px);
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  .cs-wide-screen {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .cs-wide-screen img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .cs-brief-sec {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 60px 24px;
+    }
+    .cs-hero-info {
+      padding: 40px 24px;
+    }
+    .cs-chapter {
+      padding: 60px 24px;
+    }
   }
 
   /* ── LIGHTBOX (PREMIUM VIEWER) ── */
@@ -1246,9 +1642,16 @@
     padding: 48px 60px;
     border-top: 1px solid var(--border);
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    background: var(--bg-dark);
+  }
+  .footer-top {
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg-dark);
   }
   .footer-copy {
     color: var(--muted);
@@ -1268,6 +1671,15 @@
   }
   .footer-links a:hover {
     color: var(--accent);
+  }
+  .download-cv-btn {
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  }
+  .download-cv-btn:hover {
+    background: var(--accent-gradient) !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4) !important;
+    transform: translateY(-2px);
   }
 
   /* ── RESPONSIVE DESIGN ── */
@@ -1302,7 +1714,7 @@
     }
     footer {
       flex-direction: column;
-      gap: 24px;
+      gap: 28px;
       text-align: center;
     }
   }
@@ -1331,14 +1743,24 @@
     <li><a href="#mockups">Mockups</a></li>
     <li><a href="#posters">Posters</a></li>
     <li><a href="#videos">Videos</a></li>
-    <li><a href="#contact" class="nav-cta">Connect</a></li>
   </ul>
+  <div class="nav-ctas" style="display: flex; align-items: center; gap: 12px;">
+    <a href="CV/Nusrat_Jahan_Ara_CV.docx" target="_blank" class="nav-cv-btn">📥 CV</a>
+    <a href="#contact" class="nav-cta">Connect</a>
+  </div>
 </nav>
 
 <!-- Hero Section (Scrollytelling) -->
 <div class="hero-container" id="hero-container">
   <div class="hero-sticky">
     <canvas class="hero-canvas" id="hero-canvas"></canvas>
+    
+    <!-- Sticky Portrait Background / Motion Graphic Cover -->
+    <div class="hero-portrait-container" id="hero-portrait-container">
+      <div class="hero-portrait-glow"></div>
+      <img src="nusrat_hero.png" class="hero-portrait-img" alt="Nusrat Jahan Ara">
+      <div class="hero-portrait-overlay"></div>
+    </div>
     
     <!-- Phase 1 -->
     <div class="hero-phase" id="phase-1">
@@ -1352,7 +1774,7 @@
     
     <!-- Phase 3 -->
     <div class="hero-phase" id="phase-3" style="opacity: 0;">
-      <h1 class="hero-title">Turning ideas into<br/><span class="name">clear &amp; attractive designs.</span></h1>
+      <h1 class="hero-title">I Let The<br/><span class="name">Work Talk.</span></h1>
     </div>
 
     <!-- Scroll Hint -->
@@ -1378,13 +1800,13 @@
       
       <div class="about-socials">
         <a href="https://www.linkedin.com/in/nusrat-jahan-ara-a3b013326/" target="_blank" rel="noopener noreferrer" class="btn-social btn-linkedin">
-          LinkedIn
+          <svg class="btn-social-icon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg> LinkedIn
         </a>
         <a href="https://www.instagram.com/jahan_creatix/" target="_blank" rel="noopener noreferrer" class="btn-social btn-instagram">
-          Instagram
+          <svg class="btn-social-icon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Instagram
         </a>
         <a href="https://wa.me/923107666263" target="_blank" rel="noopener noreferrer" class="btn-social btn-whatsapp">
-          WhatsApp
+          <svg class="btn-social-icon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.284 1.447 4.908 1.448 5.413 0 9.815-4.409 9.818-9.83.002-2.625-1.023-5.095-2.884-6.963C16.63 1.942 14.161.916 11.536.915 6.12 1.915 1.72 6.324 1.717 11.745c-.001 1.761.472 3.42 1.369 4.935L1.874 21.84l5.348-1.402zM17.406 14.28c-.318-.16-1.884-.93-2.175-1.036-.29-.106-.502-.16-.713.16-.211.32-.818 1.036-1.002 1.25-.184.21-.368.24-.686.08-.318-.16-1.343-.495-2.558-1.579-.945-.844-1.583-1.887-1.768-2.207-.185-.32-.02-.493.14-.652.143-.143.318-.372.477-.558.159-.186.212-.319.318-.53.106-.213.053-.4-.027-.559-.079-.16-.713-1.718-.977-2.356-.258-.622-.52-.538-.713-.548-.185-.01-.397-.01-.608-.01-.212 0-.555.08-.846.398-.291.32-1.11 1.085-1.11 2.645 0 1.56 1.137 3.072 1.295 3.285.159.213 2.238 3.417 5.42 4.792.757.327 1.348.523 1.808.67.76.24 1.452.206 2.001.124.612-.091 1.884-.77 2.148-1.475.264-.707.264-1.314.185-1.442-.08-.128-.291-.21-.609-.37z"/></svg> WhatsApp
         </a>
       </div>
     </div>
@@ -1516,6 +1938,29 @@
             <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Ensured accuracy, consistency, and compliance with project requirements.</li>
           </ul>
         </div>
+
+        <!-- Experience Item 4: Content & Front-End Developer -->
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title-sub">
+              <div class="exp-icon-box">💻</div>
+              <div class="exp-role-co">
+                <h4>Content &amp; Front-End Developer</h4>
+                <h5>Tech Hub</h5>
+              </div>
+            </div>
+            <div class="exp-time-loc">
+              <span class="exp-time-pill">07/2024 – 10/2024</span>
+              <p class="exp-loc">Faisalabad, Pakistan</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Designed and developed responsive user interfaces using HTML5, CSS3, and modern styling guidelines.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Built interactive components and modular single-page web applications with React JS.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Created and optimized engaging digital content to align with technical project requirements.</li>
+            <li class="exp-bullet-item"><span class="exp-bullet-dot"></span>Collaborated with developers and content creators to ensure cross-browser compatibility and a seamless user experience.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -1563,8 +2008,10 @@
             <span class="expertise-pill">Figma</span>
             <span class="expertise-pill">Adobe Photoshop</span>
             <span class="expertise-pill">Adobe Illustrator</span>
+            <span class="expertise-pill">Adobe After Effects</span>
             <span class="expertise-pill">Canva</span>
             <span class="expertise-pill">CapCut</span>
+            <span class="expertise-pill">Notion</span>
           </div>
         </div>
       </div>
@@ -1633,30 +2080,8 @@
     <h2 class="sec-title">Product &amp; Branding <span>Mockups</span></h2>
   </div>
   
-  <div class="mockups-grid">
-    <!-- Mockup Card 1: Aurelia Honey -->
-    <div class="mockup-card">
-      <div class="mockup-img-wrap">
-        <img src="Mockups/AURELIA.jpeg" alt="Aurelia Honey Mockup" loading="lazy">
-      </div>
-      <div class="mockup-info">
-        <span class="mockup-tag">Product &amp; Packaging Design</span>
-        <h3 class="mockup-title">Aurelia Organic Honey</h3>
-        <p class="mockup-desc">Premium label and packaging design for Aurelia, a high-end brand specializing in raw organic honey. Developed a clean, warm design system highlighting purity and natural ingredients, paired with a sleek glass jar mockup.</p>
-      </div>
-    </div>
-
-    <!-- Mockup Card 2: Veloura -->
-    <div class="mockup-card">
-      <div class="mockup-img-wrap">
-        <img src="Mockups/Veloura.jpeg" alt="Veloura Mockup" loading="lazy">
-      </div>
-      <div class="mockup-info">
-        <span class="mockup-tag">Brand Identity &amp; Mockup</span>
-        <h3 class="mockup-title">Veloura Cosmetics</h3>
-        <p class="mockup-desc">Complete visual identity and product styling mockup for Veloura, a luxury eco-conscious skincare line. Built with minimalist serif typography, refined organic palettes, and premium packaging textures to invoke a modern aesthetic.</p>
-      </div>
-    </div>
+  <div class="mockups-grid" id="mockups-container">
+    <!-- Rendered dynamically -->
   </div>
 </section>
 
@@ -1706,6 +2131,28 @@
   <div class="footer-copy">
     &copy; 2026 Nusrat Jahan Ara. All Rights Reserved. Designed by Nusrat.
   </div>
+  
+  <div class="footer-cv-wrap">
+    <a href="CV/Nusrat_Jahan_Ara_CV.docx" download="Nusrat_Jahan_Ara_CV.docx" class="btn-outline download-cv-btn" style="
+      font-size: 12px; 
+      font-weight: 700;
+      padding: 10px 24px; 
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      transition: all 0.3s;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+    ">
+      <span>📥</span> Download CV
+    </a>
+  </div>
+
   <div class="footer-links">
     <a href="#about">About</a>
     <a href="#timeline">Timeline</a>
@@ -1726,6 +2173,7 @@
 </div>
 
 <!-- Scripts for Animations & Dynamic Content -->
+<script src="manifest.js"></script>
 <script>
   // ── CUSTOM CURSOR LOGIC ──
   const cursor = document.getElementById('cursor');
@@ -1839,6 +2287,21 @@
       }
     });
 
+    // Subtly zoom and translate the portrait on scroll
+    scrollTimeline.to("#hero-portrait-container", {
+      scale: 1.06,
+      y: -25,
+      duration: 3,
+      ease: "none"
+    }, 0);
+
+    // Fade the image slightly brighter/clearer as we scroll down
+    scrollTimeline.to(".hero-portrait-img", {
+      opacity: 0.55,
+      duration: 3,
+      ease: "none"
+    }, 0);
+
     // Phase 1 crossfade to Phase 2
     scrollTimeline.to("#phase-1", { opacity: 0, y: -50, duration: 1 });
     scrollTimeline.fromTo("#phase-2", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 }, "-=0.3");
@@ -1896,191 +2359,16 @@
   });
 
   // ── DYNAMIC PROJECT SYSTEM & RENDERER ──
-  const globalManifest = {
-    "uiux": [
-      {
-        "id": "heraid",
-        "folderName": "heraid",
-        "title": "HerAid — Women's Safety & Health App",
-        "tag": "Healthcare & Safety UX Case Study",
-        "desc": "HerAid is a women's safety and menstruation-tracking platform designed to connect users with safety NGOs, track personal wellness metrics, and ensure privacy-first health management.",
-        "figmaUrl": "https://www.figma.com/file/heraid-ux-case-study",
-        "behanceUrl": "https://www.behance.net/gallery/heraid-safety-app",
-        "mockup": "uiux/heraid-mockup.png",
-        "techStack": ["Figma", "UI/UX Design", "Wireframing", "Prototyping", "User Research"],
-        "modules": [
-          { "name": "Splash Screen", "desc": "Branded landing page focusing on minimal layout and clean structure.", "type": "image", "url": "uiux/heraid/Splash Screen.png" },
-          { "name": "Get Started Onboarding", "desc": "Clean onboarding sequence illustrating primary functions.", "type": "image", "url": "uiux/heraid/Get Started.png" },
-          { "name": "NGO Directory & Contact", "desc": "A direct bridge to contact local safety organizations.", "type": "image", "url": "uiux/heraid/Contact NGO.png" },
-          { "name": "Cycle Settings", "desc": "Menstruation settings interface focusing on accessible layouts.", "type": "image", "url": "uiux/heraid/Cycle Settings.png" },
-          { "name": "NGO Dashboard", "desc": "A data-driven view for organization managers and support networks.", "type": "image", "url": "uiux/heraid/NGO Dashboard.png" },
-          { "name": "Profile Overview", "desc": "User profile dashboard indicating health alerts and personal safety logs.", "type": "image", "url": "uiux/heraid/Profile Home.png" }
-        ],
-        "directory": [
-          { "name": "Splash Screen", "type": "image", "url": "uiux/heraid/Splash Screen.png" },
-          { "name": "Get Started", "type": "image", "url": "uiux/heraid/Get Started.png" },
-          { "name": "Cycle Settings", "type": "image", "url": "uiux/heraid/Cycle Settings.png" },
-          { "name": "Learn Home", "type": "image", "url": "uiux/heraid/Learn Home.png" },
-          { "name": "My Progress", "type": "image", "url": "uiux/heraid/My Progress.png" },
-          { "name": "NGO Dashboard", "type": "image", "url": "uiux/heraid/NGO Dashboard.png" },
-          { "name": "Contact NGO", "type": "image", "url": "uiux/heraid/Contact NGO.png" },
-          { "name": "Notifications", "type": "image", "url": "uiux/heraid/Notifications.png" },
-          { "name": "Privacy Data", "type": "image", "url": "uiux/heraid/Privacy Data.png" },
-          { "name": "Profile Home", "type": "image", "url": "uiux/heraid/Profile Home.png" },
-          { "name": "Language Settings", "type": "image", "url": "uiux/heraid/Language Settings.png" },
-          { "name": "Edit Profile", "type": "image", "url": "uiux/heraid/Edit Profile.png" }
-        ]
-      },
-      {
-        "id": "lumin-mind",
-        "folderName": "lumin-mind",
-        "title": "Lumin Mind — Mental Health & Wellness App",
-        "tag": "Psychology & AI Chatbot UX Case Study",
-        "desc": "Lumin Mind uses mental health tracking, facial scans, emotional logs, and gamification to help users deal with stress. Developed with interactive dashboard interfaces and user journeys.",
-        "figmaUrl": "https://www.figma.com/file/lumin-mind-mental-health",
-        "behanceUrl": "https://www.behance.net/gallery/lumin-mind-ux",
-        "mockup": "uiux/lumin mind_mockup.png",
-        "techStack": ["Figma", "UI/UX Design", "AI Chatbot Design", "Gamification", "Prototyping"],
-        "modules": [
-          { "name": "Splash Screen", "desc": "Clean, calming splash screen structure.", "type": "image", "url": "uiux/lumin-mind/01_splash_screen.png" },
-          { "name": "User Onboarding", "desc": "Introduction to interactive mental health modules.", "type": "image", "url": "uiux/lumin-mind/03_onboarding_screen.png" },
-          { "name": "Wellness Home Dashboard", "desc": "Main panel summarizing user emotion tracking, affirmations, and recommendations.", "type": "image", "url": "uiux/lumin-mind/04_home_dashboard.png" },
-          { "name": "Stress Analytics", "desc": "Detailed analytics outlining heart rate, stress levels, and tracking records.", "type": "image", "url": "uiux/lumin-mind/06_stress_results.png" },
-          { "name": "AI Mental Health Chatbot", "desc": "Interactive conversation workspace with professional AI support systems.", "type": "image", "url": "uiux/lumin-mind/08_ai_chatbot.png" },
-          { "name": "Gamified Achievements", "desc": "Gamification features tracking milestones, badges, and positive mental habits.", "type": "image", "url": "uiux/lumin-mind/11_gamification.png" }
-        ],
-        "directory": [
-          { "name": "Splash Screen", "type": "image", "url": "uiux/lumin-mind/01_splash_screen.png" },
-          { "name": "Login Screen", "type": "image", "url": "uiux/lumin-mind/02_login_screen.png" },
-          { "name": "Onboarding Screen", "type": "image", "url": "uiux/lumin-mind/03_onboarding_screen.png" },
-          { "name": "Home Dashboard", "type": "image", "url": "uiux/lumin-mind/04_home_dashboard.png" },
-          { "name": "Survey Module", "type": "image", "url": "uiux/lumin-mind/05_survey_module.png" },
-          { "name": "Stress Results", "type": "image", "url": "uiux/lumin-mind/06_stress_results.png" },
-          { "name": "Emotion Locker", "type": "image", "url": "uiux/lumin-mind/07_emotion_locker.png" },
-          { "name": "AI Chatbot", "type": "image", "url": "uiux/lumin-mind/08_ai_chatbot.png" },
-          { "name": "Community Board", "type": "image", "url": "uiux/lumin-mind/09_community.png" },
-          { "name": "Affirmations", "type": "image", "url": "uiux/lumin-mind/10_affirmations.png" },
-          { "name": "Gamification", "type": "image", "url": "uiux/lumin-mind/11_gamification.png" },
-          { "name": "Profile Analytics", "type": "image", "url": "uiux/lumin-mind/12_profile_analytics.png" }
-        ]
-      },
-      {
-        "id": "vyana",
-        "folderName": "Vyana",
-        "title": "Vyana — Mood Tracker & Support App",
-        "tag": "Interactive Mood Tracker UX Case Study",
-        "desc": "An interactive mood tracking platform designed with detailed tracking screens, personalized statistics, and a mental safe-space onboarding experience.",
-        "figmaUrl": "https://www.figma.com/file/vyana-mood-tracker",
-        "behanceUrl": "https://www.behance.net/gallery/vyana-mood-ux",
-        "mockup": "uiux/Vyana/iPhone 14 & 15 Pro Max - 3.png",
-        "techStack": ["Figma", "UI/UX Design", "Mood Tracking", "Data Analytics", "Prototyping"],
-        "modules": [
-          { "name": "Welcome Screen", "desc": "Sleek dark theme welcome visual.", "type": "image", "url": "uiux/Vyana/01_welcome.png" },
-          { "name": "User Registration", "desc": "Simple forms ensuring seamless onboarding experience.", "type": "image", "url": "uiux/Vyana/02_register.png" },
-          { "name": "Home Mood Dashboard", "desc": "Clean and dynamic screen to record moods and browse progress lists.", "type": "image", "url": "uiux/Vyana/03_home.png" },
-          { "name": "Crisis Support Panel", "desc": "A comforting workspace providing user support options.", "type": "image", "url": "uiux/Vyana/04_dont_be_scared.png" },
-          { "name": "Progress Analytics", "desc": "Historical charts and analytics illustrating user mood patterns.", "type": "image", "url": "uiux/Vyana/06_progress_scrolled.png" }
-        ],
-        "directory": [
-          { "name": "Welcome Screen", "type": "image", "url": "uiux/Vyana/01_welcome.png" },
-          { "name": "Register Screen", "type": "image", "url": "uiux/Vyana/02_register.png" },
-          { "name": "Home Dashboard", "type": "image", "url": "uiux/Vyana/03_home.png" },
-          { "name": "Support Screen", "type": "image", "url": "uiux/Vyana/04_dont_be_scared.png" },
-          { "name": "Progress Graph", "type": "image", "url": "uiux/Vyana/06_progress_scrolled.png" },
-          { "name": "Alternative Dashboard Layout", "type": "image", "url": "uiux/Vyana/iPhone 14 & 15 Pro Max - 3.png" }
-        ]
-      },
-      {
-        "id": "jahan-s-hue",
-        "folderName": "Jahan's Hue",
-        "title": "Jahan's Hue — Creative E-Commerce App",
-        "tag": "E-Commerce & Branding UX Case Study",
-        "desc": "A tailored design system and shopping flow for art prints, custom creations, and design assets, optimizing categories and checkouts.",
-        "figmaUrl": "https://www.figma.com/file/jahans-hue-ecommerce",
-        "behanceUrl": "https://www.behance.net/gallery/jahans-hue-branding",
-        "mockup": "uiux/Jahan's Hue/11.png",
-        "techStack": ["Figma", "UI/UX Design", "E-Commerce", "Branding & Identity", "Prototyping"],
-        "modules": [
-          { "name": "User Registration", "desc": "Modern layout with secure email fields.", "type": "image", "url": "uiux/Jahan's Hue/signup.png" },
-          { "name": "Home Creative Feed", "desc": "A visually stimulating display showcasing custom art categories, posters, and featured creator prints.", "type": "image", "url": "uiux/Jahan's Hue/11.png" },
-          { "name": "Product Details Screen", "desc": "Interactive detail layout highlighting options, reviews, and dynamic checkout buttons.", "type": "image", "url": "uiux/Jahan's Hue/detail.png" },
-          { "name": "Multi-Step Checkout", "desc": "Streamlined checkout summary, shipping forms, and success status panels.", "type": "image", "url": "uiux/Jahan's Hue/checkout.png" }
-        ],
-        "directory": [
-          { "name": "Registration Screen", "type": "image", "url": "uiux/Jahan's Hue/signup.png" },
-          { "name": "Home Feed Screen", "type": "image", "url": "uiux/Jahan's Hue/11.png" },
-          { "name": "Product Details Screen", "type": "image", "url": "uiux/Jahan's Hue/detail.png" },
-          { "name": "Checkout Screen", "type": "image", "url": "uiux/Jahan's Hue/checkout.png" }
-        ]
-      },
-      {
-        "id": "travel-via",
-        "folderName": "travel Via",
-        "title": "Travel Platform — Booking UX",
-        "tag": "Booking Flow UX Case Study",
-        "desc": "An immersive travel platform developed through structured competitor analysis, optimizing search categories and tour bookings. Refined using Figma prototypes to ensure fluid interactive transitions and high user retention.",
-        "figmaUrl": "https://www.figma.com/file/travel-booking-ux",
-        "behanceUrl": "https://www.behance.net/gallery/travel-platform-ux",
-        "mockup": "uiux/travel Via/hero.png",
-        "techStack": ["Figma", "UI/UX Design", "Travel Booking", "Competitor Analysis", "Prototyping"],
-        "modules": [
-          { "name": "Splash Screen", "desc": "Branded loading screen welcoming travelers.", "type": "image", "url": "uiux/travel Via/1.png" },
-          { "name": "Walkthrough Onboarding", "desc": "Interactive walkthrough illustrating booking steps.", "type": "image", "url": "uiux/travel Via/2.png" },
-          { "name": "Login Screen", "desc": "Secure, minimalist login interface.", "type": "image", "url": "uiux/travel Via/3.png" },
-          { "name": "Registration Setup", "desc": "Simplified sign-up form prioritizing quick access.", "type": "image", "url": "uiux/travel Via/Sign up.png" },
-          { "name": "Explore Home Feed", "desc": "Clean cards showcasing tour categories, featured trips, and search options.", "type": "image", "url": "uiux/travel Via/hero.png" },
-          { "name": "Destination Details", "desc": "Rich detail screen with reviews, itineraries, and quick action booking buttons.", "type": "image", "url": "uiux/travel Via/4.png" },
-          { "name": "Booking Flow Screen", "type": "image", "url": "uiux/travel Via/screen.png" }
-        ],
-        "directory": [
-          { "name": "Splash Screen", "type": "image", "url": "uiux/travel Via/1.png" },
-          { "name": "Onboarding Screen", "type": "image", "url": "uiux/travel Via/2.png" },
-          { "name": "Login Screen", "type": "image", "url": "uiux/travel Via/3.png" },
-          { "name": "Sign Up Screen", "type": "image", "url": "uiux/travel Via/Sign up.png" },
-          { "name": "Explore Screen", "type": "image", "url": "uiux/travel Via/hero.png" },
-          { "name": "Destination Detail Screen", "type": "image", "url": "uiux/travel Via/4.png" },
-          { "name": "Checkout Screen", "type": "image", "url": "uiux/travel Via/screen.png" }
-        ]
-      }
-    ],
-    "mockups": [
-      { "name": "Aurelia Product Mockup", "url": "Mockups/AURELIA.jpeg" },
-      { "name": "Veloura Branding Mockup", "url": "Mockups/Veloura.jpeg" }
-    ],
-    "posters": [
-      { "name": "Poster Design 1", "url": "Posters & Creatives/1 (1).png" },
-      { "name": "Creative Poster 2", "url": "Posters & Creatives/1eb16165-6a87-49be-bb73-6ed5f9a91c4b.png" },
-      { "name": "Design Project 3", "url": "Posters & Creatives/ChatGPT Image Jun 13, 2026, 07_46_19 PM.png" },
-      { "name": "Design Project 4", "url": "Posters & Creatives/ChatGPT Image Jun 21, 2026, 12_10_48 PM.png" },
-      { "name": "Design Project 5", "url": "Posters & Creatives/ChatGPT Image Jun 21, 2026, 12_16_53 PM.png" },
-      { "name": "Design Project 6", "url": "Posters & Creatives/ChatGPT Image Jun 21, 2026, 12_47_29 PM.png" },
-      { "name": "Design Project 7", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 07_20_33 PM.png" },
-      { "name": "Design Project 8", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 07_46_40 PM.png" },
-      { "name": "Design Project 9", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 11_28_03 PM.png" },
-      { "name": "Design Project 10", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 11_33_27 PM.png" },
-      { "name": "Design Project 11", "url": "Posters & Creatives/ChatGPT Image Jun 8, 2026, 11_35_35 PM.png" },
-      { "name": "WhatsApp Creative 1", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.22.48 PM (1).jpeg" },
-      { "name": "WhatsApp Creative 2", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.22.48 PM.jpeg" },
-      { "name": "WhatsApp Creative 3", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.22.49 PM (1).jpeg" },
-      { "name": "WhatsApp Creative 4", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.22.49 PM.jpeg" },
-      { "name": "WhatsApp Creative 5", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.48 PM (1).jpeg" },
-      { "name": "WhatsApp Creative 6", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.48 PM.jpeg" },
-      { "name": "WhatsApp Creative 7", "url": "Posters & Creatives/WhatsApp Image 2026-06-08 at 11.41.49 PM.jpeg" },
-      { "name": "WhatsApp Creative 8", "url": "Posters & Creatives/WhatsApp Image 2026-06-19 at 1.14.02 PM.jpeg" },
-      { "name": "Creative Poster 12", "url": "Posters & Creatives/nusrat 2.png" },
-      { "name": "Creative Poster 13", "url": "Posters & Creatives/nusrat3.png" },
-      { "name": "Creative Poster 14", "url": "Posters & Creatives/nusrat4.png" },
-      { "name": "Creative Poster 15", "url": "Posters & Creatives/nusrat 5.png" }
-    ],
-    "videos": [
-      { "name": "Video Animation 1", "url": "Vedio Animation/VN20260206_040716.mp4", "thumbnail": "Vedio Animation/Gemini_Generated_Image_azemzazemzazemza.png" },
-      { "name": "Video Animation 2", "url": "Vedio Animation/VN20260206_044119.mp4", "thumbnail": "Vedio Animation/Gemini_Generated_Image_jooh8ajooh8ajooh.png" },
-      { "name": "Video Animation 3", "url": "Vedio Animation/lv_0_20260620210221.mp4", "thumbnail": "Vedio Animation/Gemini_Generated_Image_sexhcesexhcesexh.png" }
-    ]
+  const globalManifest = window.portfolioManifest || {
+    uiux: [],
+    mockups: [],
+    posters: [],
+    videos: []
   };
 
   // Directly render everything
   renderUIUXCases(globalManifest.uiux);
+  renderMockups(globalManifest.mockups);
   renderPosters(globalManifest.posters);
   renderVideos(globalManifest.videos);
 
@@ -2089,21 +2377,112 @@
     const container = document.getElementById('uiux-showcase-container');
     container.innerHTML = '';
     
-    projects.forEach(p => {
+    // Alternating neon color themes: light blue, purple, yellow
+    const themes = [
+      { color: '#38bdf8', bg: 'rgba(56, 189, 248, 0.05)', border: 'rgba(56, 189, 248, 0.2)' },
+      { color: '#c084fc', bg: 'rgba(192, 132, 252, 0.05)', border: 'rgba(192, 132, 252, 0.2)' },
+      { color: '#facc15', bg: 'rgba(250, 204, 21, 0.05)', border: 'rgba(250, 204, 21, 0.2)' }
+    ];
+
+    const getBadgeTheme = (techName) => {
+      const name = techName.toLowerCase().trim();
+      if (name.includes('figma')) {
+        return { color: '#38bdf8', bg: 'rgba(56, 189, 248, 0.08)', border: 'rgba(56, 189, 248, 0.3)' };
+      }
+      if (name.includes('uiux') || name.includes('ui/ux')) {
+        return { color: '#c084fc', bg: 'rgba(192, 132, 252, 0.08)', border: 'rgba(192, 132, 252, 0.3)' };
+      }
+      if (name.includes('prototyping')) {
+        return { color: '#facc15', bg: 'rgba(250, 204, 21, 0.08)', border: 'rgba(250, 204, 21, 0.3)' };
+      }
+      if (name.includes('e-commerce') || name.includes('ecommerce')) {
+        return { color: '#10b981', bg: 'rgba(16, 185, 129, 0.08)', border: 'rgba(16, 185, 129, 0.3)' };
+      }
+      if (name.includes('branding')) {
+        return { color: '#f43f5e', bg: 'rgba(244, 63, 94, 0.08)', border: 'rgba(244, 63, 94, 0.3)' };
+      }
+      if (name.includes('chatbot') || name.includes('ai')) {
+        return { color: '#ff79c6', bg: 'rgba(255, 121, 198, 0.08)', border: 'rgba(255, 121, 198, 0.3)' };
+      }
+      if (name.includes('gamification')) {
+        return { color: '#fb923c', bg: 'rgba(251, 146, 60, 0.08)', border: 'rgba(251, 146, 60, 0.3)' };
+      }
+      if (name.includes('travel')) {
+        return { color: '#4ade80', bg: 'rgba(74, 222, 128, 0.08)', border: 'rgba(74, 222, 128, 0.3)' };
+      }
+      if (name.includes('booking')) {
+        return { color: '#22d3ee', bg: 'rgba(34, 211, 238, 0.08)', border: 'rgba(34, 211, 238, 0.3)' };
+      }
+      if (name.includes('edtech') || name.includes('education')) {
+        return { color: '#818cf8', bg: 'rgba(129, 140, 248, 0.08)', border: 'rgba(129, 140, 248, 0.3)' };
+      }
+      if (name.includes('interaction')) {
+        return { color: '#fbbf24', bg: 'rgba(251, 191, 36, 0.08)', border: 'rgba(251, 191, 36, 0.3)' };
+      }
+      if (name.includes('ngo') || name.includes('dashboard')) {
+        return { color: '#34d399', bg: 'rgba(52, 211, 153, 0.08)', border: 'rgba(52, 211, 153, 0.3)' };
+      }
+      if (name.includes('web')) {
+        return { color: '#0ea5e9', bg: 'rgba(14, 165, 233, 0.08)', border: 'rgba(14, 165, 233, 0.3)' };
+      }
+      
+      const fallbacks = [
+        { color: '#38bdf8', bg: 'rgba(56, 189, 248, 0.08)', border: 'rgba(56, 189, 248, 0.3)' },
+        { color: '#c084fc', bg: 'rgba(192, 132, 252, 0.08)', border: 'rgba(192, 132, 252, 0.3)' },
+        { color: '#facc15', bg: 'rgba(250, 204, 21, 0.08)', border: 'rgba(250, 204, 21, 0.3)' }
+      ];
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return fallbacks[Math.abs(hash) % fallbacks.length];
+    };
+
+    projects.forEach((p, i) => {
       const card = document.createElement('div');
       card.className = 'uiux-project-card';
       
-      // Get mockup image path
+      const theme = themes[i % themes.length];
       const mockupImg = p.mockup || p.directory[0].url;
       
-      // Generate tech stack badges
       const stackHtml = (p.techStack || [])
-        .map(tech => `<span class="uiux-proj-stack-badge">${tech}</span>`)
+        .map((tech) => {
+          const bTheme = getBadgeTheme(tech);
+          return `<span class="uiux-proj-stack-badge" style="
+            background: ${bTheme.bg};
+            border: 1px solid ${bTheme.border};
+            color: ${bTheme.color};
+            padding: 5px 12px;
+            font-size: 11px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px ${bTheme.bg};
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+          "><span style="width: 6px; height: 6px; border-radius: 50%; background: ${bTheme.color}; box-shadow: 0 0 6px ${bTheme.color};"></span>${tech}</span>`;
+        })
         .join('');
       
       card.innerHTML = `
         <div class="uiux-proj-left">
-          <div class="uiux-proj-tag">${p.tag}</div>
+          <div class="uiux-proj-tag" style="
+            color: ${theme.color}; 
+            background: ${theme.bg}; 
+            border: 1px solid ${theme.border};
+            padding: 6px 14px;
+            border-radius: 20px;
+            width: fit-content;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px ${theme.bg};
+            text-shadow: 0 0 5px ${theme.color};
+            margin-bottom: 16px;
+          ">${p.tag}</div>
           <h3 class="uiux-proj-title">${p.title}</h3>
           <p class="uiux-proj-desc">${p.desc}</p>
           
@@ -2111,10 +2490,21 @@
             ${stackHtml}
           </div>
 
-          <div class="uiux-proj-ctas">
-            <button class="btn-primary" style="font-size:12.5px; padding: 10px 20px; border: none; cursor: pointer;" onclick="openCaseStudy('${p.id}')">View Case Study</button>
-            ${p.figmaUrl ? `<a href="${p.figmaUrl}" target="_blank" class="btn-outline" style="font-size:12.5px; padding: 10px 20px;">Figma Prototype</a>` : ''}
-            ${p.behanceUrl ? `<a href="${p.behanceUrl}" target="_blank" class="btn-outline" style="font-size:12.5px; padding: 10px 20px;">Behance View</a>` : ''}
+          <div class="uiux-proj-ctas" style="display: flex; align-items: center; gap: 24px; margin-top: 28px; margin-bottom: 0;">
+            <button class="btn-primary cs-view-btn" onclick="openCaseStudy('${p.id}')" style="
+              --btn-theme-color: var(--accent);
+              font-size: 13px; 
+              font-weight: 700;
+              padding: 13px 38px; 
+              border: none; 
+              cursor: pointer;
+              border-radius: 30px;
+              background: var(--accent);
+              color: #080808;
+              box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+              text-transform: uppercase;
+              letter-spacing: 1.2px;
+            ">View Case Study</button>
           </div>
         </div>
         <div class="uiux-proj-right" style="cursor: pointer;" onclick="openCaseStudy('${p.id}')">
@@ -2147,61 +2537,144 @@
       .map(tech => `<span class="stack-badge" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2); color: var(--accent);">${tech}</span>`)
       .join('');
 
-    // Generate gallery items using the directory array (which contains all files from the folder)
-    const screens = project.directory || project.modules;
+    const chapters = [
+      {
+        id: 'onboarding',
+        title: 'Onboarding Flow',
+        subtitle: 'The initial greeting and secure entry channels designed to welcome users and capture essential setup parameters.',
+        keywords: [/splash/i, /onboard/i, /login/i, /register/i, /signup/i, /welcome/i, /get started/i, /sign up/i, /start/i],
+        screens: []
+      },
+      {
+        id: 'core',
+        title: 'Core Dashboards & Features',
+        subtitle: 'The central workspace where users interact with critical data visualization, tracking widgets, and main utilities.',
+        keywords: [/home/i, /dashboard/i, /main/i, /feed/i, /progress/i, /results/i, /detail/i, /graph/i, /analytics/i, /tracker/i, /chart/i, /log/i],
+        screens: []
+      },
+      {
+        id: 'settings',
+        title: 'Account & System Settings',
+        subtitle: 'Advanced user control layouts, notifications settings, privacy tools, and system preferences.',
+        keywords: [/settings/i, /profile/i, /edit/i, /privacy/i, /language/i, /notification/i, /contact/i, /support/i, /about/i, /account/i],
+        screens: []
+      },
+      {
+        id: 'catalog',
+        title: 'Complete Design System Showcase',
+        subtitle: 'A full compilation of additional interactive user interfaces, modals, and edge-case layouts.',
+        keywords: [],
+        screens: []
+      }
+    ];
+
+    const screens = project.modules || project.directory || [];
     
-    // Map screens to lightbox gallery format
-    currentCaseStudyScreens = screens.map(mod => {
-      const match = (project.modules || []).find(m => m.url === mod.url);
+    // Reset screens in chapters
+    chapters.forEach(c => c.screens = []);
+    
+    screens.forEach(s => {
+      const match = (project.modules || []).find(m => m.url === s.url);
       const desc = match ? match.desc : '';
-      return {
-        src: encodeURI(mod.url),
-        caption: mod.name + (desc ? ` — ${desc}` : ''),
-        type: 'image'
+      const screenObj = {
+        url: s.url,
+        name: s.name || s.url.split('/').pop().replace(/\.[^/.]+$/, ""),
+        desc: desc || `Interface representation of ${s.name || 'Screen'}.`
       };
+      
+      // Classify
+      let classified = false;
+      for (let i = 0; i < chapters.length - 1; i++) {
+        const c = chapters[i];
+        if (c.keywords.some(regex => regex.test(screenObj.name))) {
+          c.screens.push(screenObj);
+          classified = true;
+          break;
+        }
+      }
+      if (!classified) {
+        chapters[chapters.length - 1].screens.push(screenObj);
+      }
     });
 
-    const galleryHtml = screens.map((mod, index) => {
-      // Find a matching description from modules metadata if it exists
-      const match = (project.modules || []).find(m => m.url === mod.url);
-      const desc = match ? match.desc : '';
+    const orderedScreens = [];
+    let globalIndex = 0;
+    
+    const chaptersContainerHtml = chapters.map(c => {
+      if (c.screens.length === 0) return '';
+      
+      const screensHtml = c.screens.map(s => {
+        const currentIdx = globalIndex++;
+        orderedScreens.push({
+          src: encodeURI(s.url),
+          caption: s.name + (s.desc ? ` — ${s.desc}` : ''),
+          type: 'image'
+        });
+        
+        const uniqueId = `cs-screen-${currentIdx}`;
+        
+        return `
+          <div class="cs-device-card" id="${uniqueId}" style="max-width: 320px; transition: all 0.4s;" onclick="openLightbox('${encodeURI(s.url)}', '${s.name}', 'image', currentCaseStudyScreens, ${currentIdx})">
+            <div class="cs-device-screen">
+              <img src="${encodeURI(s.url)}" alt="${s.name}" loading="lazy" onload="adjustDeviceFrame(this, '${uniqueId}')">
+            </div>
+            <div class="cs-device-info">
+              <div class="cs-device-title">${s.name}</div>
+              ${s.desc ? `<div class="cs-device-desc">${s.desc}</div>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+      
       return `
-        <div class="cs-gallery-item" onclick="openLightbox('${encodeURI(mod.url)}', '${mod.name}', 'image', currentCaseStudyScreens, ${index})">
-          <img src="${encodeURI(mod.url)}" alt="${mod.name}" loading="lazy">
-          <div class="cs-gallery-item-info">
-            <div class="cs-gallery-item-title">${mod.name}</div>
-            ${desc ? `<div class="cs-gallery-item-desc">${desc}</div>` : ''}
+        <div class="cs-chapter">
+          <div class="cs-chapter-tag">${c.title.toUpperCase()}</div>
+          <h2 class="cs-chapter-title">${c.title}</h2>
+          <p class="cs-chapter-desc">${c.subtitle}</p>
+          <div class="cs-screens-grid">
+            ${screensHtml}
           </div>
         </div>
       `;
     }).join('');
+    
+    currentCaseStudyScreens = orderedScreens;
 
-    // Populate modal contents
+    // Populate modal contents using presentation vertical scrollytelling scroller
     modal.innerHTML = `
       <button class="cs-modal-close" onclick="closeCaseStudy()">&times;</button>
-      <div class="cs-modal-container">
-        <div class="cs-modal-sidebar">
-          <div>
-            <div class="cs-modal-tag">${project.tag}</div>
-            <h2 class="cs-modal-title">${project.title}</h2>
-            <p class="cs-modal-desc">${project.desc}</p>
-            
-            <div class="cs-modal-meta-label">Skills &amp; Tools</div>
-            <div class="feat-stack" style="margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 8px;">
-              ${stackHtml}
-            </div>
-          </div>
-          
-          <div class="cs-modal-links">
-            ${project.figmaUrl ? `<a href="${project.figmaUrl}" target="_blank" class="btn-primary" style="justify-content: center; font-size: 13px;">View Figma Prototype</a>` : ''}
-            ${project.behanceUrl ? `<a href="${project.behanceUrl}" target="_blank" class="btn-outline" style="justify-content: center; font-size: 13px;">View Behance Project</a>` : ''}
+      <div class="cs-presentation">
+        <!-- Hero Section -->
+        <div class="cs-hero-cover" style="background-image: url('${encodeURI(project.mockup)}');">
+          <div class="cs-hero-info">
+            <span class="cs-hero-tag">${project.tag}</span>
+            <h1 class="cs-hero-title">${project.title}</h1>
           </div>
         </div>
-        <div class="cs-modal-main">
-          <div class="cs-modal-meta-label" style="margin-bottom: 0;">Case Study Screens (${screens.length})</div>
-          <div class="cs-modal-gallery">
-            ${galleryHtml}
+
+        <!-- Brief Section -->
+        <div class="cs-brief-sec">
+          <div class="cs-brief-left">
+            <h3>Project Brief &amp; Overview</h3>
+            <p>${project.desc}</p>
           </div>
+          <div class="cs-brief-right">
+            <div class="cs-brief-right-box">
+              <div class="cs-brief-label">Skills &amp; Tools</div>
+              <div class="cs-brief-stack">
+                ${stackHtml}
+              </div>
+              <div class="cs-brief-links">
+                ${project.figmaUrl ? `<a href="${project.figmaUrl}" target="_blank" class="btn-primary" style="justify-content: center; font-size: 13.5px; width: 100%;">View Figma Prototype</a>` : ''}
+                ${project.behanceUrl ? `<a href="${project.behanceUrl}" target="_blank" class="btn-outline" style="justify-content: center; font-size: 13.5px; width: 100%;">View Behance Project</a>` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Chapters -->
+        <div id="cs-chapters-container">
+          ${chaptersContainerHtml}
         </div>
       </div>
     `;
@@ -2209,6 +2682,130 @@
     // Activate modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0; // scroll to top when opening
+  }
+
+  // Swap layout dynamically between phone card and desktop wide preview on loaded dimensions
+  window.adjustDeviceFrame = function(img, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const ratio = img.naturalWidth / img.naturalHeight;
+    if (ratio >= 0.9) {
+      // Landscape/Desktop screen
+      container.className = 'cs-wide-device';
+      container.style.maxWidth = ''; // remove fixed mobile max-width
+      container.style.gridColumn = '1 / -1'; // span full width of design grid
+      
+      const screenDiv = container.querySelector('.cs-device-screen');
+      if (screenDiv) {
+        screenDiv.className = 'cs-wide-screen';
+      }
+    }
+  };
+
+  // Render Mockups packaging/identity section dynamically
+  function renderMockups(mockups) {
+    const container = document.getElementById('mockups-container');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    const descriptions = {
+      "aurelia": {
+        tag: "Product & Packaging Design",
+        title: "Aurelia Organic Honey",
+        desc: "Premium label and packaging design for Aurelia, a high-end brand specializing in raw organic honey. Developed a clean, warm design system highlighting purity and natural ingredients, paired with a sleek glass jar mockup.",
+        tools: ["Figma", "Packaging Design", "Brand Identity", "Design Research"]
+      },
+      "veloura": {
+        tag: "Brand Identity & Mockup",
+        title: "Veloura Cosmetics",
+        desc: "Complete visual identity and product styling mockup for Veloura, a luxury eco-conscious skincare line. Built with minimalist serif typography, refined organic palettes, and premium packaging textures to invoke a modern aesthetic.",
+        tools: ["Figma", "Eco Packaging", "Brand Styling", "Market Research"]
+      },
+      "jahans hue": {
+        tag: "Product & Packaging Design",
+        title: "Jahan's Hue Accessories Bag",
+        desc: "Luxurious brand identity and packaging mockup for Jahan's Hue accessories. Featuring customized gold foil brand lettering laid over high-texture maroon paper shopping bags, placed in real-world retail environment showcases.",
+        tools: ["Figma", "Brand Packaging", "Visual Identity", "Design Research"]
+      }
+    };
+    
+    const getBadgeTheme = (techName) => {
+      const name = techName.toLowerCase().trim();
+      if (name.includes('figma')) {
+        return { color: '#38bdf8', bg: 'rgba(56, 189, 248, 0.08)', border: 'rgba(56, 189, 248, 0.3)' };
+      }
+      if (name.includes('research')) {
+        return { color: '#facc15', bg: 'rgba(250, 204, 21, 0.08)', border: 'rgba(250, 204, 21, 0.3)' };
+      }
+      if (name.includes('packaging')) {
+        return { color: '#10b981', bg: 'rgba(16, 185, 129, 0.08)', border: 'rgba(16, 185, 129, 0.3)' };
+      }
+      if (name.includes('identity') || name.includes('styling') || name.includes('visual')) {
+        return { color: '#c084fc', bg: 'rgba(192, 132, 252, 0.08)', border: 'rgba(192, 132, 252, 0.3)' };
+      }
+      return { color: '#f43f5e', bg: 'rgba(244, 63, 94, 0.08)', border: 'rgba(244, 63, 94, 0.3)' };
+    };
+
+    const mockupItems = mockups.map(m => ({
+      src: encodeURI(m.url),
+      caption: m.name,
+      type: 'image'
+    }));
+
+    mockups.forEach((m, index) => {
+      const key = m.name.toLowerCase();
+      const meta = descriptions[key] || {
+        tag: "Packaging & Identity Mockup",
+        title: m.name,
+        desc: "Premium brand styling and custom product presentation mockup showcasing high-fidelity textures and modern visual layouts.",
+        tools: ["Figma", "Packaging Design", "Visual Identity", "Design Research"]
+      };
+      
+      const toolsHtml = (meta.tools || [])
+        .map(t => {
+          const bTheme = getBadgeTheme(t);
+          return `<span class="mockup-tool-badge" style="
+            background: ${bTheme.bg};
+            border: 1px solid ${bTheme.border};
+            color: ${bTheme.color};
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 0 8px ${bTheme.bg};
+          "><span style="width: 5px; height: 5px; border-radius: 50%; background: ${bTheme.color}; box-shadow: 0 0 5px ${bTheme.color};"></span>${t}</span>`;
+        })
+        .join('');
+      
+      const card = document.createElement('div');
+      card.className = 'mockup-card';
+      card.innerHTML = `
+        <div class="mockup-img-wrap" style="cursor: pointer;">
+          <img src="${encodeURI(m.url)}" alt="${meta.title}" loading="lazy">
+        </div>
+        <div class="mockup-info">
+          <span class="mockup-tag">${meta.tag}</span>
+          <h3 class="mockup-title">${meta.title}</h3>
+          <p class="mockup-desc">${meta.desc}</p>
+          <div class="mockup-tools">
+            ${toolsHtml}
+          </div>
+        </div>
+      `;
+      
+      card.querySelector('.mockup-img-wrap').addEventListener('click', () => {
+        openLightbox(encodeURI(m.url), meta.title, 'image', mockupItems, index);
+      });
+      
+      container.appendChild(card);
+    });
   }
 
   function closeCaseStudy() {
@@ -2226,7 +2823,7 @@
 
     const posterItems = posters.map(p => ({
       src: encodeURI(p.url),
-      caption: p.name,
+      caption: '',
       type: 'image'
     }));
     
@@ -2235,14 +2832,10 @@
       card.className = 'poster-card';
       card.innerHTML = `
         <div class="poster-img-wrap">
-          <img src="${encodeURI(p.url)}" alt="${p.name}" loading="lazy">
-        </div>
-        <div class="poster-info">
-          <div class="poster-cat">Graphic Design</div>
-          <div class="poster-title">${p.name}</div>
+          <img src="${encodeURI(p.url)}" alt="Poster Design" loading="lazy">
         </div>
       `;
-      card.addEventListener('click', () => openLightbox(encodeURI(p.url), p.name, 'image', posterItems, index));
+      card.addEventListener('click', () => openLightbox(encodeURI(p.url), '', 'image', posterItems, index));
       container.appendChild(card);
     });
   }
@@ -2252,24 +2845,65 @@
     const container = document.getElementById('videos-container');
     container.innerHTML = '';
 
-    const videoItems = videos.map(v => ({
-      src: encodeURI(v.url),
-      caption: v.name,
-      type: 'video'
-    }));
+    const videoDetails = [
+      {
+        title: "Gym Footwear Guide — Always Wear the Best Shoes",
+        desc: "A high-impact social media video animation showing why wearing the right footwear in the gym is crucial for safety and performance. Created with dynamic pacing and crisp transitions.",
+        tools: ["CapCut", "VN Editor", "Motion Graphics", "AI Voice"]
+      },
+      {
+        title: "Full Cycling Routine — Gym Workout Guide",
+        desc: "An engaging exercise video showcasing a full cycling routine in the gym. Styled with high-energy cuts and motivating music overlays to drive social media engagement.",
+        tools: ["VN Editor", "CapCut", "Cinematic Cuts", "Promo Video"]
+      },
+      {
+        title: "Viral Motion Graphic — Over 700K+ Likes",
+        desc: "A highly-viral motion graphic promo that achieved over 700,000+ likes on social media. Demonstrates advanced text animations, pacing, and viral hook techniques.",
+        tools: ["VN Editor", "CapCut", "Viral Design", "Audience Hooks"]
+      }
+    ];
+
+    const videoItems = videos.map((v, index) => {
+      const details = videoDetails[index] || { title: v.name || `Video Animation ${index+1}`, desc: "Premium video content.", tools: [] };
+      return {
+        src: encodeURI(v.url),
+        caption: details.title,
+        type: 'video'
+      };
+    });
     
     videos.forEach((v, index) => {
       const card = document.createElement('div');
       card.className = 'video-card';
+      
+      const details = videoDetails[index] || { 
+        title: v.name || `Video Animation ${index+1}`, 
+        desc: "Premium video content demonstrating modern technical workflows and creative storytelling assets.", 
+        tools: ["CapCut", "VN Editor"] 
+      };
+
+      const toolsHtml = details.tools
+        .map(t => `<span class="video-card-tool-tag">${t}</span>`)
+        .join('');
+
       card.innerHTML = `
-        <video src="${encodeURI(v.url)}" poster="${v.thumbnail ? encodeURI(v.thumbnail) : ''}" muted loop playsinline></video>
-        <div class="video-overlay">
-          <div class="video-play-btn">▶</div>
-          <div class="video-title">${v.name}</div>
+        <div class="video-preview-wrap">
+          <video src="${encodeURI(v.url)}" poster="${v.thumbnail ? encodeURI(v.thumbnail) : ''}" muted loop playsinline></video>
+          <div class="video-overlay">
+            <div class="video-play-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-info-wrap">
+          <h4 class="video-card-title">${details.title}</h4>
+          <p class="video-card-desc">${details.desc}</p>
+          <div class="video-card-tools">
+            ${toolsHtml}
+          </div>
         </div>
       `;
       
       const videoEl = card.querySelector('video');
+      const previewEl = card.querySelector('.video-preview-wrap');
       
       // Glimpse preview behavior (restarts video after 3 seconds to act as a transition loop like YouTube)
       videoEl.addEventListener('timeupdate', () => {
@@ -2278,15 +2912,15 @@
         }
       });
       
-      card.addEventListener('mouseenter', () => {
+      previewEl.addEventListener('mouseenter', () => {
         videoEl.play().catch(() => {});
       });
-      card.addEventListener('mouseleave', () => {
+      previewEl.addEventListener('mouseleave', () => {
         videoEl.pause();
         videoEl.currentTime = 0;
         videoEl.load(); // Forces the cover poster thumbnail to display again
       });
-      card.addEventListener('click', () => openLightbox(encodeURI(v.url), v.name, 'video', videoItems, index));
+      previewEl.addEventListener('click', () => openLightbox(encodeURI(v.url), details.title, 'video', videoItems, index));
       
       container.appendChild(card);
     });

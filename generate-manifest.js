@@ -72,14 +72,46 @@ const generateManifest = () => {
           }
         }
 
+        const projId = folder.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+        // Auto-detect mockup image
+        let mockupPath = '';
+        
+        // 1. Search in parent uiux folder for files matching [projId]-mockup
+        const parentFiles = fs.readdirSync(contentDirs.uiux);
+        const cleanId = projId.replace(/[\s_-]+/g, '[\\s_-]?');
+        const mockupRegex = new RegExp(`^${cleanId}[\\s_-]?mockup\\.(png|jpg|jpeg|webp)$`, 'i');
+        const matchedParentFile = parentFiles.find(file => isImage(file) && mockupRegex.test(file));
+        
+        if (matchedParentFile) {
+          mockupPath = `uiux/${matchedParentFile}`;
+        } else {
+          // 2. Search inside the project folder for any file containing 'mockup', 'cover', or 'hero'
+          const localMockupFile = imageFiles.find(file => {
+            const lower = file.toLowerCase();
+            return lower.includes('mockup') || lower.includes('cover') || lower.includes('hero');
+          });
+          
+          if (localMockupFile) {
+            mockupPath = `uiux/${folder}/${localMockupFile}`;
+          } else {
+            // 3. Fallback to the first image inside the folder
+            if (imageFiles.length > 0) {
+              mockupPath = `uiux/${folder}/${imageFiles[0]}`;
+            }
+          }
+        }
+
         const project = {
-          id: folder.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+          id: projId,
           folderName: folder,
           title: metadata.title,
           tag: metadata.tag,
           desc: metadata.desc,
           figmaUrl: metadata.figmaUrl,
           behanceUrl: metadata.behanceUrl,
+          mockup: mockupPath,
+          techStack: metadata.techStack || ["UI/UX Design", "Figma", "Prototyping"],
           modules: imageFiles.map((file) => {
             const customModule = (metadata.modules || []).find(m => m.file === file);
             return {
@@ -137,8 +169,12 @@ const generateManifest = () => {
 
     videos.forEach((videoFile) => {
       const videoBaseName = path.basename(videoFile, path.extname(videoFile));
-      // Find matching thumbnail image (same base name)
-      const matchingImg = images.find(img => path.basename(img, path.extname(img)) === videoBaseName);
+      // Find matching thumbnail image (starts with or contains video base name)
+      const matchingImg = images.find(img => {
+        const imgBase = path.basename(img, path.extname(img)).toLowerCase();
+        const vBase = videoBaseName.toLowerCase();
+        return imgBase === vBase || imgBase.startsWith(vBase) || imgBase.includes(vBase);
+      });
       
       manifest.videos.push({
         name: formatName(videoFile),
@@ -148,9 +184,14 @@ const generateManifest = () => {
     });
   }
 
-  // Write manifest
+  // Write manifest JSON
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
-  console.log(`Success! manifest.json created with:`);
+
+  // Write manifest JS (CORS-free local filesystem loading)
+  const manifestJsPath = path.join(__dirname, 'manifest.js');
+  fs.writeFileSync(manifestJsPath, `window.portfolioManifest = ${JSON.stringify(manifest, null, 2)};`, 'utf8');
+
+  console.log(`Success! manifest.json and manifest.js created with:`);
   console.log(`- ${manifest.uiux.length} UI/UX Projects`);
   console.log(`- ${manifest.mockups.length} Mockups`);
   console.log(`- ${manifest.posters.length} Posters`);
