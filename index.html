@@ -2667,9 +2667,28 @@
               <div class="cs-brief-stack">
                 ${stackHtml}
               </div>
-              <div class="cs-brief-links">
-                <a href="#contact" onclick="closeCaseStudy()" class="btn-primary" style="justify-content: center; font-size: 13.5px; width: 100%;">Discuss Project</a>
-                <a href="mailto:se.nusrat.jahan.ara@gmail.com?subject=Inquiry%20about%20${encodeURIComponent(project.title)}" class="btn-outline" style="justify-content: center; font-size: 13.5px; width: 100%;">Request Case Details</a>
+              <div class="cs-brief-links" style="margin-top: 18px; display: flex; flex-direction: column; gap: 12px;">
+                <a href="#contact" onclick="closeCaseStudy()" style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  background: rgba(16, 185, 129, 0.06);
+                  border: 1px solid var(--accent);
+                  color: var(--accent);
+                  padding: 8px 16px;
+                  border-radius: 20px;
+                  font-size: 12px;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.8px;
+                  text-decoration: none;
+                  box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+                  transition: all 0.3s;
+                  width: fit-content;
+                ">
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent);"></span>
+                  Discuss Project
+                </a>
               </div>
             </div>
           </div>
