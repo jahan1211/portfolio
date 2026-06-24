@@ -211,7 +211,11 @@
                                        "UI/UX Design",
                                        "Wireframing",
                                        "Prototyping",
-                                       "User Research"
+                                       "User Research",
+                                       "Grok",
+                                       "Sound Design",
+                                       "Animation",
+                                       "Motion"
                                    ],
                      "behanceUrl":  "https://www.behance.net/gallery/heraid-safety-app",
                      "directory":  [
@@ -316,7 +320,11 @@
                                        "UI/UX Design",
                                        "E-Commerce",
                                        "Branding \u0026 Identity",
-                                       "Prototyping"
+                                       "Prototyping",
+                                       "Grok",
+                                       "Sound Design",
+                                       "Animation",
+                                       "Motion"
                                    ],
                      "behanceUrl":  "https://www.behance.net/gallery/jahans-hue-branding",
                      "directory":  [
@@ -429,7 +437,11 @@
                                        "UI/UX Design",
                                        "AI Chatbot Design",
                                        "Gamification",
-                                       "Prototyping"
+                                       "Prototyping",
+                                       "Grok",
+                                       "Sound Design",
+                                       "Animation",
+                                       "Motion"
                                    ],
                      "behanceUrl":  "https://www.behance.net/gallery/lumin-mind-ux",
                      "directory":  [
@@ -552,7 +564,11 @@
                                        "UI/UX Design",
                                        "Travel Booking",
                                        "Competitor Analysis",
-                                       "Prototyping"
+                                       "Prototyping",
+                                       "Grok",
+                                       "Sound Design",
+                                       "Animation",
+                                       "Motion"
                                    ],
                      "behanceUrl":  "https://www.behance.net/gallery/travel-platform-ux",
                      "directory":  [
@@ -644,7 +660,11 @@
                                        "UI/UX Design",
                                        "Mood Tracking",
                                        "Data Analytics",
-                                       "Prototyping"
+                                       "Prototyping",
+                                       "Grok",
+                                       "Sound Design",
+                                       "Animation",
+                                       "Motion"
                                    ],
                      "behanceUrl":  "https://www.behance.net/gallery/vyana-mood-ux",
                      "directory":  [

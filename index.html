@@ -1989,6 +1989,8 @@
             <span class="expertise-pill">Video Editing</span>
             <span class="expertise-pill">Product Advertisement</span>
             <span class="expertise-pill">Content Creation</span>
+            <span class="expertise-pill">Animation</span>
+            <span class="expertise-pill">Sound Design</span>
           </div>
         </div>
 
@@ -2011,6 +2013,7 @@
             <span class="expertise-pill">Adobe After Effects</span>
             <span class="expertise-pill">Canva</span>
             <span class="expertise-pill">CapCut</span>
+            <span class="expertise-pill">Grok AI</span>
             <span class="expertise-pill">Notion</span>
           </div>
         </div>
@@ -2321,7 +2324,7 @@
 
     function animateStats() {
       const stats = [
-        { id: 'stat-val-clients', val: 6 },
+        { id: 'stat-val-clients', val: 10 },
         { id: 'stat-val-designs', val: 200 },
         { id: 'stat-val-experience', val: 1.5, decimals: 1 },
         { id: 'stat-val-campaigns', val: 5 }
@@ -2665,8 +2668,8 @@
                 ${stackHtml}
               </div>
               <div class="cs-brief-links">
-                ${project.figmaUrl ? `<a href="${project.figmaUrl}" target="_blank" class="btn-primary" style="justify-content: center; font-size: 13.5px; width: 100%;">View Figma Prototype</a>` : ''}
-                ${project.behanceUrl ? `<a href="${project.behanceUrl}" target="_blank" class="btn-outline" style="justify-content: center; font-size: 13.5px; width: 100%;">View Behance Project</a>` : ''}
+                <a href="#contact" onclick="closeCaseStudy()" class="btn-primary" style="justify-content: center; font-size: 13.5px; width: 100%;">Discuss Project</a>
+                <a href="mailto:se.nusrat.jahan.ara@gmail.com?subject=Inquiry%20about%20${encodeURIComponent(project.title)}" class="btn-outline" style="justify-content: center; font-size: 13.5px; width: 100%;">Request Prototype</a>
               </div>
             </div>
           </div>
