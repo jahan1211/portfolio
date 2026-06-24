@@ -2136,7 +2136,7 @@
   </div>
   
   <div class="footer-cv-wrap">
-    <a href="CV/Nusrat_Jahan_Ara_CV.docx" download="Nusrat_Jahan_Ara_CV.docx" class="btn-outline download-cv-btn" style="
+    <a href="CV/Nusrat_Jahan_Ara_CV.docx" onclick="event.preventDefault(); forceDownload(this.href, 'Nusrat_Jahan_Ara_CV.docx');" class="btn-outline download-cv-btn" style="
       font-size: 12px; 
       font-weight: 700;
       padding: 10px 24px; 
@@ -3037,6 +3037,34 @@
       closeLightbox();
     }
   });
+
+  // Force direct download using blob fetch
+  function forceDownload(url, filename) {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error('Download failed');
+        return response.blob();
+      })
+      .then(blob => {
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(blobUrl);
+        document.body.removeChild(a);
+      })
+      .catch(err => {
+        // Fallback
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.target = '_blank';
+        a.click();
+      });
+  }
 </script>
 </body>
 </html>
