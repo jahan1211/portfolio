@@ -7,7 +7,7 @@ $mockupsDir = Join-Path $scriptDir "Mockups"
 $postersDir = Join-Path $scriptDir "Posters & Creatives"
 $videosDir = Join-Path $scriptDir "Vedio Animation"
 
-$manifestJsonPath = Join-Path $scriptDir "manifest.json"
+$manifestJsonPath = Join-Path $scriptDir "portfolio-data.json"
 $manifestJsPath = Join-Path $scriptDir "manifest.js"
 
 # Helper to format name
@@ -180,14 +180,14 @@ $manifest = @{
 # Convert to JSON
 $manifestJson = $manifest | ConvertTo-Json -Depth 10
 
-# Write manifest.json (UTF-8 without BOM)
+# Write portfolio-data.json (UTF-8 without BOM)
 [System.IO.File]::WriteAllText($manifestJsonPath, $manifestJson, [System.Text.Encoding]::UTF8)
 
 # Write manifest.js
 $manifestJs = "window.portfolioManifest = $manifestJson;"
 [System.IO.File]::WriteAllText($manifestJsPath, $manifestJs, [System.Text.Encoding]::UTF8)
 
-Write-Host "Success! manifest.json and manifest.js created successfully with:"
+Write-Host "Success! portfolio-data.json and manifest.js created successfully with:"
 Write-Host "- $($uiux.Count) UI/UX Projects"
 Write-Host "- $($mockups.Count) Mockups"
 Write-Host "- $($posters.Count) Posters"

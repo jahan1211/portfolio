@@ -8,7 +8,7 @@ const contentDirs = {
   videos: path.join(__dirname, 'Vedio Animation'),
 };
 
-const manifestPath = path.join(__dirname, 'manifest.json');
+const manifestPath = path.join(__dirname, 'portfolio-data.json');
 
 // Helper to check if file is an image
 const isImage = (fileName) => {
@@ -191,7 +191,7 @@ const generateManifest = () => {
   const manifestJsPath = path.join(__dirname, 'manifest.js');
   fs.writeFileSync(manifestJsPath, `window.portfolioManifest = ${JSON.stringify(manifest, null, 2)};`, 'utf8');
 
-  console.log(`Success! manifest.json and manifest.js created with:`);
+  console.log(`Success! portfolio-data.json and manifest.js created with:`);
   console.log(`- ${manifest.uiux.length} UI/UX Projects`);
   console.log(`- ${manifest.mockups.length} Mockups`);
   console.log(`- ${manifest.posters.length} Posters`);
