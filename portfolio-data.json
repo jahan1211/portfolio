@@ -92,6 +92,10 @@
                         "url":  "Posters \u0026 Creatives/ChatGPT Image Jun 8, 2026, 11_35_35 PM.png"
                     },
                     {
+                        "name":  "Dumbledore Poster",
+                        "url":  "Posters \u0026 Creatives/dumbledore_poster.png"
+                    },
+                    {
                         "name":  "True Detective",
                         "url":  "Posters \u0026 Creatives/True Detective.png"
                     },
@@ -126,6 +130,10 @@
                     {
                         "name":  "Whatsapp Image 2026 06 19 At 1.14.02 Pm",
                         "url":  "Posters \u0026 Creatives/WhatsApp Image 2026-06-19 at 1.14.02 PM.jpeg"
+                    },
+                    {
+                        "name":  "Whatsapp Image 2026 06 30 At 5.12.42 Pm",
+                        "url":  "Posters \u0026 Creatives/WhatsApp Image 2026-06-30 at 5.12.42 PM.jpeg"
                     }
                 ],
     "uiux":  [
