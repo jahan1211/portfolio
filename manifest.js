@@ -44,6 +44,14 @@
                         "url":  "Posters \u0026 Creatives/b49d3c41-2964-41d7-af55-d6583bb8d1fe.png"
                     },
                     {
+                        "name":  "Brandsinn",
+                        "url":  "Posters \u0026 Creatives/Brandsinn.png"
+                    },
+                    {
+                        "name":  "Chatgpt Image Jul 21, 2026, 11 30 34 Pm",
+                        "url":  "Posters \u0026 Creatives/ChatGPT Image Jul 21, 2026, 11_30_34 PM.png"
+                    },
+                    {
                         "name":  "Chatgpt Image Jun 13, 2026, 07 46 19 Pm",
                         "url":  "Posters \u0026 Creatives/ChatGPT Image Jun 13, 2026, 07_46_19 PM.png"
                     },
@@ -96,8 +104,8 @@
                         "url":  "Posters \u0026 Creatives/dumbledore_poster.png"
                     },
                     {
-                        "name":  "True Detective",
-                        "url":  "Posters \u0026 Creatives/True Detective.png"
+                        "name":  "Untitled Design",
+                        "url":  "Posters \u0026 Creatives/Untitled design.png"
                     },
                     {
                         "name":  "Whatsapp Image 2026 06 08 At 11.22.48 Pm (1)",
@@ -134,6 +142,14 @@
                     {
                         "name":  "Whatsapp Image 2026 06 30 At 5.12.42 Pm",
                         "url":  "Posters \u0026 Creatives/WhatsApp Image 2026-06-30 at 5.12.42 PM.jpeg"
+                    },
+                    {
+                        "name":  "Whatsapp Image 2026 07 14 At 4.49.28 Pm",
+                        "url":  "Posters \u0026 Creatives/WhatsApp Image 2026-07-14 at 4.49.28 PM.jpeg"
+                    },
+                    {
+                        "name":  "Whatsapp Image 2026 07 21 At 11.32.53 Pm",
+                        "url":  "Posters \u0026 Creatives/WhatsApp Image 2026-07-21 at 11.32.53 PM.jpeg"
                     }
                 ],
     "uiux":  [
