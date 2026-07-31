@@ -300,9 +300,9 @@
                                            "type":  "image"
                                        }
                                    ],
-                     "desc":  "HerAid is a women\u0027s safety and menstruation-tracking platform designed to connect users with safety NGOs, track personal wellness metrics, and ensure privacy-first health management.",
-                     "tag":  "Healthcare \u0026 Safety UX Case Study",
-                     "title":  "HerAid — Women\u0027s Safety \u0026 Health App",
+                     "desc":  "A premium mobile application interface featuring clean layouts, interactive dashboard views, and an intuitive user onboarding experience designed for modern mobile platforms.",
+                     "tag":  "Mobile UI/UX Design",
+                     "title":  "HerAid — Mobile Application Concept",
                      "mockup":  "uiux/heraid-mockup.png",
                      "figmaUrl":  "https://www.figma.com/file/heraid-ux-case-study"
                  },
@@ -338,7 +338,7 @@
                      "techStack":  [
                                        "Figma",
                                        "UI/UX Design",
-                                       "E-Commerce",
+                                       "Interface Design",
                                        "Branding \u0026 Identity",
                                        "Prototyping"
                                    ],
@@ -365,9 +365,9 @@
                                            "type":  "image"
                                        }
                                    ],
-                     "desc":  "A tailored design system and shopping flow for art prints, custom creations, and design assets, optimizing categories and checkouts.",
-                     "tag":  "E-Commerce \u0026 Branding UX Case Study",
-                     "title":  "Jahan\u0027s Hue — Creative E-Commerce App",
+                     "desc":  "A comprehensive mobile interface showcasing custom layout grids, polished component libraries, and interactive flows tailored for a seamless digital experience.",
+                     "tag":  "Digital Interface UI/UX",
+                     "title":  "Jahan\u0027s Hue — Mobile Interface Design",
                      "mockup":  "uiux/jahan-s-hue-e-commerce-mockup.png",
                      "figmaUrl":  "https://www.figma.com/file/jahans-hue-ecommerce"
                  },
@@ -451,8 +451,8 @@
                      "techStack":  [
                                        "Figma",
                                        "UI/UX Design",
-                                       "AI Chatbot Design",
-                                       "Gamification",
+                                       "Dashboard Design",
+                                       "User Journeys",
                                        "Prototyping"
                                    ],
                      "behanceUrl":  "https://www.behance.net/gallery/lumin-mind-ux",
@@ -518,9 +518,9 @@
                                            "type":  "image"
                                        }
                                    ],
-                     "desc":  "Lumin Mind uses mental health tracking, facial scans, emotional logs, and gamification to help users deal with stress. Developed with interactive dashboard interfaces and user journeys.",
-                     "tag":  "Psychology \u0026 AI Chatbot UX Case Study",
-                     "title":  "Lumin Mind — Mental Health \u0026 Wellness App",
+                     "desc":  "A feature-rich dashboard layout utilizing visual progress bars, card-based navigation, and clean typography to present structured information.",
+                     "tag":  "User Experience \u0026 Interface",
+                     "title":  "Lumin Mind — Interactive Dashboard Concept",
                      "mockup":  "uiux/lumin mind_mockup.png",
                      "figmaUrl":  "https://www.figma.com/file/lumin-mind-mental-health"
                  },
@@ -574,7 +574,7 @@
                      "techStack":  [
                                        "Figma",
                                        "UI/UX Design",
-                                       "Travel Booking",
+                                       "Platform Design",
                                        "Competitor Analysis",
                                        "Prototyping"
                                    ],
@@ -616,9 +616,9 @@
                                            "type":  "image"
                                        }
                                    ],
-                     "desc":  "An immersive travel platform developed through competitor analysis, optimizing search categories and tour bookings. Refined using Figma prototypes to ensure fluid interactive transitions.",
-                     "tag":  "Booking Flow UX Case Study",
-                     "title":  "Travel Platform — Booking UX",
+                     "desc":  "A structured digital platform layout optimized for smooth screen transitions, clear visual hierarchy, and polished interactive components.",
+                     "tag":  "Web \u0026 Mobile Interface",
+                     "title":  "Travel Via — UX/UI Concept Platform",
                      "mockup":  "uiux/travel-via-mockup.png",
                      "figmaUrl":  "https://www.figma.com/file/travel-booking-ux"
                  },
@@ -666,7 +666,7 @@
                      "techStack":  [
                                        "Figma",
                                        "UI/UX Design",
-                                       "Mood Tracking",
+                                       "Interactive Design",
                                        "Data Analytics",
                                        "Prototyping"
                                    ],
@@ -703,9 +703,9 @@
                                            "type":  "image"
                                        }
                                    ],
-                     "desc":  "An interactive mood tracking platform designed with detailed tracking screens, personalized statistics, and a mental safe-space onboarding experience.",
-                     "tag":  "Interactive Mood Tracker UX Case Study",
-                     "title":  "Vyana — Mood Tracker \u0026 Support App",
+                     "desc":  "An elegant mobile dashboard design featuring interactive visual components, user personalization options, and a refined aesthetic theme.",
+                     "tag":  "Mobile Application Design",
+                     "title":  "Vyana — Smart Mobile UI Concept",
                      "mockup":  "uiux/vyana_mockup.png",
                      "figmaUrl":  "https://www.figma.com/file/vyana-mood-tracker"
                  }

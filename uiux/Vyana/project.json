@@ -1,8 +1,8 @@
 {
-  "title": "Vyana — Mood Tracker & Support App",
-  "tag": "Interactive Mood Tracker UX Case Study",
-  "desc": "An interactive mood tracking platform designed with detailed tracking screens, personalized statistics, and a mental safe-space onboarding experience.",
+  "title": "Vyana — Smart Mobile UI Concept",
+  "tag": "Mobile Application Design",
+  "desc": "An elegant mobile dashboard design featuring interactive visual components, user personalization options, and a refined aesthetic theme.",
   "figmaUrl": "https://www.figma.com/file/vyana-mood-tracker",
   "behanceUrl": "https://www.behance.net/gallery/vyana-mood-ux",
-  "techStack": ["Figma", "UI/UX Design", "Mood Tracking", "Data Analytics", "Prototyping"]
+  "techStack": ["Figma", "UI/UX Design", "Interactive Design", "Data Analytics", "Prototyping"]
 }
